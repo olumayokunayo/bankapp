@@ -1,0 +1,156 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: gray;
+}
+.appContainer{
+    border: 5px solid #fff;
+    height: 560px;
+    width: 280px;
+    background-color: #fff;
+    border-radius: 25px;
+    position: relative;
+}
+.userIcon{
+    height: 1rem;
+    width: 1rem;
+    border-radius: 50%;
+    padding: 0.5rem;
+    color: #fff;
+    background-color: #00000096;
+}
+.welcomeGreet{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.showGreet{
+    color: rgba(65, 65, 160, 0.772);
+}
+.topDiv{
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.notificationIcon{
+   font-size: 1.5rem;
+    color: rgb(65, 65, 160);
+}
+.accountInfoDiv{
+    padding: 0.5rem;
+    height: fit-content;
+    width: 260px;
+    background-color: rgba(65, 65, 160, 0.187);
+    border-radius: 10px;
+   margin: auto;
+   display: flex;
+   flex-direction: column;
+   gap: 0.5rem;
+}
+.balAndIcon, .numAndIcon{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.accountBal, .accountNum{
+    font-size: 1rem;
+    color: #222222c7;
+}
+.bal{
+    font-size: 1.5rem;
+    color: rgba(65, 65, 160, 0.772);
+}
+.num{
+    font-size: 1rem;
+    color: rgba(65, 65, 160, 0.772);
+}
+.visibilityOffIcon, .copyIcon{
+    font-size: 1.3rem;
+    color: rgba(65, 65, 160, 0.772);
+}
+.transfersCol{
+    margin-top: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem;
+    text-align: center;
+    gap: 0.5rem;
+}
+.transIcon{
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 2rem;
+    width: 2rem;
+    border-radius: 50%;
+    color: #000;
+}
+.transferDiv, .CardTransDiv, .TransDiv{
+   background-color: blue;
+    height: 4rem;
+    width: 6rem;
+    padding: 0.5rem;
+    border-radius: 10px;
+}
+.transferDiv{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 255, 0.696);
+    color: #fff;
+}
+.CardTransDiv{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color:rgba(0, 128, 0, 0.62);
+    color: #fff;
+}
+.TransDiv{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 0, 0, 0.537);
+    color:#fff
+}
+.bottomNav{
+    border-top: 1px solid #00000022;
+    padding: 0.5rem 0.8rem 1rem 0.8rem;
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    align-items: center;
+   /* justify-content: center; */
+    gap: 2rem;
+}
+.navLinks{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 0.4rem;
+    color: #222222ae;
+    transition: all 0.5s ease;
+    cursor: pointer;
+}
+.navLinks:hover{
+    color: #800080;
+}
+.navLinks p {
+    font-size: 0.8rem;
+}
+.checked{
+    color: rgba(65, 65, 160, 0.772);
+}
