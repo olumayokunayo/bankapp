@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <link rel="stylesheet" href="signup.css">
+    <title>Document</title>
+</head>
+<body>
+    <main class="landing">
+        <img src="./images/logobank3.jpg" alt="">
+        <div class="heroDiv">
+            <h1>RadFinTech.</h1>
+            <p>Guarantee secure and easy banking transaction in one app</p>
+        </div>
+        <div class="beginDiv">
+            <button class="beginBtn" id="beginBtn">Start your journey with us</button>
+        </div>
+    </main>
+    <main class="signUpDiv">
+        <div class="createAcc">
+            <img src="./images/logobank3.jpg" alt="">
+            <h3>Create your Rad account now</h3>
+            <div class="inputs">
+
+                <input type="text" id="fName" placeholder="Enter your first name" />
+                <input type="text" id="lName" placeholder="Enter your last name" />
+                <input type="text" id="dob" placeholder="mm/dd/yy">
+                <input type="email" id="email" placeholder="Enter your email" />
+            </div>
+    <div class="inputDiv">
+        <input
+          type="password"
+          id="password"
+          placeholder="Enter your password"
+        />
+        <button class="visibilityDiv">
+            <span class="visibilityOff material-symbols-outlined"> visibility_off </span>
+          </button>
+    </div>
+
+    <div class="inputDiv">
+                <input
+                  type="password"
+                  id="password"
+                  placeholder="Confirm your password"
+                />
+                <button class="visibilityDiv">
+                    <span class="visibilityOff material-symbols-outlined"> visibility_off </span>
+                  </button>
+            </div>
+
+         
+  
+            <div class="buttons">
+              <div class="bt1">
+                <button class="createBtn" id="createBtn">Create account</button>
+              </div>
+            </div>
+            <p class="account">
+                <span>
+                    Already have an acount?
+                </span>
+              <span class="loginhere"><a href="login.html" id="logHere">Log in here</a></span>
+            </p>
+        </div>
+        <div class="socials">
+            <span><ion-icon  class="socialIcon" name="logo-twitter"></ion-icon></span>
+            <span><ion-icon class="socialIcon" name="logo-facebook"></ion-icon></span>
+            <span><ion-icon  class="socialIcon"name="logo-instagram"></ion-icon></span>
+            <span><ion-icon class="socialIcon" name="logo-linkedin"></ion-icon></span>
+        </div>     
+    </main>
+    <main class="loginDiv">
+        <div class="loginAcc">
+            <!-- <img src="./images/logobank3.jpg" alt=""> -->
+            <h3>Welcome back !</h3>
+            <img src="./images/banklanding.jpeg" alt="">
+            <div class="input">
+                <input type="email" id="email" placeholder="Enter your email" />
+            </div>
+            <div class="inputDiv">
+                <input
+                  type="password"
+                  id="password"
+                  placeholder="Enter your password"
+                />
+                <button class="visibilityDiv">
+                    <span class="visibilityOff material-symbols-outlined"> visibility_off </span>
+                  </button>
+
+            </div>
+            <div class="buttons">
+              <div class="bt1">
+                <button class="createBtn" id="loginBtn">Login</button>
+              </div>
+            </div>
+            <p class="account">
+                <span>
+                    Don't have an acount?
+                </span>
+              <span class="loginhere"><a href="login.html" onclick="signhere()">Create account</a></span>
+            </p>
+        </div>
+        <div class="socials">
+            <span><ion-icon  class="socialIcon" name="logo-twitter"></ion-icon></span>
+            <span><ion-icon class="socialIcon" name="logo-facebook"></ion-icon></span>
+            <span><ion-icon  class="socialIcon"name="logo-instagram"></ion-icon></span>
+            <span><ion-icon class="socialIcon" name="logo-linkedin"></ion-icon></span>
+        </div>   
+    </main>
+    <script src="./app.js"></script>
+</body>
+</html>
