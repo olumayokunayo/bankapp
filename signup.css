@@ -314,7 +314,7 @@
         cursor: pointer;
     }
     
-    .visibilityDiv{
+    .visibilityDiv, .visibilityDivBtn{
         border: none;
         background: none;
         color: #000;
@@ -382,6 +382,14 @@
         outline: none;
         border: none;
         padding: 0.5rem;
+    }
+    .signHere{
+        color: blue;
+        cursor: pointer;
+    }
+    .logHere{
+        color: blue;
+        cursor: pointer; 
     }
 }
 
