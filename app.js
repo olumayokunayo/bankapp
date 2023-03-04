@@ -38,8 +38,7 @@ password1.value == "" || password2.value == ""){
   let expiryDate = `${expMonth}/${expYear}`
   // let creditNum = randcreditNum.toString();
   console.log(randcreditNum, expMonth);
-  
-  let userKey = `userInfo-${username.value}`;
+
   let userInfo = {
     firstName: fName.value,
     lastName: lName.value,
@@ -51,6 +50,7 @@ password1.value == "" || password2.value == ""){
     cardNumber: randcreditNum,
     cardExpire: expiryDate,
   }
+  let userKey = `userInfo-${username.value}`;
   if(userArr == null){
     userArr = []
     userArr.push(userInfo);
@@ -62,15 +62,9 @@ password1.value == "" || password2.value == ""){
     userArr.push(userInfo);
     localStorage.setItem("userInfo", JSON.stringify(userArr))
     localStorage.setItem(userKey, JSON.stringify(userInfo));
-    // signUpDiv.style.display = "none";
-    // loginDiv.style.display = "block";
+    signUpDiv.style.display = "none";
+    loginDiv.style.display = "block";
   }
-
-  // let loggedInUser = JSON.parse(localStorage.getItem("loggedInUser")) || []
-  //  loggedInUser.push(userInfo.username)
-  // localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser))
-  // console.log(userArr);
-  
 }
 })
 // LOGIN ACCOUNT
@@ -87,28 +81,15 @@ let userKey = `userInfo-${usernameLog.value}`;
 // Retrieve the user's information using the key
 let userInfo = JSON.parse(localStorage.getItem(userKey));
 
-// Check if the username and password are correct
 if (userInfo && userInfo.password === passwordLog.value) {
-  // Login successful, save the username and redirect to the dashboard
   localStorage.setItem("loggedInUser", usernameLog.value);
-  // window.location.href = "index.html";
   loginDiv.style.display = "none";
   window.location.href = "index.html";
 } else {
-  // Login failed, show an error message
   alert("Invalid username or password");
 }
 
-// let found = gotten.find((user => user.username === usernameLog.value && user.password === passwordLog.value))
-// console.log(found);
-// if(found){
-//   // localStorage.setItem("ser", JSON.stringify(found.username));
-//   alert("Logging in")
-//   loginDiv.style.display = "none";
-//   window.location.href = "index.html";
-// } else {
-//   alert("User not found")
-// }
+
 })
 // VISIBILITY FOR SIGN UP
 let visibilityBtn = document.querySelector(".visibilityDiv");

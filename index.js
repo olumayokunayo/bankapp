@@ -13,14 +13,15 @@ function generate(){
     let num = document.querySelector(".num");
     let expDate = document.querySelector(".expDate");
     let cardnum = document.querySelector(".cardnum");
-    let gotten = JSON.parse(localStorage.getItem("userInfo"))
-    gotten.forEach(element => {
-        num.textContent = `${element.accountNumber}`;
-        bal.textContent = `${element.accountBalance}`
-        cardnum.textContent = `${element.cardNumber}`
-        expDate.textContent = `${element.cardExpire}`
-    });
-    // console. log(gotten);
+    let gotten = JSON.parse(localStorage.getItem("userInfo"));
+    let currentUser = localStorage.getItem("loggedInUser")
+    let currentUserInfo = gotten.find((element => element.username === currentUser))
+    if(currentUserInfo){
+        num.textContent = `${currentUserInfo.accountNumber}`;
+        bal.textContent = `${currentUserInfo.accountBalance}`
+        cardnum.textContent = `${currentUserInfo.cardNumber}`
+        expDate.textContent = `${currentUserInfo.cardExpire}`
+    }
 }
 generate()
 
@@ -44,20 +45,8 @@ let userInfo = JSON.parse(localStorage.getItem(userKey));
             showGreet.innerHTML = `Good afternoon, ${userInfo.firstName}`
         } else {
             showGreet.innerHTML = `Good evening, ${userInfo.firstName}`
-        }
-        
-        console.log(userInfo.firstName);
-    // let gotten = JSON.parse(localStorage.getItem("userInfo"))
-    // gotten.forEach((element)=>{
-    //     console.log(element);
-    //     if (hours < 12 ){
-    //         showGreet.innerHTML = `Good morning, ${element.firstName}`
-    //     } else if(hours > 12 && hours < 18) {
-    //         showGreet.innerHTML = `Good afternoon, ${element.firstName}`
-    //     } else {
-    //         showGreet.innerHTML = `Good evening, ${element.firstName}`
-    //     }
-    // })  
+        }  
+        // console.log(userInfo.firstName); 
 }
 getDate()
 
@@ -74,43 +63,33 @@ closeBtn.addEventListener("click", function(){
     modal.style.display = "none"
 })
 
-
-
 // send money
 
+let bal = document.querySelector(".bal");
+let accountInput = document.getElementById("accountInput");
+let amountInput = document.getElementById("amountInput");
+let sendBtn = document.getElementById("sendBtn");
+let gotten = JSON.parse(localStorage.getItem("userInfo"));
+let currentUser = localStorage.getItem("loggedInUser")
 
-// let bal = document.querySelector(".bal");
-// let accountInput = document.getElementById("accountInput");
-// let amountInput = document.getElementById("amountInput");
-// let sendBtn = document.getElementById("sendBtn");
-// let gotten = JSON.parse(localStorage.getItem("userInfo"));
-// let loggedUser = JSON.parse(localStorage.getItem("loggedInUser"));
-
-// sendBtn.addEventListener("click", function(){
-//     const amount = Number(amountInput.value);
-//     const receiverAcc = gotten.find((element => element.username === accountInput.value))
-//     let userBal;
-//     let balance = gotten.forEach((element =>{
-//         userBal = element.accountBalance
-//     }))
-//     let currentUser = gotten.find((element => element.username === loggedUser.username));
-
-//     console.log(loggedUser);
-
-    // if (receiverAcc && currentUser) {
-    //     if (receiverAcc.username === currentUser.username) {
-    //         console.log("Cannot send money to self");
-    //     } else if (amount > 0 && currentUser.accountBalance >= amount) {
-    //         // Update account balances
-    //         receiverAcc.accountBalance += amount;
-    //         currentUser.accountBalance -= amount;
-    //         localStorage.setItem("userInfo", JSON.stringify(gotten));
-    //         console.log("Transaction successful!");
-    //     } else {
-    //         console.log("Invalid transaction");
-    //     }
-    // } else {
-    //     console.log("Invalid user input");
-    // }
-//     console.log(amount, receiverAcc, userBal, currentUser);
-// });
+sendBtn.addEventListener("click", function(){
+    const amount = Number(amountInput.value);
+    const receiverAcc = gotten.find((element => element.username === accountInput.value))
+    let currentUserInfo = gotten.find((element => element.username === currentUser))
+    if(receiverAcc.username === currentUser){
+        console.log("You can't send to self");
+    } else if(amount > 0 && currentUserInfo.accountBalance >= amount){
+        currentUserInfo.accountBalance -= amount;
+        receiverAcc.accountBalance += amount
+        localStorage.setItem("userInfo", JSON.stringify(gotten));
+        console.log(amount, currentUserInfo.accountBalance, receiverAcc.accountBalance, receiverAcc);
+        console.log("Trans successful");
+        modal.style.display = "none"
+    } else if(currentUserInfo.accountBalance < amount){
+        console.log("Insufficient funds");
+        
+    } else{
+        console.log("failed");
+    }
+    generate()
+});
