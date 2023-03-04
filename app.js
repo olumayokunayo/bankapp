@@ -9,6 +9,7 @@ beginBtn.addEventListener("click", function(){
   landing.style.display = "none"
 })
 
+
 // CREATE ACCOUNT
 
 let createBtn = document.getElementById("createBtn");
@@ -19,7 +20,7 @@ let username = document.getElementById("username");
 let email = document.getElementById("email");
 let password1 = document.getElementById("password1");
 let password2 = document.getElementById("password2");
-
+let userArr = JSON.parse(localStorage.getItem("userInfo"))
 
 createBtn.addEventListener("click", function(){
 if(fName.value == "" || lName.value == "" || username.value == "" || email.value == "" || 
@@ -28,22 +29,87 @@ password1.value == "" || password2.value == ""){
 } else if (password1.value !== password2.value){
   alert("Passwords does not match.")
 } else{
+      // Gen acc number
+  let accountNum = Math.floor(10000000 + Math.random() * 9000000000)
+  let initBalance = 2500.00
+  let randcreditNum = Math.floor(Math.random()*10000000000000000).toString().padStart(16,"0");
+  let expMonth = Math.floor(Math.random()*12);
+  let expYear = 24
+  let expiryDate = `${expMonth}/${expYear}`
+  // let creditNum = randcreditNum.toString();
+  console.log(randcreditNum, expMonth);
+  
+  let userKey = `userInfo-${username.value}`;
   let userInfo = {
     firstName: fName.value,
     lastName: lName.value,
     username: username.value,
     email: email.value,
-    password: password1.value
+    password: password1.value,
+    accountNumber: accountNum,
+    accountBalance: initBalance,
+    cardNumber: randcreditNum,
+    cardExpire: expiryDate,
   }
-  let userArr = JSON.parse(localStorage.getItem("userInfo")) || []
-  userArr.push(userInfo);
-  localStorage.setItem("userInfo", JSON.stringify(userArr));
+  if(userArr == null){
+    userArr = []
+    userArr.push(userInfo);
+    localStorage.setItem("userInfo", JSON.stringify(userArr))
+    localStorage.setItem(userKey, JSON.stringify(userInfo));
+    signUpDiv.style.display = "none";
+    loginDiv.style.display = "block";
+  } else {
+    userArr.push(userInfo);
+    localStorage.setItem("userInfo", JSON.stringify(userArr))
+    localStorage.setItem(userKey, JSON.stringify(userInfo));
+    // signUpDiv.style.display = "none";
+    // loginDiv.style.display = "block";
+  }
+
+  // let loggedInUser = JSON.parse(localStorage.getItem("loggedInUser")) || []
+  //  loggedInUser.push(userInfo.username)
+  // localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser))
   // console.log(userArr);
-  signUpDiv.style.display = "none";
-  loginDiv.style.display = "block";
+  
 }
 })
+// LOGIN ACCOUNT
 
+let loginBtn = document.getElementById("loginBtn");
+let usernameLog = document.getElementById("usernameLog");
+let passwordLog = document.getElementById("passwordLog");
+let gotten = JSON.parse(localStorage.getItem("userInfo"));
+loginBtn.addEventListener("click", function(){
+  console.log(gotten);
+  // Get the user's key from localStorage
+let userKey = `userInfo-${usernameLog.value}`;
+
+// Retrieve the user's information using the key
+let userInfo = JSON.parse(localStorage.getItem(userKey));
+
+// Check if the username and password are correct
+if (userInfo && userInfo.password === passwordLog.value) {
+  // Login successful, save the username and redirect to the dashboard
+  localStorage.setItem("loggedInUser", usernameLog.value);
+  // window.location.href = "index.html";
+  loginDiv.style.display = "none";
+  window.location.href = "index.html";
+} else {
+  // Login failed, show an error message
+  alert("Invalid username or password");
+}
+
+// let found = gotten.find((user => user.username === usernameLog.value && user.password === passwordLog.value))
+// console.log(found);
+// if(found){
+//   // localStorage.setItem("ser", JSON.stringify(found.username));
+//   alert("Logging in")
+//   loginDiv.style.display = "none";
+//   window.location.href = "index.html";
+// } else {
+//   alert("User not found")
+// }
+})
 // VISIBILITY FOR SIGN UP
 let visibilityBtn = document.querySelector(".visibilityDiv");
 visibilityBtn.addEventListener("click", function(){
@@ -62,23 +128,6 @@ visibilityBtn.addEventListener("click", function(){
   }
 })
 
-// LOGIN ACCOUNT
-
-let loginBtn = document.getElementById("loginBtn");
-let usernameLog = document.getElementById("usernameLog");
-let passwordLog = document.getElementById("passwordLog");
-let gotten = JSON.parse(localStorage.getItem("userInfo"));
-loginBtn.addEventListener("click", function(){
-  const found = gotten.find((element)=> element.username == usernameLog.value && element.password == passwordLog.value )
-  // console.log(gotten);
-  if(found){
-    alert("Loggin in.")
-    loginDiv.style.display = "none";
-    window.location.href = "index.html"
-  } else{
-    alert("User not found.")
-  }
-})
 
 // VISIBILITY FOR LOG IN
 let visibilityDivBtn = document.querySelector(".visibilityDivBtn");

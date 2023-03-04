@@ -3,208 +3,317 @@
     padding: 0;
     box-sizing: border-box;
 }
-body{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    background-color: gray;
-}
-.appContainer{
-    border: 5px solid #fff;
-    height: 560px;
-    width: 280px;
-    background-color: #fff;
-    background-position: center;
-    background-size: cover;
-    border-radius: 25px;
-    position: relative;
-}
-.userIcon{
-    height: 1rem;
-    width: 1rem;
-    border-radius: 50%;
-    padding: 0.5rem;
-    color: #fff;
-    background-color: #00000096;
-}
-.welcomeGreet{
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-.showGreet{
-    color: rgba(65, 65, 160, 0.772);
-}
-.topDiv{
-    padding: 0.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-.notificationIcon{
-   font-size: 1.5rem;
-    color: rgb(65, 65, 160);
-}
-.accountInfoDiv{
-    padding: 0.5rem;
-    height: fit-content;
-    width: 260px;
-    background-color: rgba(65, 65, 160, 0.187);
-    border-radius: 10px;
-   margin: 0.5rem auto;
-   display: flex;
-   flex-direction: column;
-   gap: 0.5rem;
-}
-.balAndIcon, .numAndIcon{
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-.accountBal, .accountNum{
-    font-size: 1rem;
-    color: #222222c7;
-}
-.bal{
-    font-size: 1.5rem;
-    color: rgba(65, 65, 160, 0.772);
-}
-.num{
-    font-size: 1rem;
-    color: rgba(65, 65, 160, 0.772);
-}
-.visibilityOffIcon, .copyIcon{
-    font-size: 1.3rem;
-    color: rgba(65, 65, 160, 0.772);
-}
-.transfersCol{
-    margin-top: 0.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.5rem;
-    text-align: center;
-    gap: 0.5rem;
-}
-.transIcon{
-    background-color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 2rem;
-    width: 2rem;
-    border-radius: 50%;
-    color: #000;
-}
-.transferDiv, .CardTransDiv, .TransDiv{
-   background-color: blue;
-    height: 4rem;
-    width: 6rem;
-    padding: 0.5rem;
-    border-radius: 10px;
-}
-.transferDiv{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: rgba(0, 0, 255, 0.696);
-    color: #fff;
-}
-.CardTransDiv{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color:rgba(0, 128, 0, 0.62);
-    color: #fff;
-}
-.TransDiv{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: rgba(255, 0, 0, 0.537);
-    color:#fff
-}
-.bottomNav{
-    border-top: 1px solid #00000022;
-    padding: 0.5rem 0.8rem 1rem 0.8rem;
-    display: flex;
-    position: absolute;
-    bottom: 0;
-    align-items: center;
-   /* justify-content: center; */
-    gap: 2rem;
-}
-.navLinks{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-size: 0.4rem;
-    color: #222222ae;
-    transition: all 0.5s ease;
-    cursor: pointer;
-}
-.navLinks:hover{
-    color: #800080;
-}
-.navLinks p {
-    font-size: 0.8rem;
-}
-.checked{
-    color: rgba(65, 65, 160, 0.772);
-}
-.transactionsDiv{
-    padding: 0.5rem;
-    height: 220px;
-    background-color: #fff;
-    /* background-color: #00000027; */
-    border-radius: 10px;
-    overflow-y: scroll;
-}
-.transTop{
-    border-radius: 10px;
-    padding: 0.2rem;
-    color:#000;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    z-index: 99999;
-    /* position: sticky;
-    top: 0;
-    background-color: #000000f0; */
-   
-}
-.transTop p{
-    font-size: 1.2rem;
-    color:#000;
-}
-.type-color-withdrawal{
-    height: 20px;
-    width: 20px;
-    border-radius: 50%;
-    background-color: red;
-}
-.transaction{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-.tra{
-    padding: 0.5rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-.type-color-deposit{
-    height: 20px;
-    width: 20px;
-    border-radius: 50%;
-    background-color: green;
-}
-::-webkit-scrollbar{
-    display: none;
-  scroll-behavior: smooth;
+@media (max-width: 414px) {
+    body{
+        font-family: 'Rubik', sans-serif;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        background-color: gray;
+    }
+    .appContainer{
+        border: 5px solid #fff;
+        height: 896px;
+        width: 414px;
+        background-color: #fff;
+        background-position: center;
+        background-size: cover;
+        /* border-radius: 25px; */
+        position: relative;
+    }
+    .userIcon{
+        height: 1rem;
+        width: 1rem;
+        border-radius: 50%;
+        padding: 0.5rem;
+        color: #000;
+        background-color: #13121269;
+    }
+    .welcomeGreet{
+        font-size: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    .showGreet{
+        color: rgba(17, 17, 19, 0.772);
+    }
+    .topDiv{
+        padding: 0.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .notificationIcon{
+       font-size: 2rem;
+        color:rgba(17, 17, 19, 0.772);
+    }
+    .accountInfoDiv{
+        padding: 0.5rem;
+        height: fit-content;
+        width: 100%;
+        background-color: black;
+        border-radius: 10px;
+       margin: 0.5rem auto;
+       display: flex;
+       flex-direction: column;
+       gap: 0.5rem;
+    }
+    .balAndIcon, .numAndIcon{
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    .accountBal, .accountNum{
+        font-size: 1rem;
+        color: #ffffffb3;
+    }
+    .bal{
+        font-size: 1.3rem;
+        color: #fff;
+    }
+    .num{
+        font-size: 1.3rem;
+        color: #fff;
+    }
+    .color{
+        font-size: 1.5rem;
+        color: #fff;   
+    }
+    .visibilityOffIcon, .copyIcon{
+        font-size: 1.3rem;
+        color: rgba(65, 65, 160, 0.855);
+    }
+    .transfersCol{
+        margin-top: 0.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.5rem;
+        text-align: center;
+        gap: 0.5rem;
+        position: relative;
+    }
+    .transIcon{
+        background-color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 2rem;
+        width: 2rem;
+        border-radius: 50%;
+        color: #000;
+    }
+    .transferDiv, .CardTransDiv, .TransDiv{
+       background-color: blue;
+        height: 4.5rem;
+        width: 6rem;
+        padding-top: 1rem;
+        border-radius: 10px;
+    }
+    .transferDiv{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(0, 0, 255, 0.696);
+        color: #fff;
+    }
+    .CardTransDiv{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color:rgba(0, 128, 0, 0.62);
+        color: #fff;
+    }
+    .TransDiv{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(255, 0, 0, 0.537);
+        color:#fff
+    }
+    .bottomNav{
+        padding: 0.5rem 0.8rem 1rem 0.8rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        align-items: center;
+        gap: 2rem;
+        height: 1rem;
+        z-index: 99999;
+    }
+    .navLinks{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: 0.4rem;
+        color: #222222ae;
+        transition: all 0.5s ease;
+        cursor: pointer;
+    }
+    .navLinks:hover{
+        color: #800080;
+    }
+    .navLinks p {
+        font-size: 0.8rem;
+    }
+    .checked{
+        color: rgba(65, 65, 160, 0.772);
+    }
+    .transactionsDiv{
+        padding: 0.5rem;
+        height: 280px;
+        background-color: #fff;
+        border-radius: 10px;
+        overflow-y: scroll;
+    }
+    .transTop{
+        border-radius: 10px;
+        padding: 0.2rem;
+        color:#000;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        z-index: 99999;
+    }
+    .transTop p{
+        font-size: 1.2rem;
+        color:#000;
+    }
+    .type-color-withdrawal{
+        height: 20px;
+        width: 20px;
+        border-radius: 50%;
+        background-color: red;
+    }
+    .transaction{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .tra{
+        padding: 0.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    .type-color-deposit{
+        height: 20px;
+        width: 20px;
+        border-radius: 50%;
+        background-color: green;
+    }
+    ::-webkit-scrollbar{
+        display: none;
+      scroll-behavior: smooth;
+    } 
+    .creditCard{
+        padding: 1rem 2rem;
+        height: 200px;
+        width: 400px;
+        border-radius: 20px;
+        background: linear-gradient(rgba(192, 209, 255, 0.279), rgba(204, 0, 255, 0.382))
+    }
+    .cc{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: relative;
+        top: 10%;
+
+    }
+    .radText{
+        font-size: 1.5rem;
+        color: #222222;
+    }
+    
+    .circle1{
+        height: 1.5rem;
+        width: 1.5rem;
+        border-radius: 50%;
+        border: 1px solid rgb(182, 14, 14);
+        position: absolute;
+        right:20%;
+        top: 10%;
+    }
+    .circle2{
+        height: 1.5rem;
+        width: 1.5rem;
+        border-radius: 50%;
+        border: 1px solid black;
+        position: absolute;
+        right: 24%;
+        top: 10%;
+    }
+    .cardNumDiv{
+        margin: 4rem 0 0 0rem;
+    }
+    .cardnum{
+        font-size: 1.3rem;
+        margin-bottom: 0.5rem;
+    }
+    .expDate{
+        font-size: 1rem;
+    }
+    .modal {
+        display: none;
+        height: 370px;
+        position: absolute;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        overflow: hidden;
+        background-color: yellow;
+        border-bottom-left-radius: 12px;
+        border-bottom-right-radius: 12px;
+      }
+      .modalOverlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+      .modalContent {
+        position: relative;
+        padding: 20px;
+        max-width: 1000px;
+        height: 100%;
+       background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      }
+      .modal-footer{
+        margin: 40px 45px 0 0;
+        border-top: none;
+      }
+      .closeBtn{
+        border: none;
+        background-color: rgba(255, 0, 0, 0.557);
+        padding: 0.5rem;
+        margin-bottom: 1rem;
+      }
+      .btn-secondary{
+        background-color: green;
+      }
+      .transForm{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .form input{
+        display: block;
+        text-align: center;
+        height: 2rem;
+      }
+      .rec{
+        margin-bottom: 2rem;
+      }
 }
