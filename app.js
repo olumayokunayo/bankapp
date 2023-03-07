@@ -72,14 +72,12 @@ password1.value == "" || password2.value == ""){
 let loginBtn = document.getElementById("loginBtn");
 let usernameLog = document.getElementById("usernameLog");
 let passwordLog = document.getElementById("passwordLog");
-let gotten = JSON.parse(localStorage.getItem("userInfo"));
-loginBtn.addEventListener("click", function(){
-  console.log(gotten);
-  // Get the user's key from localStorage
-let userKey = `userInfo-${usernameLog.value}`;
 
-// Retrieve the user's information using the key
-let userInfo = JSON.parse(localStorage.getItem(userKey));
+loginBtn.addEventListener("click", function(){
+  // Retrieve the user's information using the key
+let userKey = `userInfo-${usernameLog.value}`;
+  // Get the user's key from localStorage
+  let userInfo = JSON.parse(localStorage.getItem(userKey));
 
 if (userInfo && userInfo.password === passwordLog.value) {
   localStorage.setItem("loggedInUser", usernameLog.value);

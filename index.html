@@ -43,6 +43,8 @@
                     </div>
                 </div>
             </div>
+           <p id="show"></p>
+            <div class="ccHistory">
             <div class="creditCard">
                 <div class="cc">
                     <p class="radText">Rad</p>
@@ -62,37 +64,43 @@
                     <span class="transIcon material-symbols-outlined"> attach_money</span>
                     <p id="transferBtn">Transfer</p>
                 </div>
-                <div id="modal-${element.id}" class="modal">
-                    <div class="modalOverlay" onclick="modalOver()"></div>
+                <div  class="modal">
+                    <div class="modalOverlay"></div>
                     <div class="modalContent">
                         <div class="transForm">
                             <div class="form">
-                                <button id="closeBtn" class="closeBtn"><span class="material-symbols-outlined">
-                                    close
-                                    </span></button>
-                                <div class="rec">
-                                    <label for="transfer">Transfer to:</label>
-                                    <input type="text" id="accountInput" placeholder="Enter account">
-                                </div>
-                                <div class="recAmt">
-                                    <label for="amount">Amount:</label>
-                                    <input type="number" id="amountInput">
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" id="sendBtn"class="btn btn-secondary" data-bs-dismiss="modal">Send</button>
-                                </div>
+                                    <button id="closeBtn" class="closeBtn"><span class="material-symbols-outlined">
+                                        close
+                                        </span></button>
+                                    <div class="upp">
+                                        <p>How much do you want to send?</p>
+                                    </div>
+
+                                    <div class="recAmt">
+                                        <span class="dollar">$</span>
+                                        <input type="number" id="amountInput">
+                                    </div>
+                                    <div class="rec">
+                                        <p>For whom is the money?</p>
+                                        <input type="text" id="accountInput" placeholder="receivers username">
+                                    </div>
+                                    <div class="desc">
+                                        <p>Your $ send description?</p>
+                                        <input type="text" id="descInput" placeholder="description">
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" id="sendBtn"class="btn btn-secondary" data-bs-dismiss="modal">Send</button>
+                                    </div>
                             </div>
                         </div>
                     </div>
-                </div>
-              
-                
+                </div>   
                
                 <div class="CardTransDiv" id="cardBtn">
                     <span class="transIcon material-symbols-outlined">credit_card</span>
                     <p>Cards</p>
                 </div>
-                <div class="TransDiv">
+                <div class="TransDiv" id="transBtn">
                     <span class="transIcon material-symbols-outlined">history</span>
                     <p>Transaction</p>
                 </div>
@@ -164,8 +172,9 @@
                     </div>
                 </div>
             </div>
+        </div>
             <div class="bottomNav">
-                <div class="navLinks checked">
+                <div class="navLinks checked" id="homeBtn">
                     <span class="material-symbols-outlined">home</span>
                     <p>Home</p>
                 </div>
@@ -187,6 +196,5 @@
         </div>
     </main>
    <script src="index.js"></script> 
-   <!-- <script src="./app.js"></script> -->
 </body>
 </html>

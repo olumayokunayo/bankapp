@@ -1,9 +1,10 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+
 @media (max-width: 414px) {
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
     body{
         font-family: 'Rubik', sans-serif;
         display: flex;
@@ -11,6 +12,9 @@
         justify-content: center;
         min-height: 100vh;
         background-color: gray;
+    }
+    .bankApp{
+        position: relative;
     }
     .appContainer{
         border: 5px solid #fff;
@@ -93,7 +97,7 @@
         padding: 0.5rem;
         text-align: center;
         gap: 0.5rem;
-        position: relative;
+       
     }
     .transIcon{
         background-color: #fff;
@@ -137,16 +141,18 @@
         color:#fff
     }
     .bottomNav{
-        padding: 0.5rem 0.8rem 1rem 0.8rem;
+        background-color: #474545;
+        padding: 0.5rem;
+        border-radius: 10px;
+        /* padding: 2rem 0.8rem 1rem -30rem; */
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        justify-content: space-around;
         position: absolute;
         bottom: 0;
         width: 100%;
         align-items: center;
         gap: 2rem;
-        height: 1rem;
         z-index: 99999;
     }
     .navLinks{
@@ -154,7 +160,7 @@
         flex-direction: column;
         align-items: center;
         font-size: 0.4rem;
-        color: #222222ae;
+        color:#ffffff91;
         transition: all 0.5s ease;
         cursor: pointer;
     }
@@ -165,7 +171,9 @@
         font-size: 0.8rem;
     }
     .checked{
-        color: rgba(65, 65, 160, 0.772);
+        color: #000;
+        font-weight: 700;
+        font-size: 1rem;
     }
     .transactionsDiv{
         padding: 0.5rem;
@@ -174,6 +182,7 @@
         border-radius: 10px;
         overflow-y: scroll;
     }
+  
     .transTop{
         border-radius: 10px;
         padding: 0.2rem;
@@ -197,6 +206,14 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
+        height: 100px;      
+    }
+    /* .container{
+        overflow-y: scroll;
+    } */
+    .transactionContainer{
+   height: 100px;
+   overflow-y: scroll;
     }
     .tra{
         padding: 0.5rem;
@@ -210,6 +227,8 @@
         border-radius: 50%;
         background-color: green;
     }
+   
+  
     ::-webkit-scrollbar{
         display: none;
       scroll-behavior: smooth;
@@ -264,7 +283,7 @@
     }
     .modal {
         display: none;
-        height: 370px;
+        height: 570px;
         position: absolute;
         z-index: 1000;
         left: 0;
@@ -294,26 +313,69 @@
         margin: 40px 45px 0 0;
         border-top: none;
       }
+      .upp p{
+        /* font-size: 1.5rem; */
+        /* text-align: center; */
+        color: #008000;
+        margin-right: 5rem;
+        margin-top: 4rem;
+      }
+      .upp span{
+        font-size: 2rem;
+      }
       .closeBtn{
+        position: absolute;
+        top: 0;
+        left: 0;
         border: none;
-        background-color: rgba(255, 0, 0, 0.557);
+     background: none; 
         padding: 0.5rem;
         margin-bottom: 1rem;
       }
       .btn-secondary{
         background-color: green;
-      }
-      .transForm{
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        width: 100%;
+        margin-left: 3rem;
       }
       .form input{
+        height: 3rem;
+        width: 100%;
+      }
+      .rec p{
+        margin-right: 9rem;
+        color: #008000;
+      }
+      .rec input{
+        width: 95%;
+        border: 0.2px dotted #008000;
+        padding: 0.5rem;
+        margin-bottom: 1rem;
+        margin-left: 1rem;
+      }
+
+      .recAmt{
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+      }
+      .recAmt input{
+        border: 0.2px dotted #008000;
+        margin-bottom: 1rem;
+        padding: 0.5rem;
+      }
+       .desc p{
+        margin-right: 8.3rem;
+        color: #008000;
+      } 
+      .desc input{
+        border: none;
+        border-bottom: 1px solid#008000;
+         padding: 0.5rem;
+         width: 95%;
+         margin-left: 1rem;
+      }
+      .ccHistory{
         display: block;
-        text-align: center;
-        height: 2rem;
       }
-      .rec{
-        margin-bottom: 2rem;
-      }
+      
 }
