@@ -1,12 +1,3 @@
-// Check if user is active or log out.
-function checkUser(){
-    let currentUser = JSON.parse(localStorage.getItem("userInfo"))
-    if(!currentUser){
-        window.location.href = "signup.html";
-    }
-}       
-checkUser()
-
 // Generate account NUMBER AND BALANCE.
 function generate(){
     let bal = document.querySelector(".bal");
@@ -77,6 +68,11 @@ let gotten = JSON.parse(localStorage.getItem("userInfo"));
 let currentUser = localStorage.getItem("loggedInUser")
 
 sendBtn.addEventListener("click", function(){
+    let date = new Date();
+    let newDate = date.toLocaleDateString();
+    let newTime =  date.toLocaleTimeString();
+    // let dateandtime = `${newDate} ${time}`
+    console.log(newDate, newTime);
     const amount = Number(amountInput.value);
     const receiverAcc = gotten.find((element => element.username === accountInput.value))
     
@@ -89,7 +85,9 @@ sendBtn.addEventListener("click", function(){
             receiverAcc: `${receiverAcc.username}`,
             description: descInput.value,
             sendersAmt: `-${amount}`,
-            sendersAcc:  `${currentUser}`
+            sendersAcc:  `${currentUser}`,
+            date: `${newDate}`,
+            time: `${newTime}`
         }
        historyArr.push(sendInfo)
      console.log(historyArr);
@@ -122,9 +120,10 @@ let accountInfoDiv = document.querySelector(".accountInfoDiv");
 let topDiv = document.querySelector(".topDiv");
 let transactionSec = document.querySelector(".transaction");
 
+//  transactions 
+
 let historyGotten = JSON.parse(localStorage.getItem("sendInfo"));
 transBtn.addEventListener("click", function(){
-    screen.innerHTML = `<h2>Transactions</h2>`
     let depositsArr = [];
     let withdrawalArr = [];
     historyGotten.forEach(element => {
@@ -135,6 +134,7 @@ transBtn.addEventListener("click", function(){
             depositsArr.push(element);
             // console.log(depositsArr);
         } 
+        screen.innerHTML = `<h2 class="transHead">Transactions</h2>`
         let transactionsArr = [...depositsArr, ...withdrawalArr];
         // console.log(transactionsArr);
         transactionsArr.forEach(element => {
@@ -151,11 +151,15 @@ transBtn.addEventListener("click", function(){
             <div class="tra">
             ${typeColor.outerHTML}
              <div>
-            <p>${element.description}</p>
-            <span>4:20</span>
+            <p class="transDesc">${element.description}</p>
+            <div class="datediv">
+            <span class="dandt">${element.date}</span>
+            <span class="dandt">${element.time}</span>
             </div>
             </div>
-            <span class="amount">$ ${element.amount}</span>
+            </div>
+
+            <span class="amount"> ${deposits ? "+" : "-"} $ ${element.amount}</span>
             </div> `
         ccHistory.style.display = "none"
         accountInfoDiv.style.display = "none"
@@ -173,3 +177,219 @@ homeBtn.addEventListener("click", function(){
     ccHistory.style.display = "block"
     location.reload();
 })
+
+// history / summary
+
+function history(){
+    let transactionsDiv = document.querySelector(".transactionsDiv");
+    let historyGotten = JSON.parse(localStorage.getItem("sendInfo"));
+    let depositsArr = [];
+    let withdrawalArr = [];
+    historyGotten.forEach(element => {
+        if(element.sendersAcc === currentUser){
+            withdrawalArr.push(element);
+            // console.log(withdrawalArr);
+        } else if(element.receiverAcc === currentUser){
+            depositsArr.push(element);
+            // console.log(depositsArr);
+        } 
+        transactionsDiv.innerHTML = `<h5>History</h5>`
+        let transactionsArr = [...depositsArr, ...withdrawalArr];
+        // console.log(transactionsArr);
+        transactionsArr.forEach(element => {
+            let typeColor = document.createElement("typeDiv");
+            typeColor.classList.add("type-color");
+            let deposits = (element.receiverAcc === currentUser);
+            if (deposits){
+               typeColor.classList.add("type-color-deposit");
+            } else{
+                typeColor.classList.add("type-color-withdrawal");
+            }
+            // console.log(deposits);
+            transactionsDiv.innerHTML += `<div class="history">
+            <div class="tra">
+            ${typeColor.outerHTML}
+             <div>
+            <p class="transDesc">${element.description}</p>
+            <div class="datediv">
+            <span class="dandt">${element.date}</span>
+            </div>
+            </div>
+            </div>
+
+            <span class="amount"> ${deposits ? "+" : "-"} $ ${element.amount}</span>
+            </div> `
+        });
+    });
+
+}
+history();
+
+let profilename = document.querySelector(".name");
+let profileBtn = document.getElementById("profileBtn");
+profileBtn.addEventListener("click", function(){
+    let currentUserInfo = gotten.find((element => element.username === currentUser))
+  
+    console.log(currentUserInfo.username);
+    if(currentUserInfo){
+        setTimeout(() => {
+           
+
+    ccHistory.style.display = "none"
+    accountInfoDiv.style.display = "none"
+    topDiv.style.display = "none";
+
+    screen.innerHTML += `
+    <div class="profileContainer">
+        <div class="profileDiv">
+        <span onclick="profileBackBtn()" class="profileBack material-symbols-outlined">
+        arrow_back</span>
+        <div class="personDiv">
+        <span class="personIcon material-symbols-outlined">
+        account_circle</span>
+        <p class="name"></p>
+        </div>
+        <div class="settingDiv">
+        <div class="set">
+        <span class="profileIcon material-symbols-outlined">
+        person
+        </span>
+        <span>Edit Profile</span>
+        </div>
+        <div class="set">
+        <span class="material-symbols-outlined">
+        account_balance
+        </span>
+        <span>Bank information</span>
+        </div>
+        <div class="set">
+        <span class="profileIcon material-symbols-outlined">
+        notifications
+        </span>
+        <span>Notifications</span>
+        </div>
+        <div class="set">
+        <span class="profileIcon material-symbols-outlined">
+        lock
+        </span>
+        <span>Password</span>
+        </div>
+        <div class="set">
+        <span class="profileIcon material-symbols-outlined">
+        policy
+        </span>
+        <span>Privacy</span>
+        </div>
+        <div class="set deactivate" onclick="deactivateBtn()">
+        <span class="material-symbols-outlined">
+        block
+        </span>
+        <span>Deactivate account</span>
+        </div>
+        
+        <div onclick="logoutBtn()" class="set logOut">
+        <span class="profileIcon material-symbols-outlined">
+        logout
+        </span>
+        <span>Log out</span>
+        </div>
+        </div>
+        </div>
+        </div>
+        <div  class="modal3">
+        <div class="modalContent3">
+                <div class="modal-3">
+                <p class="confirmDeactivate">Are you sure you want to deactivate your account?</p>
+                    <input type="text" id="deactivateInput" placeholder="Enter your username">
+                    <input type="text" id="deactivatePassword" placeholder="Enter your password">
+                    <button class="noBtn" onclick="deactivateNoBtn()">No</button>
+                    <button class="yesBtn" onclick="deactivateYesBtn()">Yes</button>
+                </div>
+        </div>
+    </div> 
+        <div  class="modal2">
+        <div class="modalOverlay2"></div>
+        <div class="modalContent2">
+        <p class="confirmLog">Are you sure you want to log out?</p>
+            <div class="form">
+               
+                <div class="modal-footer2">
+                    <button class="noBtn" onclick="noBtn()">No</button>
+                    <button class="yesBtn" onclick="yesBtn()">Yes</button>
+                </div>
+        </div>
+        </div>
+    </div> 
+    `
+    // profilename.textContent = `${currentUserInfo.firstName}`
+}, 10);
+}
+})
+
+// logout
+
+function logoutBtn(){
+    let modal2 = document.querySelector(".modal2");
+    modal2.style.display = "block"
+}
+
+function noBtn(){
+    let modal2 = document.querySelector(".modal2");
+    modal2.style.display = "none"
+}
+
+function yesBtn(){
+   window.location.href = "signup.html";
+}
+
+function deactivateBtn(){
+    let modal = document.querySelector(".modal-3");
+    modal.style.display = "block"
+}
+function deactivateNoBtn(){
+    let modal = document.querySelector(".modal-3");
+    modal.style.display = "none";
+ }
+
+ function deactivateYesBtn(){
+    let modal = document.querySelector(".modal-3");
+    let deactivateInput = document.getElementById("deactivateInput");
+    let deactivatePassword = document.getElementById("deactivatePassword");
+    let currentUserInfo = gotten.find((element => element.username === currentUser))
+    let retrieved = JSON.parse(localStorage.getItem("userInfo"));
+
+    if(currentUserInfo.username === deactivateInput.value && currentUserInfo.password === deactivatePassword.value){
+        const index = retrieved.findIndex( element => element.username === currentUserInfo.username)
+        console.log(index);
+        retrieved.splice(index, 1);
+       localStorage.setItem("userInfo", JSON.stringify(retrieved))
+        console.log(retrieved);
+        modal.style.display = "none";
+        window.location.href = "signup.html";
+    }
+   
+ }
+
+ // Check if user is active or log out.
+function checkUser(){
+    let currentUserInfo = gotten.find((element => element.username === currentUser))
+
+    
+    // console.log(currentUser);
+    if(!currentUserInfo){
+        window.location.href = "signup.html";
+    }
+}       
+checkUser()
+
+
+function profileBackBtn(){
+let transactionsDiv = document.querySelector(".transactionsDiv");
+location.reload()
+
+// ccHistory.style.display = "block"
+// accountInfoDiv.style.display = "block"
+
+    screen.innerHTML = ""
+    transactionsDiv.style.display = "none"
+}

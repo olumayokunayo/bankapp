@@ -1,4 +1,6 @@
-
+body{
+    background-color: black;
+}
 @media (max-width: 414px) {
     *{
         margin: 0;
@@ -17,10 +19,10 @@
         position: relative;
     }
     .appContainer{
-        border: 5px solid #fff;
+        /* border: 1px solid #000; */
         height: 896px;
         width: 414px;
-        background-color: #fff;
+        background-color: #000;
         background-position: center;
         background-size: cover;
         /* border-radius: 25px; */
@@ -32,7 +34,7 @@
         border-radius: 50%;
         padding: 0.5rem;
         color: #000;
-        background-color: #13121269;
+        background-color: #fff;
     }
     .welcomeGreet{
         font-size: 1.5rem;
@@ -41,7 +43,7 @@
         gap: 0.5rem;
     }
     .showGreet{
-        color: rgba(17, 17, 19, 0.772);
+        color: #fff;
     }
     .topDiv{
         padding: 0.5rem;
@@ -51,13 +53,23 @@
     }
     .notificationIcon{
        font-size: 2rem;
-        color:rgba(17, 17, 19, 0.772);
+        color:#fff;
+        position: relative;
+    }
+    .notificationIcon::before{
+        content: "";
+        height: 1rem;
+        width: 1rem;
+        background-color: red;
+        border-radius: 50%;
+        position: absolute;
     }
     .accountInfoDiv{
-        padding: 0.5rem;
+        padding: 1rem;
         height: fit-content;
         width: 100%;
         background-color: black;
+        border: 1px solid #ffffff35;
         border-radius: 10px;
        margin: 0.5rem auto;
        display: flex;
@@ -141,7 +153,7 @@
         color:#fff
     }
     .bottomNav{
-        background-color: #474545;
+        background-color: #000;
         padding: 0.5rem;
         border-radius: 10px;
         /* padding: 2rem 0.8rem 1rem -30rem; */
@@ -165,15 +177,15 @@
         cursor: pointer;
     }
     .navLinks:hover{
-        color: #800080;
+        color: #04770c;
     }
     .navLinks p {
         font-size: 0.8rem;
     }
     .checked{
-        color: #000;
+        color: #008000;
         font-weight: 700;
-        font-size: 1rem;
+        font-size: 1.4rem;
     }
     .transactionsDiv{
         padding: 0.5rem;
@@ -196,25 +208,29 @@
         font-size: 1.2rem;
         color:#000;
     }
-    .type-color-withdrawal{
-        height: 20px;
-        width: 20px;
-        border-radius: 50%;
-        background-color: red;
-    }
-    .transaction{
+   
+    .history {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        height: 100px;      
+        height: 100px;
+        color: #000;      
+    }
+    .transaction{
+        padding: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 100px;
+        color: #fff;      
     }
     /* .container{
         overflow-y: scroll;
     } */
-    .transactionContainer{
+    /* .transactionContainer{
    height: 100px;
    overflow-y: scroll;
-    }
+    } */
     .tra{
         padding: 0.5rem;
         display: flex;
@@ -228,17 +244,24 @@
         background-color: green;
     }
    
-  
+    .type-color-withdrawal{
+        height: 20px;
+        width: 20px;
+        border-radius: 50%;
+        background-color: red;
+    }
     ::-webkit-scrollbar{
         display: none;
       scroll-behavior: smooth;
     } 
     .creditCard{
+        margin: auto;
         padding: 1rem 2rem;
         height: 200px;
         width: 400px;
         border-radius: 20px;
-        background: linear-gradient(rgba(192, 209, 255, 0.279), rgba(204, 0, 255, 0.382))
+        background: linear-gradient(rgba(192, 209, 255, 0.279), rgba(204, 0, 255, 0.382));
+        box-shadow: 0px 2px 2px 2px  rgba(204, 0, 255, 0.3);
     }
     .cc{
         display: flex;
@@ -250,14 +273,14 @@
     }
     .radText{
         font-size: 1.5rem;
-        color: #222222;
+        color: #7f7676;
     }
     
     .circle1{
         height: 1.5rem;
         width: 1.5rem;
         border-radius: 50%;
-        border: 1px solid rgb(182, 14, 14);
+        border: 1px solid rgb(208, 8, 8);
         position: absolute;
         right:20%;
         top: 10%;
@@ -273,25 +296,28 @@
     }
     .cardNumDiv{
         margin: 4rem 0 0 0rem;
+
     }
     .cardnum{
         font-size: 1.3rem;
         margin-bottom: 0.5rem;
+        color: #7f7676;
     }
     .expDate{
         font-size: 1rem;
+        color: #7f7676;
     }
     .modal {
         display: none;
-        height: 570px;
+        height: 550px;
         position: absolute;
         z-index: 1000;
         left: 0;
         top: 0;
         overflow: hidden;
         background-color: yellow;
-        border-bottom-left-radius: 12px;
-        border-bottom-right-radius: 12px;
+        /* border-bottom-left-radius: 12px;
+        border-bottom-right-radius: 12px; */
       }
       .modalOverlay {
         position: absolute;
@@ -314,8 +340,6 @@
         border-top: none;
       }
       .upp p{
-        /* font-size: 1.5rem; */
-        /* text-align: center; */
         color: #008000;
         margin-right: 5rem;
         margin-top: 4rem;
@@ -377,5 +401,125 @@
       .ccHistory{
         display: block;
       }
+      .datediv{
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+      }
+      .transDesc{
+        font-size: 1.5rem;
+      }
+      .dandt{
+        font-size: 0.8rem;
+        color: #808080;
+      }
+      .amount{
+        font-size: 1.3rem;
+      }
+      .transHead{
+        font-size: 2rem;
+        color: #fff;
+        padding: 1rem;
+      }
+      .history .transDesc{
+        font-size: 1.2rem;
+      }
+      .profileContainer{
+        padding: 1rem;
+       background-color: #ffffff;
+       height: 90vh;
       
+      }
+      .settingDiv{
+        position: relative;
+        margin-top: 8rem;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+
+      }
+      .profileBack{
+        font-size: 2.5rem;
+      }
+    .personDiv{
+        margin-top: 2rem;
+    }
+      .personIcon{
+      font-size: 5rem;
+      margin-left: 9rem;
+      background-color: #000;
+      color: #fff;
+      }
+      .profileIcon{
+        font-size: 1.5rem;
+      }
+      .fname{
+        font-size: 1.5rem;
+        margin-left: 8rem;
+      }
+      .set{
+       display: flex;
+       align-items: center;
+        gap: 1rem;
+        font-size: 1.2rem;
+      }
+    .deactivate{
+        background-color: rgba(255, 0, 0, 0.805);
+        height: 2.5rem;
+        color: #fff;
+        cursor: pointer;
+        transition: all 0.5s ease;
+    }
+    .logOut{
+        background-color: #008000d5;
+        height: 2.5rem;
+        color: #fff;
+        cursor: pointer;
+        transition: all 0.5s ease;
+    }
+    .deactivate:hover{
+background-color: rgb(255, 0, 0);
+    }
+    .logOut:hover{
+        background-color:  #008000;
+    }
+    .modal2{
+        display: none;
+        height: 150px;
+        width: 100%;
+        position: absolute;
+        padding: 1rem;
+        bottom: 15%;
+        background-color: black;
+        color: #808080;
+    }
+    .modal-3{
+        background-color: black;
+        padding: 1rem;
+        height: 160px;
+        width: 100%;
+        position: absolute;
+        bottom:15%;
+        color: #808080;
+        display: none;
+    }
+    .modal-3 input{
+        border: none;
+        padding: 0.2rem;
+        height: 2.5rem;
+        margin-bottom: 1rem;
+    }
+    .noBtn, .yesBtn{
+        padding: 0.5rem 2rem;
+        border: none;
+    }
+    .noBtn{
+        background-color: red;
+    }
+    .yesBtn{
+        background-color: green;
+    }
+    .confirmLog{
+        font-size: 1rem;
+    }
 }
