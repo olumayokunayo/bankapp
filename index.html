@@ -23,16 +23,19 @@
                     <span><ion-icon class="userIcon" name="person-outline"></ion-icon></span>
                     <span class="showGreet"></span>
                 </p>
-                <div class="notification">
+                <div class="notification" onclick="notificationBtn()">
                     <span><ion-icon class="notificationIcon" name="notifications-outline"></ion-icon></span>
                 </div>
             </div>
+           
             <div class="accountInfoDiv">
                 <div class="accountBalDiv">
                     <p class="accountBal">Account balance</p>
                     <div class="balAndIcon">
                         <span class="bal">******</span><span class="color">USD</span>
-                        <span><ion-icon class="visibilityOffIcon" name="eye-off-outline"></ion-icon></span>
+                        <span  id="visibilityBtn" class="visibilityOffIcon material-symbols-outlined">
+                            visibility
+                            </span>
                     </div>
                 </div>
                 <div class="accountNumDiv">
@@ -82,7 +85,7 @@
                                     </div>
                                     <div class="rec">
                                         <p>For whom is the money?</p>
-                                        <input type="text" id="accountInput" placeholder="receivers username">
+                                        <input type="text" id="accountInput" placeholder="Enter 10-digits account number or username">
                                     </div>
                                     <div class="desc">
                                         <p>Your $ send description?</p>
@@ -100,7 +103,13 @@
                     <span class="transIcon material-symbols-outlined">credit_card</span>
                     <p>Cards</p>
                 </div>
-                <div class="TransDiv" id="transBtn">
+                <div class="TransDiv" id="cardBtn">
+                    <span class="transIcon material-symbols-outlined">
+                        currency_bitcoin
+                        </span>
+                    <p>Bitcoin</p>
+                </div>
+                <div class="BitDiv" id="transBtn">
                     <span class="transIcon material-symbols-outlined">history</span>
                     <p>Transaction</p>
                 </div>

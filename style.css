@@ -62,6 +62,8 @@ body{
         width: 1rem;
         background-color: red;
         border-radius: 50%;
+        right: 0;
+        top: 0;
         position: absolute;
     }
     .accountInfoDiv{
@@ -86,7 +88,7 @@ body{
         color: #ffffffb3;
     }
     .bal{
-        font-size: 1.3rem;
+        font-size: 1.5rem;
         color: #fff;
     }
     .num{
@@ -94,19 +96,19 @@ body{
         color: #fff;
     }
     .color{
-        font-size: 1.5rem;
+        font-size: 1.3rem;
         color: #fff;   
     }
     .visibilityOffIcon, .copyIcon{
         font-size: 1.3rem;
-        color: rgba(65, 65, 160, 0.855);
+        color: rgba(200, 200, 211, 0.855);
     }
     .transfersCol{
-        margin-top: 0.5rem;
+        margin: 0.5rem;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 0.5rem;
+        padding: 0.1rem;
         text-align: center;
         gap: 0.5rem;
        
@@ -121,6 +123,7 @@ body{
         border-radius: 50%;
         color: #000;
     }
+
     .transferDiv, .CardTransDiv, .TransDiv{
        background-color: blue;
         height: 4.5rem;
@@ -151,6 +154,19 @@ body{
         justify-content: center;
         background-color: rgba(255, 0, 0, 0.537);
         color:#fff
+    }
+    .BitDiv{
+        padding-top: 1rem;
+        padding-right: 0.5rem;
+        padding-left: 0.5rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: hsl(60, 86%, 31%);
+        color:#fff;
+        height: 72px;
+        border-radius: 10px;
     }
     .bottomNav{
         background-color: #000;
@@ -260,7 +276,7 @@ body{
         height: 200px;
         width: 400px;
         border-radius: 20px;
-        background: linear-gradient(rgba(192, 209, 255, 0.279), rgba(204, 0, 255, 0.382));
+        background: linear-gradient(rgba(204, 0, 255, 0.382), rgba(204, 0, 255, 0.382));
         box-shadow: 0px 2px 2px 2px  rgba(204, 0, 255, 0.3);
     }
     .cc{
@@ -309,9 +325,9 @@ body{
     }
     .modal {
         display: none;
-        height: 550px;
+        height: 700px;
         position: absolute;
-        z-index: 1000;
+        z-index: 999999;
         left: 0;
         top: 0;
         overflow: hidden;
@@ -446,9 +462,9 @@ body{
     }
       .personIcon{
       font-size: 5rem;
-      margin-left: 9rem;
-      background-color: #000;
-      color: #fff;
+      margin-left: 10rem;
+      /* background-color: #000; */
+      color: #000;
       }
       .profileIcon{
         font-size: 1.5rem;
@@ -521,5 +537,13 @@ background-color: rgb(255, 0, 0);
     }
     .confirmLog{
         font-size: 1rem;
+    }
+    .name{
+        font-size: 2rem;
+        margin-left: 7rem;
+    }
+    .modal{
+        height: 300px;
+        background-color: white;
     }
 }
