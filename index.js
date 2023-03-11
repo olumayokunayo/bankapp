@@ -42,14 +42,16 @@ let userInfo = JSON.parse(localStorage.getItem(userKey));
 getDate()
 
 // modal
-
 let transferBtn = document.getElementById("transferBtn")
 let modal = document.querySelector(".modal")
+let balanceShow = document.querySelector(".balanceShow");
 transferBtn.addEventListener("click", function(){
     accountInput.value = "";
     amountInput.value = "";
     descInput.value = "";
     modal.style.display = "block"
+    let currentUserInfo = gotten.find((element => element.username === currentUser))
+    balanceShow.textContent = `$${currentUserInfo.accountBalance}`
 })
 
 let closeBtn = document.getElementById("closeBtn");
@@ -74,8 +76,11 @@ sendBtn.addEventListener("click", function(){
     // let dateandtime = `${newDate} ${time}`
     console.log(newDate, newTime);
     const amount = Number(amountInput.value);
-    const receiverAcc = gotten.find((element => element.username === accountInput.value))
-    
+    // const receiverAcc = gotten.find((element => element.username === accountInput.value))
+    const receiverAcc = gotten.find((element)=>{
+        return element.accountNumber === Number(accountInput.value) || element.username === accountInput.value
+    })
+    console.log(receiverAcc);
     let currentUserInfo = gotten.find((element => element.username === currentUser))
     if(receiverAcc.username === currentUser){
         console.log("You can't send to self");
@@ -225,7 +230,8 @@ function history(){
 }
 history();
 
-let profilename = document.querySelector(".name");
+//  profile
+
 let profileBtn = document.getElementById("profileBtn");
 profileBtn.addEventListener("click", function(){
     let currentUserInfo = gotten.find((element => element.username === currentUser))
@@ -245,9 +251,9 @@ profileBtn.addEventListener("click", function(){
         <span onclick="profileBackBtn()" class="profileBack material-symbols-outlined">
         arrow_back</span>
         <div class="personDiv">
-        <span class="personIcon material-symbols-outlined">
+        <span class="personIcon material-symbols-outlined animate__animated animate__bounceIn">
         account_circle</span>
-        <p class="name"></p>
+        <p class="name animate__animated animate__bounceInDown"></p>
         </div>
         <div class="settingDiv">
         <div class="set">
@@ -319,9 +325,9 @@ profileBtn.addEventListener("click", function(){
                 </div>
         </div>
         </div>
-    </div> 
-    `
-    // profilename.textContent = `${currentUserInfo.firstName}`
+    </div>`
+    let profilename = document.querySelector(".name");
+    profilename.textContent = ` Welcome, ${currentUserInfo.firstName}`
 }, 10);
 }
 })
@@ -393,3 +399,85 @@ location.reload()
     screen.innerHTML = ""
     transactionsDiv.style.display = "none"
 }
+
+function visibilitybtn(){
+    let visibilityOffIcon = document.querySelector(".visibilityOffIcon")
+  let balance = document.querySelector(".bal");
+  if(balance.style.visibility === "hidden"){
+    balance.style.visibility = "visible";
+    visibilityOffIcon.innerHTML = `<span class="material-symbols-outlined">
+    visibility
+    </span>`
+  }else {
+    balance.style.visibility = "hidden"
+    visibilityOffIcon.innerHTML =  `<span class="material-symbols-outlined">
+    visibility_off
+    </span>`
+  }
+}
+
+function copyBtn(){
+    let num = document.querySelector(".num").innerText;
+    navigator.clipboard.writeText(num)
+    .then(()=>{
+        alert("copied")
+        console.log("Text copied to clipboard");
+    })
+    .catch(()=>{
+        console.log("Error copying text");
+    })
+}
+
+function closeBtnn(){
+    let modal4 = document.querySelector(".modal4");  
+    modal4.style.display = "none";
+}
+
+let modal4 = document.querySelector(".modal4");
+let balanceShow2 = document.querySelector(".balanceShow2");
+let airtimeBtn = document.getElementById("airtimeBtn");
+airtimeBtn.addEventListener("click", function(){
+    modal4.style.display = "block";
+    let currentUserInfo = gotten.find((element=> element.username === currentUser))
+    balanceShow2.textContent =`$${currentUserInfo.accountBalance}`
+    console.log(currentUserInfo.accountBalance);
+})
+
+// buy airtime
+
+let buyBtn = document.getElementById("buyBtn");
+let phoneInput = document.getElementById("phoneInput");
+let amountphoneInput = document.getElementById("amountphoneInput");
+let pinInput = document.getElementById("pinInput");
+let date = new Date();
+let newDate = date.toLocaleDateString();
+let newTime =  date.toLocaleTimeString();
+buyBtn.addEventListener("click", function(){
+    let amount = Number(amountphoneInput.value);
+    let pin = pinInput.value;
+    let currentUserInfo = gotten.find((element => element.username === currentUser));
+    console.log(currentUserInfo.accountBalance);
+    if (phoneInput.value.length >= 12){
+        alert("Check number")
+    } else if (amount > currentUserInfo.accountBalance){
+        alert("Insufficient funds") 
+    } else if (currentUserInfo.userpin !== pin){
+        alert("Incorrect pin")
+    } else{
+        let airtimeInfo = {
+            Number: phoneInput.value,
+            Amount: `${amount}`,
+            date: `${newDate}`,
+            time: `${newTime}`
+
+        }
+        historyArr.push(airtimeInfo);
+        currentUserInfo.accountBalance -= amount;
+        console.log(currentUserInfo.accountBalance);
+        localStorage.setItem("userInfo", JSON.stringify(gotten));
+        localStorage.setItem("airtimeInfo", JSON.stringify(historyArr))
+        alert("Successful✅")
+        modal4.style.display = "none";
+    }
+    generate();
+})

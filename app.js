@@ -18,6 +18,7 @@ let fName = document.getElementById("fName");
 let lName = document.getElementById("lName");
 let username = document.getElementById("username");
 let email = document.getElementById("email");
+let pin = document.getElementById("pin");
 let password1 = document.getElementById("password1");
 let password2 = document.getElementById("password2");
 let userArr = JSON.parse(localStorage.getItem("userInfo"))
@@ -44,6 +45,7 @@ password1.value == "" || password2.value == ""){
     lastName: lName.value,
     username: username.value,
     email: email.value,
+    userpin: pin.value,
     password: password1.value,
     accountNumber: accountNum,
     accountBalance: initBalance,

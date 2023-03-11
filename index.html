@@ -12,6 +12,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600&family=Rubik:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css
     ">
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
@@ -19,7 +23,7 @@
     <main class="bankApp">
         <div class="appContainer">
             <div class="topDiv">
-                <p class="welcomeGreet">
+                <p class="welcomeGreet animate__animated animate__bounceInLeft">
                     <span><ion-icon class="userIcon" name="person-outline"></ion-icon></span>
                     <span class="showGreet"></span>
                 </p>
@@ -32,12 +36,14 @@
                     <p class="accountBal">Account balance</p>
                     <div class="balAndIcon">
                         <span class="bal">******</span><span class="color">USD</span>
-                        <span><ion-icon class="visibilityOffIcon" name="eye-off-outline"></ion-icon></span>
+                        <span onclick="visibilitybtn()"class="visibilityOffIcon material-symbols-outlined">
+                            visibility
+                            </span>
                     </div>
                 </div>
                 <div class="accountNumDiv">
                     <p class="accountNum">Account number</p>
-                    <div class="numAndIcon">
+                    <div class="numAndIcon" onclick="copyBtn()">
                         <span class="num">*******</span>
                         <span><ion-icon class="copyIcon" name="copy-outline"></ion-icon></span>
                     </div>
@@ -72,6 +78,7 @@
                                     <button id="closeBtn" class="closeBtn"><span class="material-symbols-outlined">
                                         close
                                         </span></button>
+                                        <div class="balanceShow"></div>
                                     <div class="upp">
                                         <p>How much do you want to send?</p>
                                     </div>
@@ -89,17 +96,56 @@
                                         <input type="text" id="descInput" placeholder="description">
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" id="sendBtn"class="btn btn-secondary" data-bs-dismiss="modal">Send</button>
+                                        <button type="button" id="sendBtn"class="btn btn-secondary" data-bs-dismiss="modal">$end</button>
                                     </div>
                             </div>
                         </div>
                     </div>
                 </div>   
                
-                <div class="CardTransDiv" id="cardBtn">
+                <div class="CardTransDiv" id="cardBt">
                     <span class="transIcon material-symbols-outlined">credit_card</span>
                     <p>Cards</p>
                 </div>
+                <div class=" airtimeDiv" id="airtimeBtn">
+                    <span class="transIcon material-symbols-outlined">credit_card</span>
+                    <p>Airtime</p>
+                </div>
+                <div  class="modal4">
+                    <div class="modalOverlay"></div>
+                    <div class="modalContent4">
+                        <div class="transForm4">
+                            <div class="form4">
+                                    <button onclick="closeBtnn()" class="closeBtn"><span class="material-symbols-outlined">
+                                        close
+                                        </span></button>
+                                        <div class="balanceShow2"></div>
+                                    <div class="upp">
+                                        <p>Select your network</p>
+                                    </div>
+                                    <div class="networks">
+                                        <button class="eti">Etisalat</button>
+                                        <button class="mtn">MTN</button>
+                                        <button class="glo">GLO</button>
+                                        <button class="airtel">Airtel</button>
+                                    </div>
+                                    <div class="rec">
+                                        <p>Enter receivers phone number</p>
+                                        <input type="text" id="phoneInput" placeholder="11-digit number">
+                                    </div>
+                                    <div class="recAmt">
+                                        <input type="number" id="amountphoneInput" placeholder="$">
+                                    </div>
+                                    <div class="pinDiv">
+                                        <input type="number" id="pinInput" placeholder="4-digit pin">
+                                    </div>
+                                    <div class="modalfooter4">
+                                        <button type="button" id="buyBtn"class="btn btn-secondary" data-bs-dismiss="modal">Buy Airtime</button>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
                 <div class="TransDiv" id="transBtn">
                     <span class="transIcon material-symbols-outlined">history</span>
                     <p>Transaction</p>

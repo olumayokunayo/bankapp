@@ -193,7 +193,7 @@
     .landing{
         height: 896px;
         width: 414px;
-        border-radius: 25px;
+        /* border-radius: 25px; */
         background-image: url(./images/bankman.jpg);
         background-position: center;
         background-size: cover;
@@ -250,7 +250,7 @@
         height: 896px;
         width: 414px;
         background-color: #fff;
-        border-radius: 25px;
+        /* border-radius: 25px; */
         padding: 1rem;
         display: none;
     }
@@ -263,7 +263,7 @@
         background: none;
     }
     .createAcc h3{
-        font-size: 1.5rem;
+        font-size: 1rem;
         background: linear-gradient(
             #f0b1ec,
             #52cf93,
@@ -320,7 +320,7 @@
         cursor: pointer;
     }
     .account{
-        margin: 1rem 0 2rem 0;
+        margin: 0.5rem 0 2rem 0;
     }
     .loginhere a{
         text-decoration: none;
@@ -332,7 +332,7 @@
         justify-content: center;
         gap: 1.5rem;
         color: #000;
-        font-size: 2rem;
+        font-size: 1.5rem;
     }
     .socialIcon{
         padding: 0.4rem;
@@ -360,7 +360,7 @@
         height: 896px;
         width: 414px;
         background-color: #fff;
-        border-radius: 25px;
+        /* border-radius: 25px; */
         padding: 1rem; 
         display: none;
     }

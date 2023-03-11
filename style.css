@@ -67,8 +67,8 @@ body{
     .accountInfoDiv{
         padding: 1rem;
         height: fit-content;
-        width: 100%;
-        background-color: black;
+        width: 97%;
+       background: linear-gradient(to bottom, rgba(128, 0, 128, 0.73), rgba(25, 7, 7, 0.523));
         border: 1px solid #ffffff35;
         border-radius: 10px;
        margin: 0.5rem auto;
@@ -121,12 +121,20 @@ body{
         border-radius: 50%;
         color: #000;
     }
-    .transferDiv, .CardTransDiv, .TransDiv{
+    .transferDiv, .CardTransDiv, .TransDiv, .airtimeDiv{
        background-color: blue;
         height: 4.5rem;
         width: 6rem;
         padding-top: 1rem;
         border-radius: 10px;
+    }
+    .airtimeDiv{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: #6e6e39;
+        color: #fff; 
     }
     .transferDiv{
         display: flex;
@@ -149,7 +157,7 @@ body{
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        background-color: rgba(255, 0, 0, 0.537);
+        background-color:rgba(128, 0, 128, 0.73);
         color:#fff
     }
     .bottomNav{
@@ -260,8 +268,8 @@ body{
         height: 200px;
         width: 400px;
         border-radius: 20px;
-        background: linear-gradient(rgba(192, 209, 255, 0.279), rgba(204, 0, 255, 0.382));
-        box-shadow: 0px 2px 2px 2px  rgba(204, 0, 255, 0.3);
+        background: linear-gradient(#fff,rgba(0, 0, 0, 0.75), #fff);
+        box-shadow: 0px 2px 2px 2px rgb(32, 6, 66, 0.2);
     }
     .cc{
         display: flex;
@@ -273,7 +281,7 @@ body{
     }
     .radText{
         font-size: 1.5rem;
-        color: #7f7676;
+        color: #000;
     }
     
     .circle1{
@@ -301,15 +309,15 @@ body{
     .cardnum{
         font-size: 1.3rem;
         margin-bottom: 0.5rem;
-        color: #7f7676;
+        color: #3d3535;
     }
     .expDate{
         font-size: 1rem;
-        color: #7f7676;
+        color: #3d3535;
     }
     .modal {
         display: none;
-        height: 550px;
+        height: 570px;
         position: absolute;
         z-index: 1000;
         left: 0;
@@ -338,6 +346,82 @@ body{
       .modal-footer{
         margin: 40px 45px 0 0;
         border-top: none;
+      }
+      .modal4{
+        display: none;
+        height: 570px;
+        position: absolute;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        overflow: hidden;
+        background-color: yellow;
+      }
+      .modalContent4{
+        position: relative;
+        padding: 20px;
+        max-width: 1000px;
+        height: 100%;
+       background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      }
+      .modalfooter4{
+        margin: 40px 45px 0 0;
+        border-top: none;
+      }
+      .networks{
+        display: flex;
+        gap: 1rem;
+        
+      }
+      .eti, .mtn, .glo, .airtel{
+        /* border: none; */
+        height: 4rem;
+        width: 4rem;
+        background-color: green;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.043);
+        transition: all 0.5s ease;
+      }
+      .mtn{
+        background-color: rgba(255, 255, 0, 0.884);
+      }
+      .mtn:hover{
+        background-color: rgb(255, 255, 0);
+      }
+      .glo{
+        background-color: rgba(144, 238, 144, 0.878);
+      }
+      .glo:hover{
+        background-color: rgb(144, 238, 144);
+      }
+      .airtel{
+        background-color: rgba(255, 0, 0, 0.904);
+      }
+      .airtel:hover{
+        background-color: rgb(255, 0, 0);
+      }
+      .form4 .upp p{
+        color: black;
+        font-size: 1.2rem;
+        text-align: left;
+      }
+      .networks {
+        margin-bottom: 1rem;
+      }
+      .form4 .rec p{
+        color: black;
+        font-size: 1rem;
+      }
+      .form4 .rec input{
+        margin-left: -1rem;
+        height: 3rem;
+      }
+      .form4 button{
+        margin: auto;
       }
       .upp p{
         color: #008000;
@@ -377,12 +461,12 @@ body{
         margin-left: 1rem;
       }
 
-      .recAmt{
+      .recAmt, .pinDiv{
         display: flex;
         gap: 0.5rem;
         align-items: center;
       }
-      .recAmt input{
+      .recAmt input, .pinDiv input{
         border: 0.2px dotted #008000;
         margin-bottom: 1rem;
         padding: 0.5rem;
@@ -435,7 +519,7 @@ body{
         margin-top: 8rem;
         display: flex;
         flex-direction: column;
-        gap: 2rem;
+        gap: 1rem;
 
       }
       .profileBack{
@@ -443,12 +527,13 @@ body{
       }
     .personDiv{
         margin-top: 2rem;
+
     }
       .personIcon{
       font-size: 5rem;
-      margin-left: 9rem;
-      background-color: #000;
-      color: #fff;
+      margin-left: 10rem;
+      /* background-color: #000; */
+      color: #000;
       }
       .profileIcon{
         font-size: 1.5rem;
@@ -521,5 +606,16 @@ background-color: rgb(255, 0, 0);
     }
     .confirmLog{
         font-size: 1rem;
+    }
+    .name{
+        margin-left: 5rem;
+        font-size: 3rem;
+    }
+    .balanceShow, .balanceShow2{
+        margin: auto;
+        height: 3rem;
+        width: 8rem;
+        border: 1px solid black;
+        font-size: 2rem;
     }
 }
