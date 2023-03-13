@@ -84,7 +84,7 @@ let userKey = `userInfo-${usernameLog.value}`;
 if (userInfo && userInfo.password === passwordLog.value) {
   localStorage.setItem("loggedInUser", usernameLog.value);
   loginDiv.style.display = "none";
-  window.location.href = "index.html";
+  window.location.href = "dashboard.html";
 } else {
   alert("Invalid username or password");
 }
