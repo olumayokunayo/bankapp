@@ -70,7 +70,7 @@
         padding: 1rem;
         height: fit-content;
         width: 97%;
-       background: linear-gradient(to bottom, rgba(128, 0, 128, 0.73), rgba(25, 7, 7, 0.523));
+        background: linear-gradient(rgb(155,123,134),rgb(228,166,160));
         border: 1px solid #ffffff35;
         border-radius: 10px;
        margin: 0.5rem auto;
@@ -85,7 +85,7 @@
     }
     .accountBal, .accountNum{
         font-size: 1rem;
-        color: #ffffffb3;
+        color: #000;
     }
     .bal{
         font-size: 1.5rem;
@@ -101,7 +101,7 @@
     }
     .visibilityOffIcon, .copyIcon{
         font-size: 1.3rem;
-        color: rgba(200, 200, 211, 0.855);
+        color: #000;
     }
     .transfersCol{
         margin: 0.5rem;
@@ -246,17 +246,6 @@
     .historyhead{
         text-align: left;
     }
-    /* .transaction{
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 100px;
-      color: #000;    
-    }
-   
-    .showContainer{
-      overflow-y: scroll;
-    } */
 
     .tra{
         padding: 0.5rem;
