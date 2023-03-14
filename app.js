@@ -29,7 +29,9 @@ password1.value == "" || password2.value == ""){
   alert("Enter your details.")
 } else if (password1.value !== password2.value){
   alert("Passwords does not match.")
-} else{
+} else if(pin.value.length !== 4){
+  alert("Enter 4-digit")
+} else {
       // Gen acc number
   let accountNum = Math.floor(10000000 + Math.random() * 9000000000)
   let initBalance = 2500.00

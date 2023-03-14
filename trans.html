@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transactions</title>
+</head>
+<style>
+    body{
+        background-color: #b1b1b1;
+    }
+    .transaction{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .type-color-deposit{
+        height: 20px;
+        width: 20px;
+        border-radius: 50%;
+        background-color: green;
+    }
+   
+    .type-color-withdrawal{
+        height: 20px;
+        width: 20px;
+        border-radius: 50%;
+        background-color: red;
+    }
+    .tra{
+        padding: 0.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    .transHead{
+        font-size: 1.5rem;
+
+    }
+    .tdiv{
+        background-color: #7f5858;
+        position: sticky;
+        top: 0;
+        padding: 0.5rem;
+        /* width: 95%; */
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+   
+</style>
+<body>
+    <div>
+        <p class="show"></p>
+    </div>
+    <div></div>
+</body>
+</html> 
+<script>
+
+    let screen = document.querySelector(".show");
+    let transactionsDiv = document.querySelector(".transactionsDiv");
+    let currentUser = localStorage.getItem("loggedInUser")
+    let historyGotten = JSON.parse(localStorage.getItem("sendInfo"));
+    let depositsArr = [];
+    let withdrawalArr = [];
+    historyGotten.forEach(element => {
+        if(element.sendersAcc === currentUser){
+            withdrawalArr.push(element);
+            // console.log(withdrawalArr);
+        } else if(element.receiverAcc === currentUser){
+            depositsArr.push(element);
+            // console.log(depositsArr);
+        } 
+        screen.innerHTML = `
+        <div class="tdiv">
+            <span id="backBtn" class="material-symbols-outlined">arrow_back_ios_new</span>
+            <h5 class="transHead">Transactions</h5>
+        <span class="material-symbols-outlined">
+expand_more
+</span>
+</div>
+`
+        let transactionsArr = [...depositsArr, ...withdrawalArr];
+        // console.log(transactionsArr);
+        transactionsArr.forEach(element => {
+            let typeColor = document.createElement("typeDiv");
+            typeColor.classList.add("type-color");
+            let deposits = (element.receiverAcc === currentUser);
+            if (deposits){
+               typeColor.classList.add("type-color-deposit");
+            } else{
+                typeColor.classList.add("type-color-withdrawal");
+            }
+            // console.log(deposits);
+            screen.innerHTML += `<div class="transaction">
+            <div class="tra">
+            ${typeColor.outerHTML}
+             <div>
+            <p class="transDesc">${element.description}</p>
+            <div class="datediv">
+            <span class="dandt">${element.date}</span>
+            </div>
+            </div>
+            </div>
+
+            <span class="amount"> ${deposits ? "+" : "-"} $ ${element.amount}</span>
+            </div> `
+        });
+    });
+
+   let backBtn = document.getElementById("backBtn");
+   backBtn.addEventListener("click", function(){
+    window.location.href ="dashboard.html"
+   })
+</script>

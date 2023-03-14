@@ -29,7 +29,7 @@ function getDate(){
 let userInfo = JSON.parse(localStorage.getItem(userKey));
         if (hours < 12 ){
             showGreet.innerHTML = `Good morning, ${userInfo.firstName}`
-        } else if(hours > 12 && hours < 18) {
+        } else if(hours >= 12 && hours <= 18) {
             showGreet.innerHTML = `Good afternoon, ${userInfo.firstName}`
         } else {
             showGreet.innerHTML = `Good evening, ${userInfo.firstName}`
@@ -75,81 +75,47 @@ let bal = document.querySelector(".bal");
 // let accountInput = document.getElementById("accountInput");
 // let amountInput = document.getElementById("amountInput");
 // let descInput = document.getElementById("descInput")
-// let sendBtn = document.getElementById("sendBtn");
+let sendpinInput = document.getElementById("sendpinInput");
+let sendBtn = document.getElementById("sendBtn");
 let gotten = JSON.parse(localStorage.getItem("userInfo"));
 let currentUser = localStorage.getItem("loggedInUser")
 
-// sendBtn.addEventListener("click", function(){
-//     let date = new Date();
-//     let newDate = date.toLocaleDateString();
-//     let newTime =  date.toLocaleTimeString();
-//     // let dateandtime = `${newDate} ${time}`
-//     console.log(newDate, newTime);
-//     const amount = Number(amountInput.value);
-//     // const receiverAcc = gotten.find((element => element.username === accountInput.value))
-//     const receiverAcc = gotten.find((element)=>{
-//         return element.accountNumber === Number(accountInput.value) || element.username === accountInput.value
-//     })
-//     console.log(receiverAcc);
-//     let currentUserInfo = gotten.find((element => element.username === currentUser))
-//     if(receiverAcc.username === currentUser){
-//         console.log("You can't send to self");
-//     } else if(amount > 0 && currentUserInfo.accountBalance >= amount){
-//         let sendInfo = {
-//             amount: `${amount}`,
-//             receiverAcc: `${receiverAcc.username}`,
-//             description: descInput.value,
-//             sendersAmt: `-${amount}`,
-//             sendersAcc:  `${currentUser}`,
-//             date: `${newDate}`,
-//             time: `${newTime}`
-//         }
-//     }
-//        historyArr.push(sendInfo)
-//      console.log(historyArr);
-// })
-// // sendBtn.addEventListener("click", function(){
-
-    function sendBtn(){
-        alert("hi")
-        let date = new Date();
-        let newDate = date.toLocaleDateString();
-        let newTime =  date.toLocaleTimeString();
-        // let dateandtime = `${newDate} ${time}`
-        console.log(newDate, newTime);
-        const amount = Number(amountInput.value);
-        // const receiverAcc = gotten.find((element => element.username === accountInput.value))
-        // const receiverAcc = gotten.find((element => element.accountNumber === Number(accountInput.value))|| (element => element.username === accountInput.value))
-        const receiverAcc  = gotten.find((element) => {
-            return element.accountNumber === Number(accountInput.value) || element.username === accountInput.value
-        })
-        // console.log(gotten)
-        // console.log(receiverAcc);
-        let currentUserInfo = gotten.find((element => element.username === currentUser))
-        if(receiverAcc.username === currentUser){
-            console.log("You can't send to self");
-        } else if(amount > 0 && currentUserInfo.accountBalance >= amount){
-            let sendInfo = {
-                amount: `${amount}`,
-                receiverAcc: `${receiverAcc.username}`,
-                description: descInput.value,
-                sendersAmt: `-${amount}`,
-                sendersAcc:  `${currentUser}`,
-                date: `${newDate}`,
-                time: `${newTime}`
-            }
-           historyArr.push(sendInfo)
-         console.log(historyArr);
-    
-            currentUserInfo.accountBalance -= amount;
-            receiverAcc.accountBalance += amount
-            localStorage.setItem("userInfo", JSON.stringify(gotten));
-            localStorage.setItem("sendInfo", JSON.stringify(historyArr))
-            console.log(amount, currentUserInfo.accountBalance, receiverAcc.accountBalance, receiverAcc, currentUser);
-            alert("Transaction successful 🎉")
-            console.log("Trans successful");
-            modal.style.display = "none"
-        } else if(currentUserInfo.accountBalance < amount){
+sendBtn.addEventListener("click", function(){
+    let date = new Date();
+    let newDate = date.toLocaleDateString();
+    let newTime =  date.toLocaleTimeString();
+    let pin = sendpinInput.value;
+    // let dateandtime = `${newDate} ${time}`
+    console.log(newDate, newTime);
+    const amount = Number(amountInput.value);
+    // const receiverAcc = gotten.find((element => element.username === accountInput.value))
+    const receiverAcc = gotten.find((element)=>{
+        return element.accountNumber === Number(accountInput.value) || element.username === accountInput.value
+    })
+    console.log(receiverAcc);
+    let currentUserInfo = gotten.find((element => element.username === currentUser))
+    if(receiverAcc.username === currentUser){
+        console.log("You can't send to self");
+    } else if(amount > 0 && currentUserInfo.accountBalance >= amount && currentUserInfo.userpin === pin){
+        let sendInfo = {
+            amount: `${amount}`,
+            receiverAcc: `${receiverAcc.username}`,
+            description: descInput.value,
+            sendersAmt: `-${amount}`,
+            sendersAcc:  `${currentUser}`,
+            date: `${newDate}`,
+            time: `${newTime}`
+        }
+        historyArr.push(sendInfo)
+        currentUserInfo.accountBalance -= amount;
+        receiverAcc.accountBalance += amount
+        localStorage.setItem("userInfo", JSON.stringify(gotten));
+        localStorage.setItem("sendInfo", JSON.stringify(historyArr))
+        console.log(amount, currentUserInfo.accountBalance, receiverAcc.accountBalance, receiverAcc, currentUser);
+        alert("Transaction successful 🎉")
+        console.log("Trans successful");
+        modal.style.display = "none"
+    } else if(currentUserInfo.accountBalance < amount){
             alert("Insufficient funds ❌")
               modal.style.display = "none"
             console.log("Insufficient funds");
@@ -158,10 +124,8 @@ let currentUser = localStorage.getItem("loggedInUser")
             console.log("failed");
         }
         generate()
-        location.reload()
-    }
-  
-// // });
+     console.log(historyArr);
+})
 
 // // transfer button
 let transBtn = document.getElementById("transBtn");
@@ -175,63 +139,9 @@ let transactionSec = document.querySelector(".transaction");
 // //  transactions 
 
 let historyGotten = JSON.parse(localStorage.getItem("sendInfo"));
-transBtn.addEventListener("click", function(){
-    let depositsArr = [];
-    let withdrawalArr = [];
-    historyGotten.forEach(element => {
-        if(element.sendersAcc === currentUser){
-            withdrawalArr.push(element);
-            // console.log(withdrawalArr);
-        } else if(element.receiverAcc === currentUser){
-            depositsArr.push(element);
-            // console.log(depositsArr);
-        } 
-        screen.innerHTML = `<h2 class="transHead">Transactions</h2>`
-        let transactionsArr = [...depositsArr, ...withdrawalArr];
-        // console.log(transactionsArr);
-        transactionsArr.forEach(element => {
-            let typeColor = document.createElement("typeDiv");
-            typeColor.classList.add("type-color");
-            let deposits = (element.receiverAcc === currentUser);
-            if (deposits){
-               typeColor.classList.add("type-color-deposit");
-            } else{
-                typeColor.classList.add("type-color-withdrawal");
-            }
-            // console.log(deposits);
-            screen.innerHTML += `<div class="transaction">
-            <div class="tra">
-            ${typeColor.outerHTML}
-             <div>
-            <p class="transDesc">${element.description}</p>
-            <div class="datediv">
-            <span class="dandt">${element.date}</span>
-            <span class="dandt">${element.time}</span>
-            </div>
-            </div>
-            </div>
 
-            <span class="amount"> ${deposits ? "+" : "-"} $ ${element.amount}</span>
-            </div> 
-            
-            <div class="bottomNav">
-                <div class="navLinks checked" onclick="homeBtnn()">
-                    <span class="material-symbols-outlined">home</span>
-                    <p>Home</p>
-                </div>
-                <div class="navLinks" onclick="sortBtn()">
-                <span class="material-symbols-outlined">
-                sort
-                </span>
-                    <p>Sort</p>
-                </div>
-            </div>`
-        ccHistory.style.display = "none"
-        accountInfoDiv.style.display = "none"
-        topDiv.style.display = "none";
-        bottomNav.style.display = "none";
-        });
-    });
+transBtn.addEventListener("click", function(){
+window.location.href = "trans.html"
      
 })
 
@@ -409,7 +319,7 @@ function noBtn(){
 }
 
 function yesBtn(){
-   window.location.href = "signup.html";
+   window.location.href = "index.html";
 }
 
 function deactivateBtn(){
@@ -499,6 +409,9 @@ let modal4 = document.querySelector(".modal4");
 let balanceShow2 = document.querySelector(".balanceShow2");
 let airtimeBtn = document.getElementById("airtimeBtn");
 airtimeBtn.addEventListener("click", function(){
+    phoneInput.value = ""
+    amountphoneInput.value = ""
+    pinInput.value = ""
     modal4.style.display = "block";
     let currentUserInfo = gotten.find((element=> element.username === currentUser))
     balanceShow2.textContent =`$${currentUserInfo.accountBalance}`
@@ -549,6 +462,7 @@ let visibilityBtn = document.getElementById("visibilityBtn");
 visibilityBtn.addEventListener("click", function(){
    if(balance.style.visibility === "hidden"){
     balance.style.visibility = "visible";
+
     visibilityBtn.innerHTML = `  <span  id="visibilityBtn" class="visibilityOffIcon material-symbols-outlined">
     visibility
     </span>`
@@ -567,3 +481,50 @@ function homeBtnn(){
     ccHistory.style.display = "block"
     location.reload(); 
 }
+
+
+
+// let generateBtn = document.getElementById("generateBtn");
+// generateBtn.addEventListener("click", function(){
+//     let transactionsDiv = document.querySelector(".transactionsDiv");
+//     let historyGotten = JSON.parse(localStorage.getItem("sendInfo"));
+//     let depositsArr = [];
+//     let withdrawalArr = [];
+//     historyGotten.forEach(element => {
+//         if(element.sendersAcc === currentUser){
+//             withdrawalArr.push(element);
+//             // console.log(withdrawalArr);
+//         } else if(element.receiverAcc === currentUser){
+//             depositsArr.push(element);
+//             // console.log(depositsArr);
+//         } 
+//         transactionsDiv.innerHTML = `<h5 class="historyhead">History</h5>`
+//         let transactionsArr = [...depositsArr, ...withdrawalArr];
+//         // console.log(transactionsArr);
+//         transactionsArr.forEach(element => {
+//             let typeColor = document.createElement("typeDiv");
+//             typeColor.classList.add("type-color");
+//             let deposits = (element.receiverAcc === currentUser);
+//             if (deposits){
+//                typeColor.classList.add("type-color-deposit");
+//             } else{
+//                 typeColor.classList.add("type-color-withdrawal");
+//             }
+//             // console.log(deposits);
+//             transactionsDiv.innerHTML += `<div class="history">
+//             <div class="tra">
+//             ${typeColor.outerHTML}
+//              <div>
+//             <p class="transDesc">${element.description}</p>
+//             <div class="datediv">
+//             <span class="dandt">${element.date}</span>
+//             </div>
+//             </div>
+//             </div>
+
+//             <span class="amount"> ${deposits ? "+" : "-"} $ ${element.amount}</span>
+//             </div> `
+//         });
+//     });
+// })
+
