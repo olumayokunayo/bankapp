@@ -1,222 +1,302 @@
-// Generate account NUMBER AND BALANCE.
-function generate(){
-    let bal = document.querySelector(".bal");
-    let num = document.querySelector(".num");
-    let expDate = document.querySelector(".expDate");
-    let cardnum = document.querySelector(".cardnum");
-    let gotten = JSON.parse(localStorage.getItem("userInfo"));
-    let currentUser = localStorage.getItem("loggedInUser")
-    let currentUserInfo = gotten.find((element => element.username === currentUser))
-    if(currentUserInfo){
-        num.textContent = `${currentUserInfo.accountNumber}`;
-        bal.textContent = `${currentUserInfo.accountBalance}`
-        cardnum.textContent = `${currentUserInfo.cardNumber}`
-        expDate.textContent = `${currentUserInfo.cardExpire}`
-    }
+// GENERATE USER NUMBER AND BALANCE.
+function generate() {
+  let bal = document.querySelector(".bal");
+  let num = document.querySelector(".num");
+  let expDate = document.querySelector(".expDate");
+  let cardnum = document.querySelector(".cardnum");
+  let gotten = JSON.parse(localStorage.getItem("userInfo"));
+  let currentUser = localStorage.getItem("loggedInUser");
+  let currentUserInfo = gotten.find(
+    (element) => element.username === currentUser
+  );
+  if (currentUserInfo) {
+    num.textContent = `${currentUserInfo.accountNumber}`;
+    bal.textContent = `${currentUserInfo.accountBalance}`;
+    cardnum.textContent = `${currentUserInfo.cardNumber}`;
+    expDate.textContent = `${currentUserInfo.cardExpire}`;
+  }
 }
-generate()
+generate();
 
 // DATE AND GREETING
 
-function getDate(){
-    let showGreet = document.querySelector(".showGreet");
-    let date = new Date();
-    let hours = date.getHours()
-    let loggedInUser = localStorage.getItem("loggedInUser");
-    let userKey = `userInfo-${loggedInUser}`;
+function getDate() {
+  let showGreet = document.querySelector(".showGreet");
+  let date = new Date();
+  let hours = date.getHours();
+  let loggedInUser = localStorage.getItem("loggedInUser");
+  let userKey = `userInfo-${loggedInUser}`;
 
-// Retrieve the user's information using the key
-let userInfo = JSON.parse(localStorage.getItem(userKey));
-        if (hours < 12 ){
-            showGreet.innerHTML = `Good morning, ${userInfo.firstName}`
-        } else if(hours >= 12 && hours <= 18) {
-            showGreet.innerHTML = `Good afternoon, ${userInfo.firstName}`
-        } else {
-            showGreet.innerHTML = `Good evening, ${userInfo.firstName}`
-        }  
-        // console.log(userInfo.firstName); 
+  // Retrieve the user's information using the key
+  let userInfo = JSON.parse(localStorage.getItem(userKey));
+  if (hours < 12) {
+    showGreet.innerHTML = `Good morning, ${userInfo.firstName}`;
+  } else if (hours >= 12 && hours <= 18) {
+    showGreet.innerHTML = `Good afternoon, ${userInfo.firstName}`;
+  } else {
+    showGreet.innerHTML = `Good evening, ${userInfo.firstName}`;
+  }
+  // console.log(userInfo.firstName);
 }
-getDate()
+getDate();
 
-// // modal
+// MODAL
+
 let accountInput = document.getElementById("accountInput");
 let amountInput = document.getElementById("amountInput");
-let descInput = document.getElementById("descInput")
-let transferBtn = document.getElementById("transferBtn")
-let modal = document.querySelector(".modal")
+let descInput = document.getElementById("descInput");
+let transferBtn = document.getElementById("transferBtn");
+let modal = document.querySelector(".modal");
 let balanceShow = document.querySelector(".balanceShow");
 let screen = document.getElementById("show");
 
+// TRANSFER BUTTON MODAL
 
-transferBtn.addEventListener("click", function(){
-   screen.innerHTML = "";
-    accountInput.value = "";
-    amountInput.value = "";
-    descInput.value = "";
-   
-    modal.style.display = "block"
-    let currentUserInfo = gotten.find((element => element.username === currentUser))
-    balanceShow.textContent = `$${currentUserInfo.accountBalance}`
-    // ccHistory.style.display = "none"
-    // accountInfoDiv.style.display = "none"
-    // topDiv.style.display = "none";
-    // bottomNav.style.display = "none";
-})
+transferBtn.addEventListener("click", function () {
+  screen.innerHTML = "";
+  accountInput.value = "";
+  amountInput.value = "";
+  descInput.value = "";
+  sendpinInput.value = "";
+  modal.style.display = "block";
+  let currentUserInfo = gotten.find(
+    (element) => element.username === currentUser
+  );
+  balanceShow.textContent = `$${currentUserInfo.accountBalance}`;
+});
+
+// CLOSE BUTTON
 
 let closeBtn = document.getElementById("closeBtn");
-closeBtn.addEventListener("click", function(){
-    modal.style.display = "none"
-})
+closeBtn.addEventListener("click", function () {
+  modal.style.display = "none";
+});
 
-// // send money button
+// SEND BUTTON
 
-let historyArr = JSON.parse(localStorage.getItem("sendInfo")) || []
+let historyArr = JSON.parse(localStorage.getItem("sendInfo")) || [];
 let bal = document.querySelector(".bal");
-// let accountInput = document.getElementById("accountInput");
-// let amountInput = document.getElementById("amountInput");
-// let descInput = document.getElementById("descInput")
 let sendpinInput = document.getElementById("sendpinInput");
 let sendBtn = document.getElementById("sendBtn");
 let gotten = JSON.parse(localStorage.getItem("userInfo"));
-let currentUser = localStorage.getItem("loggedInUser")
+let currentUser = localStorage.getItem("loggedInUser");
+let traDiv = document.querySelector(".traDiv");
 
-sendBtn.addEventListener("click", function(){
-    let date = new Date();
-    let newDate = date.toLocaleDateString();
-    let newTime =  date.toLocaleTimeString();
-    let pin = sendpinInput.value;
-    // let dateandtime = `${newDate} ${time}`
-    console.log(newDate, newTime);
-    const amount = Number(amountInput.value);
-    // const receiverAcc = gotten.find((element => element.username === accountInput.value))
-    const receiverAcc = gotten.find((element)=>{
-        return element.accountNumber === Number(accountInput.value) || element.username === accountInput.value
-    })
-    console.log(receiverAcc);
-    let currentUserInfo = gotten.find((element => element.username === currentUser))
-    if(receiverAcc.username === currentUser){
-        console.log("You can't send to self");
-    } else if(amount > 0 && currentUserInfo.accountBalance >= amount && currentUserInfo.userpin === pin){
-        let sendInfo = {
-            amount: `${amount}`,
-            receiverAcc: `${receiverAcc.username}`,
-            description: descInput.value,
-            sendersAmt: `-${amount}`,
-            sendersAcc:  `${currentUser}`,
-            date: `${newDate}`,
-            time: `${newTime}`
-        }
-        historyArr.push(sendInfo)
-        currentUserInfo.accountBalance -= amount;
-        receiverAcc.accountBalance += amount
-        localStorage.setItem("userInfo", JSON.stringify(gotten));
-        localStorage.setItem("sendInfo", JSON.stringify(historyArr))
-        console.log(amount, currentUserInfo.accountBalance, receiverAcc.accountBalance, receiverAcc, currentUser);
-        alert("Transaction successful 🎉")
-        console.log("Trans successful");
-        modal.style.display = "none"
-    } else if(currentUserInfo.accountBalance < amount){
-            alert("Insufficient funds ❌")
-              modal.style.display = "none"
-            console.log("Insufficient funds");
-            
-        } else{
-            console.log("failed");
-        }
-        generate()
-     console.log(historyArr);
-})
+sendBtn.addEventListener("click", function () {
+  let date = new Date();
+  let newDate = date.toLocaleDateString();
+  let newTime = date.toLocaleTimeString();
+  let pin = sendpinInput.value;
+  console.log(newDate, newTime);
+  const amount = Number(amountInput.value);
+  const receiverAcc = gotten.find((element) => {
+    return (
+      element.accountNumber === Number(accountInput.value) ||
+      element.username === accountInput.value
+    );
+  });
+  console.log(receiverAcc);
+  let currentUserInfo = gotten.find(
+    (element) => element.username === currentUser
+  );
+  if (receiverAcc.username === currentUser) {
+    console.log("You can't send to self");
+  } else if (
+    amount > 0 &&
+    currentUserInfo.accountBalance >= amount &&
+    currentUserInfo.userpin === pin
+  ) {
+    let sendInfo = {
+      amount: `${amount}`,
+      receiverAcc: `${receiverAcc.username}`,
+      receiverfName: `${receiverAcc.firstName}`,
+      receiverAcct: `${receiverAcc.accountNumber}`,
+      description: descInput.value,
+      sendersAmt: `-${amount}`,
+      sendersAcc: `${currentUser}`,
+      sendersName: `${currentUserInfo.firstName}`,
+      date: `${newDate}`,
+      time: `${newTime}`,
+    };
+    historyArr.push(sendInfo);
+    currentUserInfo.accountBalance -= amount;
+    receiverAcc.accountBalance += amount;
+    localStorage.setItem("userInfo", JSON.stringify(gotten));
+    localStorage.setItem("sendInfo", JSON.stringify(historyArr));
+    alert("Transaction successful 🎉");
+    traDiv.style.display = "none";
+    receiptDiv.style.display = "block";
+  } else if (currentUserInfo.accountBalance < amount) {
+    alert("Insufficient funds ❌");
+    console.log("Insufficient funds");
+  } else {
+    console.log("failed");
+  }
+  generate();
+  console.log(historyArr);
+});
 
-// // transfer button
+// HISTORY
+
+let transactionsDiv = document.querySelector(".transactionsDiv");
+let historyGotten = JSON.parse(localStorage.getItem("sendInfo"));
+let depositsArr = [];
+let withdrawalArr = [];
+if (historyGotten) {
+  historyGotten.forEach((element) => {
+    if (element.sendersAcc === currentUser) {
+      withdrawalArr.push(element);
+      // console.log(withdrawalArr);
+    } else if (element.receiverAcc === currentUser) {
+      depositsArr.push(element);
+      // console.log(depositsArr);
+    }
+    transactionsDiv.innerHTML = `<h5 class="historyhead">History</h5>`;
+    let transactionsArr = [...depositsArr, ...withdrawalArr];
+    // console.log(transactionsArr);
+    transactionsArr.forEach((element) => {
+      let typeColor = document.createElement("typeDiv");
+      typeColor.classList.add("type-color");
+      let deposits = element.receiverAcc === currentUser;
+      if (deposits) {
+        typeColor.classList.add("type-color-deposit");
+      } else {
+        typeColor.classList.add("type-color-withdrawal");
+      }
+      // console.log(deposits);
+      transactionsDiv.innerHTML += `<div class="history">
+                <div class="tra">
+                ${typeColor.outerHTML}
+                 <div>
+                <p class="transDesc">${element.description}</p>
+                <div class="datediv">
+                <span class="dandt">${element.date}</span>
+                </div>
+                </div>
+                </div>
+    
+                <span class="amount"> ${deposits ? "+" : "-"} $ ${
+        element.amount
+      }</span>
+                </div> `;
+    });
+  });
+}
+
+// RECEIPT
+
+let receiptDiv = document.querySelector(".receiptDiv");
+let receiptGotten = JSON.parse(localStorage.getItem("sendInfo"));
+console.log(receiptGotten);
+receiptDiv.innerHTML = "";
+if (receiptGotten) {
+  for (let i = 0; i < receiptGotten.length; i++) {
+    receiptDiv.innerHTML = `
+           <div class="receiptSec">
+        <h3>Transaction Details</h3>
+        <section class="rect">
+        <div class="recDiv">
+        <p class="sender">ACCOUNT NUMBER</p>
+        <p class="senderAmount">${receiptGotten[i].receiverAcct}</p>
+        </div>
+        <span class="receiptIcon material-symbols-outlined">check_circle</span>
+        </section>
+        <section class="rect">
+        <div class="recDiv">
+        <p class="sender">Recipient's Name</p>
+        <p class="senderAmount">${receiptGotten[i].receiverfName}</p>
+        </div>
+        <span class="receiptIcon material-symbols-outlined">check_circle</span>
+        </section>
+        <section class="rect">
+        <div class="recDiv">
+        <p class="sender">Recipient's Bank</p>
+        <p class="senderAmount">RAD BANK</p>
+        </div>
+        <span class="receiptIcon material-symbols-outlined">check_circle</span>
+        </section>
+        <section class="rect">
+        <div class="recDiv">
+        <p class="sender">Transaction Narration</p>
+        <p class="senderAmount">${receiptGotten[i].description}</p>
+        </div>
+        <span class="receiptIcon material-symbols-outlined">check_circle</span>
+        </section>
+        <section class="rect">
+        <div class="recDiv">
+        <p class="sender">Amount Sent</p>
+        <p class="senderAmount">${receiptGotten[i].amount}</p>
+        </div>
+        <span class="receiptIcon material-symbols-outlined">check_circle</span>
+        </section>
+        <section class="rect">
+        <div class="recDiv">
+        <p class="sender">Date</p>
+        <p class="senderAmount">${receiptGotten[i].date}</p>
+        </div>
+        <span class="receiptIcon material-symbols-outlined">check_circle</span>
+        </section>
+        <section class="rect">
+        <div class="recDiv">
+        <p class="sender">Time</p>
+        <p class="senderAmount">${receiptGotten[i].time}</p>
+        </div>
+        <span class="receiptIcon material-symbols-outlined">check_circle</span>
+        </section>
+        </div>
+        <div class="printBtn" onclick="downloadReceipt()">DOWNLOAD RECEIPT</div>
+        `;
+  }
+}
+
+// DOWNLOAD RECEIPT
+
+function downloadReceipt() {
+  let receiptContent = receiptDiv.innerHTML;
+  let blob = new Blob([receiptContent], { type: "text/html" });
+
+  let link = document.createElement("a");
+  link.download = "transaction-receipt.html";
+  link.href = URL.createObjectURL(blob);
+  link.click();
+}
+
+// TRANSFER BUTTON
+
 let transBtn = document.getElementById("transBtn");
-
 let ccHistory = document.querySelector(".ccHistory");
 let accountInfoDiv = document.querySelector(".accountInfoDiv");
 let topDiv = document.querySelector(".topDiv");
 let bottomNav = document.querySelector(".bottomNav");
 let transactionSec = document.querySelector(".transaction");
 
-// //  transactions 
+// TRANSACTIONS PAGE
 
-let historyGotten = JSON.parse(localStorage.getItem("sendInfo"));
+transBtn.addEventListener("click", function () {
+  window.location.href = "trans.html";
+});
 
-transBtn.addEventListener("click", function(){
-window.location.href = "trans.html"
-     
-})
+// HOME BUTTON
 
-
-// // home button
 let homeBtn = document.getElementById("homeBtn");
-homeBtn.addEventListener("click", function(){ 
-   screen.style.display = "none"
-    ccHistory.style.display = "block"
-    location.reload();
-})
+homeBtn.addEventListener("click", function () {
+  screen.style.display = "none";
+  ccHistory.style.display = "block";
+  location.reload();
+});
 
-// // history / summary
-
-function history(){
-    let transactionsDiv = document.querySelector(".transactionsDiv");
-    let historyGotten = JSON.parse(localStorage.getItem("sendInfo"));
-    let depositsArr = [];
-    let withdrawalArr = [];
-    historyGotten.forEach(element => {
-        if(element.sendersAcc === currentUser){
-            withdrawalArr.push(element);
-            // console.log(withdrawalArr);
-        } else if(element.receiverAcc === currentUser){
-            depositsArr.push(element);
-            // console.log(depositsArr);
-        } 
-        transactionsDiv.innerHTML = `<h5 class="historyhead">History</h5>`
-        let transactionsArr = [...depositsArr, ...withdrawalArr];
-        // console.log(transactionsArr);
-        transactionsArr.forEach(element => {
-            let typeColor = document.createElement("typeDiv");
-            typeColor.classList.add("type-color");
-            let deposits = (element.receiverAcc === currentUser);
-            if (deposits){
-               typeColor.classList.add("type-color-deposit");
-            } else{
-                typeColor.classList.add("type-color-withdrawal");
-            }
-            // console.log(deposits);
-            transactionsDiv.innerHTML += `<div class="history">
-            <div class="tra">
-            ${typeColor.outerHTML}
-             <div>
-            <p class="transDesc">${element.description}</p>
-            <div class="datediv">
-            <span class="dandt">${element.date}</span>
-            </div>
-            </div>
-            </div>
-
-            <span class="amount"> ${deposits ? "+" : "-"} $ ${element.amount}</span>
-            </div> `
-        });
-    });
-
-}
-history();
-
-// //  profile
-// // profile button
-
+// PROFILE BUTTON
 
 let profileBtn = document.getElementById("profileBtn");
-
-
-profileBtn.addEventListener("click", function(){
-    let currentUserInfo = gotten.find((element => element.username === currentUser))
-  
-    console.log(currentUserInfo.username);
-    if(currentUserInfo){
-    ccHistory.style.display = "none"
-    accountInfoDiv.style.display = "none"
+profileBtn.addEventListener("click", function () {
+  let currentUserInfo = gotten.find(
+    (element) => element.username === currentUser
+  );
+  console.log(currentUserInfo.username);
+  if (currentUserInfo) {
+    ccHistory.style.display = "none";
+    accountInfoDiv.style.display = "none";
     topDiv.style.display = "none";
-
     screen.innerHTML += `
     <div class="profileContainer">
         <div class="profileDiv">
@@ -298,127 +378,140 @@ profileBtn.addEventListener("click", function(){
         </div>
         </div>
     </div>
-    `
+    `;
     let profilename = document.querySelector(".name");
-    profilename.textContent = ` Welcome, ${currentUserInfo.firstName}`
+    profilename.textContent = ` Welcome, ${currentUserInfo.firstName}`;
+  }
+});
 
+// LOGOUT
 
-}
-})
-
-// // logout
-
-function logoutBtn(){
-    let modal2 = document.querySelector(".modal2");
-    modal2.style.display = "block"
+function logoutBtn() {
+  let modal2 = document.querySelector(".modal2");
+  modal2.style.display = "block";
 }
 
-function noBtn(){
-    let modal2 = document.querySelector(".modal2");
-    modal2.style.display = "none"
+function noBtn() {
+  let modal2 = document.querySelector(".modal2");
+  modal2.style.display = "none";
 }
 
-function yesBtn(){
-   window.location.href = "index.html";
+function yesBtn() {
+  window.location.href = "index.html";
 }
 
-function deactivateBtn(){
-    let modal = document.querySelector(".modal-3");
-    modal.style.display = "block"
+function deactivateBtn() {
+  let modal = document.querySelector(".modal-3");
+  modal.style.display = "block";
 }
-function deactivateNoBtn(){
-    let modal = document.querySelector(".modal-3");
+function deactivateNoBtn() {
+  let modal = document.querySelector(".modal-3");
+  modal.style.display = "none";
+}
+
+function deactivateYesBtn() {
+  let modal = document.querySelector(".modal-3");
+  let deactivateInput = document.getElementById("deactivateInput");
+  let deactivatePassword = document.getElementById("deactivatePassword");
+  let currentUserInfo = gotten.find(
+    (element) => element.username === currentUser
+  );
+  let retrieved = JSON.parse(localStorage.getItem("userInfo"));
+
+  if (
+    currentUserInfo.username === deactivateInput.value &&
+    currentUserInfo.password === deactivatePassword.value
+  ) {
+    const index = retrieved.findIndex(
+      (element) => element.username === currentUserInfo.username
+    );
+    console.log(index);
+    retrieved.splice(index, 1);
+    localStorage.setItem("userInfo", JSON.stringify(retrieved));
+    console.log(retrieved);
     modal.style.display = "none";
- }
-
- function deactivateYesBtn(){
-    let modal = document.querySelector(".modal-3");
-    let deactivateInput = document.getElementById("deactivateInput");
-    let deactivatePassword = document.getElementById("deactivatePassword");
-    let currentUserInfo = gotten.find((element => element.username === currentUser))
-    let retrieved = JSON.parse(localStorage.getItem("userInfo"));
-
-    if(currentUserInfo.username === deactivateInput.value && currentUserInfo.password === deactivatePassword.value){
-        const index = retrieved.findIndex( element => element.username === currentUserInfo.username)
-        console.log(index);
-        retrieved.splice(index, 1);
-       localStorage.setItem("userInfo", JSON.stringify(retrieved))
-        console.log(retrieved);
-        modal.style.display = "none";
-        window.location.href = "signup.html";
-    }
-   
- }
-
- // Check if user is active or log out.
-function checkUser(){
-    let currentUserInfo = gotten.find((element => element.username === currentUser))
-    // console.log(currentUser);
-    if(!currentUserInfo){
-        window.location.href = "signup.html";
-    }
-}       
-checkUser()
-
-
-function profileBackBtn(){
-let transactionsDiv = document.querySelector(".transactionsDiv");
-location.reload()
-
-// ccHistory.style.display = "block"
-// accountInfoDiv.style.display = "block"
-
-    screen.innerHTML = ""
-    transactionsDiv.style.display = "none"
-}
-
-function visibilitybtn(){
-    let visibilityOffIcon = document.querySelector(".visibilityOffIcon")
-  let balance = document.querySelector(".bal");
-  if(balance.style.visibility === "hidden"){
-    balance.style.visibility = "visible";
-    visibilityOffIcon.innerHTML = `<span class="material-symbols-outlined">
-    visibility
-    </span>`
-  }else {
-    balance.style.visibility = "hidden"
-    visibilityOffIcon.innerHTML =  `<span class="material-symbols-outlined">
-    visibility_off
-    </span>`
+    window.location.href = "signup.html";
   }
 }
 
-function copyBtn(){
-    let num = document.querySelector(".num").innerText;
-    navigator.clipboard.writeText(num)
-    .then(()=>{
-        alert("copied")
-        console.log("Text copied to clipboard");
-    })
-    .catch(()=>{
-        console.log("Error copying text");
-    })
+// CHECK USER
+
+function checkUser() {
+  let currentUserInfo = gotten.find(
+    (element) => element.username === currentUser
+  );
+  // console.log(currentUser);
+  if (!currentUserInfo) {
+    window.location.href = "signup.html";
+  }
+}
+checkUser();
+
+//  PROFILE BACK
+
+function profileBackBtn() {
+  let transactionsDiv = document.querySelector(".transactionsDiv");
+  location.reload();
+  screen.innerHTML = "";
+  transactionsDiv.style.display = "none";
 }
 
-function closeBtnn(){
-    let modal4 = document.querySelector(".modal4");  
-    modal4.style.display = "none";
+//  VISIBILTY BUTTON
+
+function visibilitybtn() {
+  let visibilityOffIcon = document.querySelector(".visibilityOffIcon");
+  let balance = document.querySelector(".bal");
+  if (balance.style.visibility === "hidden") {
+    balance.style.visibility = "visible";
+    visibilityOffIcon.innerHTML = `<span class="material-symbols-outlined">
+    visibility
+    </span>`;
+  } else {
+    balance.style.visibility = "hidden";
+    visibilityOffIcon.innerHTML = `<span class="material-symbols-outlined">
+    visibility_off
+    </span>`;
+  }
+}
+
+// COPY BUTTON
+
+function copyBtn() {
+  let num = document.querySelector(".num").innerText;
+  navigator.clipboard
+    .writeText(num)
+    .then(() => {
+      alert("copied");
+      console.log("Text copied to clipboard");
+    })
+    .catch(() => {
+      console.log("Error copying text");
+    });
+}
+
+// CLOSE BUTTON
+
+function closeBtnn() {
+  let modal4 = document.querySelector(".modal4");
+  modal4.style.display = "none";
 }
 
 let modal4 = document.querySelector(".modal4");
 let balanceShow2 = document.querySelector(".balanceShow2");
 let airtimeBtn = document.getElementById("airtimeBtn");
-airtimeBtn.addEventListener("click", function(){
-    phoneInput.value = ""
-    amountphoneInput.value = ""
-    pinInput.value = ""
-    modal4.style.display = "block";
-    let currentUserInfo = gotten.find((element=> element.username === currentUser))
-    balanceShow2.textContent =`$${currentUserInfo.accountBalance}`
-    console.log(currentUserInfo.accountBalance);
-})
+airtimeBtn.addEventListener("click", function () {
+  phoneInput.value = "";
+  amountphoneInput.value = "";
+  pinInput.value = "";
+  modal4.style.display = "block";
+  let currentUserInfo = gotten.find(
+    (element) => element.username === currentUser
+  );
+  balanceShow2.textContent = `$${currentUserInfo.accountBalance}`;
+  console.log(currentUserInfo.accountBalance);
+});
 
-// // buy airtime
+// BUY AIRTIME
 
 let buyBtn = document.getElementById("buyBtn");
 let phoneInput = document.getElementById("phoneInput");
@@ -426,105 +519,68 @@ let amountphoneInput = document.getElementById("amountphoneInput");
 let pinInput = document.getElementById("pinInput");
 let date = new Date();
 let newDate = date.toLocaleDateString();
-let newTime =  date.toLocaleTimeString();
-buyBtn.addEventListener("click", function(){
-    let amount = Number(amountphoneInput.value);
-    let pin = pinInput.value;
-    let currentUserInfo = gotten.find((element => element.username === currentUser));
+let newTime = date.toLocaleTimeString();
+buyBtn.addEventListener("click", function () {
+  let amount = Number(amountphoneInput.value);
+  let pin = pinInput.value;
+  let currentUserInfo = gotten.find(
+    (element) => element.username === currentUser
+  );
+  console.log(currentUserInfo.accountBalance);
+  if (phoneInput.value.length >= 12) {
+    alert("Check number");
+  } else if (amount > currentUserInfo.accountBalance) {
+    alert("Insufficient funds");
+  } else if (currentUserInfo.userpin !== pin) {
+    alert("Incorrect pin");
+  } else {
+    let airtimeInfo = {
+      Number: phoneInput.value,
+      Amount: `${amount}`,
+      date: `${newDate}`,
+      time: `${newTime}`,
+    };
+    console.log(airtimeInfo);
+    historyArr.push(airtimeInfo);
+    console.log(historyArr);
+    currentUserInfo.accountBalance -= amount;
     console.log(currentUserInfo.accountBalance);
-    if (phoneInput.value.length >= 12){
-        alert("Check number")
-    } else if (amount > currentUserInfo.accountBalance){
-        alert("Insufficient funds") 
-    } else if (currentUserInfo.userpin !== pin){
-        alert("Incorrect pin")
-    } else{
-        let airtimeInfo = {
-            Number: phoneInput.value,
-            Amount: `${amount}`,
-            date: `${newDate}`,
-            time: `${newTime}`
+    localStorage.setItem("userInfo", JSON.stringify(gotten));
+    localStorage.setItem("airtimeInfo", JSON.stringify(historyArr));
+    alert("Successful✅");
+    modal4.style.display = "none";
+  }
+  generate();
+});
+// VISIBILITY BUTTON
 
-        }
-        historyArr.push(airtimeInfo);
-        currentUserInfo.accountBalance -= amount;
-        console.log(currentUserInfo.accountBalance);
-        localStorage.setItem("userInfo", JSON.stringify(gotten));
-        localStorage.setItem("airtimeInfo", JSON.stringify(historyArr))
-        alert("Successful✅")
-        modal4.style.display = "none";
-    }
-    generate();
-})
-// visibility button
 let balance = document.querySelector(".bal");
 let visibilityBtn = document.getElementById("visibilityBtn");
-visibilityBtn.addEventListener("click", function(){
-   if(balance.style.visibility === "hidden"){
+visibilityBtn.addEventListener("click", function () {
+  if (balance.style.visibility === "hidden") {
     balance.style.visibility = "visible";
 
     visibilityBtn.innerHTML = `  <span  id="visibilityBtn" class="visibilityOffIcon material-symbols-outlined">
     visibility
-    </span>`
-   } else {
-    balance.style.visibility = "hidden"
-    visibilityBtn.innerHTML =  `<span id="visibilityBtn"  class="visibilityOffIcon material-symbols-outlined">
+    </span>`;
+  } else {
+    balance.style.visibility = "hidden";
+    visibilityBtn.innerHTML = `<span id="visibilityBtn"  class="visibilityOffIcon material-symbols-outlined">
     visibility_off
-    </span>`
-   }
-})
+    </span>`;
+  }
+});
 
-// // transaction-home button
+// TRANS HOME BUTTON
 
-function homeBtnn(){
-    screen.style.display = "none"
-    ccHistory.style.display = "block"
-    location.reload(); 
+function homeBtnn() {
+  screen.style.display = "none";
+  ccHistory.style.display = "block";
+  location.reload();
 }
 
-
-
-// let generateBtn = document.getElementById("generateBtn");
-// generateBtn.addEventListener("click", function(){
-//     let transactionsDiv = document.querySelector(".transactionsDiv");
-//     let historyGotten = JSON.parse(localStorage.getItem("sendInfo"));
-//     let depositsArr = [];
-//     let withdrawalArr = [];
-//     historyGotten.forEach(element => {
-//         if(element.sendersAcc === currentUser){
-//             withdrawalArr.push(element);
-//             // console.log(withdrawalArr);
-//         } else if(element.receiverAcc === currentUser){
-//             depositsArr.push(element);
-//             // console.log(depositsArr);
-//         } 
-//         transactionsDiv.innerHTML = `<h5 class="historyhead">History</h5>`
-//         let transactionsArr = [...depositsArr, ...withdrawalArr];
-//         // console.log(transactionsArr);
-//         transactionsArr.forEach(element => {
-//             let typeColor = document.createElement("typeDiv");
-//             typeColor.classList.add("type-color");
-//             let deposits = (element.receiverAcc === currentUser);
-//             if (deposits){
-//                typeColor.classList.add("type-color-deposit");
-//             } else{
-//                 typeColor.classList.add("type-color-withdrawal");
-//             }
-//             // console.log(deposits);
-//             transactionsDiv.innerHTML += `<div class="history">
-//             <div class="tra">
-//             ${typeColor.outerHTML}
-//              <div>
-//             <p class="transDesc">${element.description}</p>
-//             <div class="datediv">
-//             <span class="dandt">${element.date}</span>
-//             </div>
-//             </div>
-//             </div>
-
-//             <span class="amount"> ${deposits ? "+" : "-"} $ ${element.amount}</span>
-//             </div> `
-//         });
-//     });
-// })
-
+function airtimeGot(){
+    let airtimeGotten = JSON.parse(localStorage.getItem("airtimeInfo"))
+    console.log(airtimeGotten);
+}
+airtimeGot()

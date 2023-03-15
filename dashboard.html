@@ -25,10 +25,7 @@
         <div class="appContainer">
             <div class="topDiv">
                 <p class="welcomeGreet animate__animated animate__bounceInLeft">
-                    <!-- <span><ion-icon class="userIcon" name="person-outline"></ion-icon></span> -->
-                    <span class="userIcon material-symbols-outlined">
-                        photo_camera
-                        </span>
+                    <span class="userIcon material-symbols-outlined"> photo_camera</span>
                     <span class="showGreet"></span>
                 </p>
                 <button class="notification" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -87,14 +84,24 @@
                                     <button id="closeBtn" class="closeBtn"><span class="material-symbols-outlined">
                                         close
                                         </span></button>
+                                    <div class="traDiv">
                                         <div class="balanceShow"></div>
                                     <div class="upp">
                                         <p>How much do you want to send?</p>
                                     </div>
-
                                     <div class="recAmt">
                                         <span class="dollar">$</span>
                                         <input type="number" id="amountInput">
+                                    </div>
+                                    <div class="bankName">
+                                        <form class="modalForm">
+                                            <label for="bank">Select your Bank: </label>
+                                            <select name="banks" id="banks" class="formSelect">
+                                                <option value="radBank">RAD BANK</option>
+                                                <option value="radBank">SWIFT PAY</option>
+                                                <option value="radBank">SQI BANK</option>
+                                            </select>
+                                        </form>
                                     </div>
                                     <div class="rec">
                                         <p>For whom is the money?</p>
@@ -105,12 +112,14 @@
                                         <input type="text" id="descInput" placeholder="description">
                                     </div>
                                     <div class="sendPinDiv">
-                                        <input type="number" id="sendpinInput" placeholder="4-digit pin">
+                                        <input type="password" id="sendpinInput" placeholder="4-digit pin">
                                     </div>
                                     <div class="footer">
 
                                         <button  id="sendBtn">$end</button>
                                     </div>
+                                </div>
+                                <div class="receiptDiv">hi</div>
                             </div>
                         </div>
                     </div>
@@ -137,11 +146,11 @@
                                         <p>Select your network</p>
                                     </div>
                                     <div class="networks">
-                                        <button class="eti">Etisalat</button>
-                                        <button class="mtn">MTN</button>
+                                        <div class="eti net">Etisalat</div>
+                                        <div class="mtn net">MTN</div>
                                     
-                                        <button class="glo">GLO</button>
-                                        <button class="airtel">Airtel</button>
+                                        <div class="glo net">GLO</div>
+                                        <div class="airtel net">Airtel</div>
                                     </div>
                                     <div class="rec">
                                         <p>Enter receivers phone number</p>
@@ -151,7 +160,7 @@
                                         <input type="number" id="amountphoneInput" placeholder="$">
                                     </div>
                                     <div class="pinDiv">
-                                        <input type="number" id="pinInput" placeholder="4-digit pin">
+                                        <input type="password" id="pinInput" placeholder="4-digit pin">
                                     </div>
                                     <div class="modalfooter4">
                                         <button type="button" id="buyBtn" data-bs-dismiss="modal">Buy Airtime</button>

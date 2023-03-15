@@ -52,12 +52,11 @@
      .beginBtn{
         margin: 0 0 0 2rem;
          border: none;
-         background: linear-gradient(to right, #810b28d2, rgba(95, 83, 83, 0.472)
-         );
+         background: linear-gradient(to right, #810b28d2, hsl(300, 100%, 25%));
          padding: 1rem;
          background-clip: text;
          -webkit-background-clip: text;
-         color: transparent;
+         color: transparent; 
          box-shadow:0px 2px 2px 2px  #a7077a28;
          cursor: pointer;
          transition: all 0.5s ease;
@@ -230,21 +229,17 @@
      }
      .beginBtn{
         margin: 0 0 0 2rem;
-         border: none;
-         background: linear-gradient(to right, #810b28d2, rgba(95, 83, 83, 0.472)
-         );
+         border-radius: 10px;
+         background: linear-gradient(to right, #810b28d2, rgb(128, 0, 128));
          padding: 1rem;
-         background-clip: text;
-         -webkit-background-clip: text;
-         color: transparent;
+         color: #fff;
          box-shadow:0px 2px 2px 2px  #a7077a28;
          cursor: pointer;
          transition: all 0.5s ease;
      }
      .beginBtn:hover{
-        color: #f5f5f5;
-        background: linear-gradient(to right, #810b28, rgba(95, 83, 83, 0.551)
-        );
+        transform: scale(1.4);
+        color: #000;
     }
     .signUpDiv{
         height: 896px;
@@ -294,8 +289,7 @@
         width:150px;
         padding: 0.5rem;
         border-radius: 10px;
-        background: linear-gradient(to right, #800080cb, rgba(24, 22, 22, 0.812)
-        );
+        background: linear-gradient(to right, #810b28d2, rgb(128, 0, 128));
         cursor: pointer;
         transition: all 0.5s ease;
     }

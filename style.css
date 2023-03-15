@@ -216,7 +216,7 @@
        bottom: 3%;
       position: absolute;
         padding: 1rem;
-        height: 260px;
+        height: 280px;
         background-color: #fff;
         border-radius: 10px;
         overflow-y: scroll;
@@ -317,9 +317,10 @@
 
     }
     .cardnum{
+      line-height: 1.6;
         font-size: 1.3rem;
         margin-bottom: 0.5rem;
-        color: #3a2f2f;
+        color: #0a0808c1;
     }
     .expDate{
         font-size: 1rem;
@@ -328,7 +329,7 @@
    
     .modal {
         display: none;
-        height: 650px;
+        height: 830px;
         position: absolute;
         z-index: 999999;
         left: 0;
@@ -355,13 +356,12 @@
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
       }
       .footer{
-
         width: 40%;
         height: 2rem;
         display: flex;
         align-items: center;
         justify-content: center;
-        margin: 1rem auto;
+        margin: 4rem auto;
        background-color: #008000;
       /* margin:1rem 0 0rem 7rem; */
       border-radius: 10px;
@@ -403,30 +403,40 @@
         /* border: none; */
         height: 4rem;
         width: 4rem;
-        background-color: green;
         display: flex;
         align-items: center;
         justify-content: center;
         box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.043);
         transition: all 0.5s ease;
       }
+      .eti{
+       background-color: #008000d9;
+      }
+      .eti:hover{
+        background-color: #008000;
+        color: #fff;
+      }
+     
       .mtn{
-        background-color: rgba(255, 255, 0, 0.884);
+        background-color: rgba(255, 255, 0, 0.504);
       }
       .mtn:hover{
         background-color: rgb(255, 255, 0);
+        color: #474646;
       }
       .glo{
         background-color: rgba(144, 238, 144, 0.878);
       }
       .glo:hover{
         background-color: rgb(144, 238, 144);
+        color: #fff;
       }
       .airtel{
         background-color: rgba(255, 0, 0, 0.904);
       }
       .airtel:hover{
         background-color: rgb(255, 0, 0);
+        color: #fff;
       }
       .form4 .upp p{
         color: black;
@@ -671,6 +681,51 @@ background-color: rgb(255, 0, 0);
       gap: 1rem;
       /* justify-content: center; */
     }
+    .receiptDiv{
+      display: none;
+    }
+    /* .recSection{
+      display: flex;
+    } */
+    .rect{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 2rem;
+    }
+    .recDiv p{
+      margin: 0;
+  
+    }
+    .sender{
+      text-align: left;
+      color: green;
+      font-weight: 700;
+    }
+    .senderAmount{
+      font-size: 1.3rem;
+      text-align: left;
+    }
+    .receiptIcon{
+      color: green;
+    }
+    .printBtn{
+      margin: 4rem auto;
+      height: 2rem;
+      width: 50%;
+      color: #fff;
+      background-color: green;
+    }
+    .modalForm{
+      text-align: left;
+      margin: 1rem 0 1rem 1.5rem;
+      color: green;
+    }
+    .formSelect{
+      display: flex;
+      height: 2rem;
+    }
+    
 }
 /* *{
   margin: 0;
