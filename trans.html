@@ -9,29 +9,16 @@
 </head>
 <style>
     body{
-        background-color: #d39c99c8;
+        background-color: #fff;
     }
     .transaction{
         display: flex;
         align-items: center;
         justify-content: space-between;
         margin-top: 0.5rem;
-        height: fit-content;
-        padding: 0.5rem;
-        background-color: gray;
-    }
-    .type-color-deposit{
-        height: 20px;
-        width: 20px;
-        border-radius: 50%;
-        background-color: green;
-    }
-   
-    .type-color-withdrawal{
-        height: 20px;
-        width: 20px;
-        border-radius: 50%;
-        background-color: red;
+        height: 2rem;
+        padding: 1.8rem 0.5rem;
+        background-color: #5c5b5b37;
     }
     .tra{
         padding: 0.5rem;
@@ -44,7 +31,7 @@
 
     }
     .tdiv{
-        background-color: #7f5858;
+        background-color: #586e7f;
         position: sticky;
         top: 0;
         padding: 0.5rem;
@@ -53,8 +40,21 @@
         align-items: center;
         justify-content: space-between;
     }
+    .transDesc{
+        color: #000000;
+        font-size: 1.3rem;
+    }
+    .datediv{
+        color: #000000;
 
-   
+    }
+    .amount{
+        font-size: 1.3rem;
+    }
+    .dandt{
+        font-size: 0.8rem;
+    }
+  
 </style>
 <body>
     <div>
@@ -71,6 +71,8 @@
     let historyGotten = JSON.parse(localStorage.getItem("sendInfo"));
     let depositsArr = [];
     let withdrawalArr = [];
+
+    let amount = document.querySelector(".amount")
     historyGotten.forEach(element => {
         if(element.sendersAcc === currentUser){
             withdrawalArr.push(element);
@@ -84,35 +86,23 @@
             <span id="backBtn" class="material-symbols-outlined">arrow_back_ios_new</span>
             <h5 class="transHead">Transactions</h5>
         <span class="material-symbols-outlined">
-expand_more
-</span>
-</div>
-`
+        expand_more</span></div>`
         let transactionsArr = [...depositsArr, ...withdrawalArr];
-        // console.log(transactionsArr);
         transactionsArr.forEach(element => {
-            let typeColor = document.createElement("typeDiv");
-            typeColor.classList.add("type-color");
             let deposits = (element.receiverAcc === currentUser);
-            if (deposits){
-               typeColor.classList.add("type-color-deposit");
-            } else{
-                typeColor.classList.add("type-color-withdrawal");
-            }
-            // console.log(deposits);
+            let amountColor = deposits ? "green" : "red"
             screen.innerHTML += `<div class="transaction">
             <div class="tra">
-            ${typeColor.outerHTML}
              <div>
             <p class="transDesc">${element.description}</p>
             <div class="datediv">
-            <span class="dandt">${element.date}</span>
+            <span class="dandt">${element.formattedDate}</span>
             </div>
             </div>
             </div>
 
-            <span class="amount"> ${deposits ? "+" : "-"} $ ${element.amount}</span>
-            </div> `
+            <span class="amount" style="color: ${amountColor}">${deposits ? "+" : "-"} $ ${element.amount}</span>
+            </div>`
         });
     });
 

@@ -70,7 +70,36 @@ transferBtn.addEventListener("click", function () {
 let closeBtn = document.getElementById("closeBtn");
 closeBtn.addEventListener("click", function () {
   modal.style.display = "none";
+  location.reload();
 });
+
+// let timer;
+// const logOutTimer = function (time) {
+//   let counter = document.getElementById("counter");
+//   let timeLeft = JSON.parse(localStorage.getItem("timeLeft"));
+
+//   if (counter) {
+//     // console.log(counter);
+//     let time = timeLeft ? parseInt(timeLeft) : 300;
+
+//       timer = setInterval(function () {
+//       const min = String(Math.trunc(time / 60)).padStart(2, 0);
+//       const sec = String(time % 60).padStart(2, 0);
+
+//       counter.textContent = `${min}: ${sec}`;
+//       time--;
+//       localStorage.setItem("timeLeft", time.toString());
+//       if (time === 0) {
+//         clearInterval(timer);
+//         localStorage.removeItem("timeLeft");
+//         window.location.href = "index.html";
+//       }
+//     }, 1000);
+//   } else {
+//     console.log("Counter is null");
+//   }
+// };
+// logOutTimer();
 
 // SEND BUTTON
 
@@ -81,13 +110,40 @@ let sendBtn = document.getElementById("sendBtn");
 let gotten = JSON.parse(localStorage.getItem("userInfo"));
 let currentUser = localStorage.getItem("loggedInUser");
 let traDiv = document.querySelector(".traDiv");
+let amountInputError = document.querySelector(".amountInputError");
+let accountInputError = document.querySelector(".accountInputError");
+let descInputError = document.querySelector(".descInputError");
+let passwordInputError = document.querySelector(".passwordInputError");
 
 sendBtn.addEventListener("click", function () {
-  let date = new Date();
-  let newDate = date.toLocaleDateString();
-  let newTime = date.toLocaleTimeString();
+  let receiptDate = new Date();
+  let newRecDate = receiptDate.toLocaleDateString();
+  let newRecTime = receiptDate.toLocaleTimeString();
+  let updatedDT = `${newRecDate} ${newRecTime}`;
+  // console.log(newRecDate, newRecTime);
+
+  amountInputError.textContent = "";
+  accountInputError.textContent = "";
+  // passwordInputError.textContent = ""
+  descInputError.textContent = "";
+
+  let accountValue = accountInput.value.trim();
+  let amountValue = amountInput.value.trim();
+  let descValue = descInput.value.trim();
+
+  if (accountValue == "") {
+    accountInputError.textContent = "Enter account number";
+  }
+  if (amountValue == "") {
+    amountInputError.textContent = "Enter an amount";
+  }
+  if (descValue == "") {
+    descInputError.textContent = "Enter a description";
+  }
   let pin = sendpinInput.value;
-  console.log(newDate, newTime);
+  if (pin == "") {
+    passwordInputError.textContent = "Enter your pin";
+  }
   const amount = Number(amountInput.value);
   const receiverAcc = gotten.find((element) => {
     return (
@@ -95,13 +151,11 @@ sendBtn.addEventListener("click", function () {
       element.username === accountInput.value
     );
   });
-  console.log(receiverAcc);
+  // console.log(receiverAcc);
   let currentUserInfo = gotten.find(
     (element) => element.username === currentUser
   );
-  if (receiverAcc.username === currentUser) {
-    console.log("You can't send to self");
-  } else if (
+  if (
     amount > 0 &&
     currentUserInfo.accountBalance >= amount &&
     currentUserInfo.userpin === pin
@@ -115,25 +169,39 @@ sendBtn.addEventListener("click", function () {
       sendersAmt: `-${amount}`,
       sendersAcc: `${currentUser}`,
       sendersName: `${currentUserInfo.firstName}`,
-      date: `${newDate}`,
-      time: `${newTime}`,
+      newDate: `${updatedDT}`,
+      date: new Date().getTime(),
+      formattedDate: "",
     };
+    console.log(newDate);
+    const diffTime = Math.abs(new Date().getTime() - sendInfo.date);
+    console.log(diffTime);
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    console.log(diffDays);
+    if (diffDays === 0) {
+      sendInfo.formattedDate = `today`;
+    } else if (diffDays === 1) {
+      sendInfo.formattedDate = "yesterday";
+    } else {
+      sendInfo.formattedDate = `${diffDays} days ago`;
+    }
     historyArr.push(sendInfo);
     currentUserInfo.accountBalance -= amount;
     receiverAcc.accountBalance += amount;
     localStorage.setItem("userInfo", JSON.stringify(gotten));
     localStorage.setItem("sendInfo", JSON.stringify(historyArr));
-    alert("Transaction successful 🎉");
+    // alert("Transaction successful 🎉");
     traDiv.style.display = "none";
     receiptDiv.style.display = "block";
+    generate();
+    // clearInterval(timer);
+    // logOutTimer(500);
   } else if (currentUserInfo.accountBalance < amount) {
     alert("Insufficient funds ❌");
     console.log("Insufficient funds");
   } else {
     console.log("failed");
   }
-  generate();
-  console.log(historyArr);
 });
 
 // HISTORY
@@ -155,30 +223,18 @@ if (historyGotten) {
     let transactionsArr = [...depositsArr, ...withdrawalArr];
     // console.log(transactionsArr);
     transactionsArr.forEach((element) => {
-      let typeColor = document.createElement("typeDiv");
-      typeColor.classList.add("type-color");
       let deposits = element.receiverAcc === currentUser;
-      if (deposits) {
-        typeColor.classList.add("type-color-deposit");
-      } else {
-        typeColor.classList.add("type-color-withdrawal");
-      }
+      let amountColor = deposits ? "green" : "red";
       // console.log(deposits);
       transactionsDiv.innerHTML += `<div class="history">
-                <div class="tra">
-                ${typeColor.outerHTML}
-                 <div>
-                <p class="transDesc">${element.description}</p>
-                <div class="datediv">
-                <span class="dandt">${element.date}</span>
-                </div>
-                </div>
-                </div>
-    
-                <span class="amount"> ${deposits ? "+" : "-"} $ ${
-        element.amount
-      }</span>
-                </div> `;
+      <div class="tra">
+          <p class="transDesc">${element.description}</p>
+          <span class="dandt">${element.formattedDate}</span> 
+      </div>
+      <div class="amount" style="color:${amountColor}">${
+          deposits ? "+" : "-"
+          } $ ${element.amount}</div>
+  </div>`;
     });
   });
 }
@@ -193,7 +249,10 @@ if (receiptGotten) {
   for (let i = 0; i < receiptGotten.length; i++) {
     receiptDiv.innerHTML = `
            <div class="receiptSec">
-        <h3>Transaction Details</h3>
+           <div class="successMsg">
+           <h1>Transaction Successful </h1>
+           </div>
+        <h3>Receipt</h3>
         <section class="rect">
         <div class="recDiv">
         <p class="sender">ACCOUNT NUMBER</p>
@@ -232,19 +291,12 @@ if (receiptGotten) {
         <section class="rect">
         <div class="recDiv">
         <p class="sender">Date</p>
-        <p class="senderAmount">${receiptGotten[i].date}</p>
+        <p class="senderAmount">${receiptGotten[i].newDate}</p>
         </div>
         <span class="receiptIcon material-symbols-outlined">check_circle</span>
         </section>
-        <section class="rect">
-        <div class="recDiv">
-        <p class="sender">Time</p>
-        <p class="senderAmount">${receiptGotten[i].time}</p>
-        </div>
-        <span class="receiptIcon material-symbols-outlined">check_circle</span>
-        </section>
-        </div>
         <div class="printBtn" onclick="downloadReceipt()">DOWNLOAD RECEIPT</div>
+        </div>
         `;
   }
 }
@@ -252,13 +304,12 @@ if (receiptGotten) {
 // DOWNLOAD RECEIPT
 
 function downloadReceipt() {
-  let receiptContent = receiptDiv.innerHTML;
-  let blob = new Blob([receiptContent], { type: "text/html" });
-
-  let link = document.createElement("a");
-  link.download = "transaction-receipt.html";
-  link.href = URL.createObjectURL(blob);
-  link.click();
+  let receiptDiv = document.querySelector(".receiptSec");
+  //  let printContents = receiptDiv.innerHTML;
+  // let originalContents = document.body.innerHTML;
+  // document.body.innerHTML = printContents;
+  window.print();
+  // document.body.innerHTML = originalContents;
 }
 
 // TRANSFER BUTTON
@@ -285,105 +336,6 @@ homeBtn.addEventListener("click", function () {
   location.reload();
 });
 
-// PROFILE BUTTON
-
-let profileBtn = document.getElementById("profileBtn");
-profileBtn.addEventListener("click", function () {
-  let currentUserInfo = gotten.find(
-    (element) => element.username === currentUser
-  );
-  console.log(currentUserInfo.username);
-  if (currentUserInfo) {
-    ccHistory.style.display = "none";
-    accountInfoDiv.style.display = "none";
-    topDiv.style.display = "none";
-    screen.innerHTML += `
-    <div class="profileContainer">
-        <div class="profileDiv">
-        <span onclick="profileBackBtn()" class="profileBack material-symbols-outlined">
-        arrow_back</span>
-        <div class="personDiv">
-        <span class="personIcon material-symbols-outlined animate__animated animate__bounceIn">
-        account_circle</span>
-        <p class="name animate__animated animate__bounceInDown"></p>
-        </div>
-        <div class="settingDiv">
-        <div class="set">
-        <span class="profileIcon material-symbols-outlined">
-        person
-        </span>
-        <span>Edit Profile</span>
-        </div>
-        <div class="set">
-        <span class="material-symbols-outlined">
-        account_balance
-        </span>
-        <span>Bank information</span>
-        </div>
-        <div class="set">
-        <span class="profileIcon material-symbols-outlined">
-        notifications
-        </span>
-        <span>Notifications</span>
-        </div>
-        <div class="set">
-        <span class="profileIcon material-symbols-outlined">
-        lock
-        </span>
-        <span>Password</span>
-        </div>
-        <div class="set">
-        <span class="profileIcon material-symbols-outlined">
-        policy
-        </span>
-        <span>Privacy</span>
-        </div>
-        <div class="set deactivate" onclick="deactivateBtn()">
-        <span class="material-symbols-outlined">
-        block
-        </span>
-        <span>Deactivate account</span>
-        </div>
-        
-        <div onclick="logoutBtn()" class="set logOut">
-        <span class="profileIcon material-symbols-outlined">
-        logout
-        </span>
-        <span>Log out</span>
-        </div>
-        </div>
-        </div>
-        </div>
-        <div  class="modal3">
-        <div class="modalContent3">
-                <div class="modal-3">
-                <p class="confirmDeactivate">Are you sure you want to deactivate your account?</p>
-                    <input type="text" id="deactivateInput" placeholder="Enter your username">
-                    <input type="text" id="deactivatePassword" placeholder="Enter your password">
-                    <button class="noBtn" onclick="deactivateNoBtn()">No</button>
-                    <button class="yesBtn" onclick="deactivateYesBtn()">Yes</button>
-                </div>
-        </div>
-    </div> 
-        <div  class="modal2">
-        <div class="modalOverlay2"></div>
-        <div class="modalContent2">
-        <p class="confirmLog">Are you sure you want to log out?</p>
-            <div class="form">
-               
-                <div class="modal-footer2">
-                    <button class="noBtn" onclick="noBtn()">No</button>
-                    <button class="yesBtn" onclick="yesBtn()">Yes</button>
-                </div>
-        </div>
-        </div>
-    </div>
-    `;
-    let profilename = document.querySelector(".name");
-    profilename.textContent = ` Welcome, ${currentUserInfo.firstName}`;
-  }
-});
-
 // LOGOUT
 
 function logoutBtn() {
@@ -397,6 +349,7 @@ function noBtn() {
 }
 
 function yesBtn() {
+  localStorage.removeItem("loggedInUser");
   window.location.href = "index.html";
 }
 
@@ -430,22 +383,11 @@ function deactivateYesBtn() {
     localStorage.setItem("userInfo", JSON.stringify(retrieved));
     console.log(retrieved);
     modal.style.display = "none";
-    window.location.href = "signup.html";
+    window.location.href = "index.html";
   }
 }
 
 // CHECK USER
-
-function checkUser() {
-  let currentUserInfo = gotten.find(
-    (element) => element.username === currentUser
-  );
-  // console.log(currentUser);
-  if (!currentUserInfo) {
-    window.location.href = "signup.html";
-  }
-}
-checkUser();
 
 //  PROFILE BACK
 
@@ -520,19 +462,36 @@ let pinInput = document.getElementById("pinInput");
 let date = new Date();
 let newDate = date.toLocaleDateString();
 let newTime = date.toLocaleTimeString();
+let phoneNumError = document.querySelector(".phoneNumError");
+let amountNumError = document.querySelector(".amountNumError");
+let phonePinError = document.querySelector(".phonePinError");
 buyBtn.addEventListener("click", function () {
+  phoneNumError.textContent = "";
+  amountNumError.textContent = "";
+  phonePinError.textContent = "";
+
   let amount = Number(amountphoneInput.value);
   let pin = pinInput.value;
+
+  if (phoneInput.value == "") {
+    phoneNumError.textContent = "Enter recipient phone number";
+  }
+  if (amountphoneInput.value == "") {
+    amountNumError.textContent = "Enter an amount";
+  }
+  if (pin == "") {
+    phonePinError.textContent = "Enter your pin";
+  }
   let currentUserInfo = gotten.find(
     (element) => element.username === currentUser
   );
   console.log(currentUserInfo.accountBalance);
   if (phoneInput.value.length >= 12) {
-    alert("Check number");
+    // alert("Check number");
   } else if (amount > currentUserInfo.accountBalance) {
     alert("Insufficient funds");
   } else if (currentUserInfo.userpin !== pin) {
-    alert("Incorrect pin");
+    // alert("Incorrect pin");
   } else {
     let airtimeInfo = {
       Number: phoneInput.value,
@@ -540,14 +499,14 @@ buyBtn.addEventListener("click", function () {
       date: `${newDate}`,
       time: `${newTime}`,
     };
-    console.log(airtimeInfo);
+    // console.log(airtimeInfo);
     historyArr.push(airtimeInfo);
     console.log(historyArr);
     currentUserInfo.accountBalance -= amount;
     console.log(currentUserInfo.accountBalance);
     localStorage.setItem("userInfo", JSON.stringify(gotten));
     localStorage.setItem("airtimeInfo", JSON.stringify(historyArr));
-    alert("Successful✅");
+    // alert("Successful✅");
     modal4.style.display = "none";
   }
   generate();
@@ -579,8 +538,150 @@ function homeBtnn() {
   location.reload();
 }
 
-function airtimeGot(){
-    let airtimeGotten = JSON.parse(localStorage.getItem("airtimeInfo"))
-    console.log(airtimeGotten);
-}
-airtimeGot()
+// function airtimeGot(){
+//     let airtimeGotten = JSON.parse(localStorage.getItem("airtimeInfo"))
+//     console.log(airtimeGotten);
+// }
+// airtimeGot()
+
+// let generateBtn = document.getElementById("generateBtn");
+// generateBtn.addEventListener("click", function(){
+//   let statementGotten = JSON.parse(localStorage.getItem("sendInfo"))
+//   console.log(statementGotten);
+
+//   let total = statementGotten.reduce(function(acc,obj){
+//     return acc + parseInt(obj.sendersAmt)
+//   }, 0)
+//   console.log(total);
+// })
+
+// PROFILE
+let profileBtn = document.getElementById("profileBtn");
+profileBtn.addEventListener("click", function () {
+  let currentUserInfo = gotten.find(
+    (element) => element.username === currentUser
+  );
+  console.log(currentUserInfo.username);
+  if (currentUserInfo) {
+    ccHistory.style.display = "none";
+    accountInfoDiv.style.display = "none";
+    topDiv.style.display = "none";
+    screen.innerHTML += `
+    <div class="profileContainer">
+        <div class="profileDiv">
+        <span onclick="profileBackBtn()" class="profileBack material-symbols-outlined">
+        arrow_back</span>
+        <div class="personDiv">
+        <span class="personIcon material-symbols-outlined animate__animated animate__bounceIn">
+        account_circle</span>
+        <p class="name animate__animated animate__bounceInDown"></p>
+        </div>
+        <div class="settingDiv">
+        <div class="set">
+        <span class="profileIcon material-symbols-outlined">
+        person
+        </span>
+        <span>Edit Profile</span>
+        </div>
+        <div class="set">
+        <span class="material-symbols-outlined">
+        account_balance
+        </span>
+        <span>Bank information</span>
+        </div>
+        <div class="set">
+        <span class="profileIcon material-symbols-outlined">
+        notifications
+        </span>
+        <span>Notifications</span>
+        </div>
+        <div class="set">
+        <span class="profileIcon material-symbols-outlined">
+        lock
+        </span>
+        <span>Password</span>
+        </div>
+        <div class="set">
+        <span class="profileIcon material-symbols-outlined">
+        policy
+        </span>
+        <span>Privacy</span>
+        </div>
+        <div class="set deactivate" onclick="deactivateBtn()">
+        <span class="material-symbols-outlined">
+        block
+        </span>
+        <span>Deactivate account</span>
+        </div>
+        <div onclick="logoutBtn()" class="set logOut">
+        <span class="profileIcon material-symbols-outlined">
+        logout
+        </span>
+        <span>Log out</span>
+        </div>
+        </div>
+        </div>
+        </div>
+        <div  class="modal3">
+        <div class="modalContent3">
+                <div class="modal-3">
+                <p class="confirmDeactivate">Are you sure you want to deactivate your account?</p>
+                <div class="modalinput3">
+                    <input type="text" id="deactivateInput" placeholder="Enter your username">
+                    <input type="text" id="deactivatePassword" placeholder="Enter your password">
+                    </div>
+                    <button class="noBtn" onclick="deactivateNoBtn()">No</button>
+                    <button class="yesBtn" onclick="deactivateYesBtn()">Yes</button>
+                </div>
+        </div>
+    </div> 
+        <div  class="modal2">
+        <div class="modalOverlay2"></div>
+        <div class="modalContent2">
+        <p class="confirmLog">Are you sure you want to log out?</p>
+            <div class="form">
+               
+                <div class="modal-footer2">
+                    <button class="noBtn" onclick="noBtn()">No</button>
+                    <button class="yesBtn" onclick="yesBtn()">Yes</button>
+                </div>
+        </div>
+        </div>
+    </div>
+      
+    `;
+    let profilename = document.querySelector(".name");
+    profilename.textContent = ` Welcome, ${currentUserInfo.firstName}`;
+  }
+});
+
+
+let creditCardBtn = document.querySelector(".creditCardBtn");
+let creditCard = document.querySelector(".creditCard");
+let creditCardBack = document.querySelector(".creditCardBack");
+creditCardBtn.addEventListener("click", function () {
+if(creditCard){
+  creditCard.innerHTML = `<div class="ccBack">
+  <p class="radText">radfintech</p>
+  <div class="cvvDiv">
+      <p class="cvv">999</p>
+  </div>
+</div>`
+} else if(creditCardBack) {
+  creditCard.innerHTML = `<div class="creditCard creditCardBtn">
+  <div class="cc">
+      <p class="radText">Rad</p>
+      <div class="circle">
+          <p class="circle1"></p>
+          <p class="circle2"></p>
+      </div>
+  </div>
+  <div class="cardNumDiv">
+      <p class="cardnum">**** **** **** ****</p>
+      <p class="expDate">**/**</p>
+      
+  </div>
+</div>`
+}  
+});
+

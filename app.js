@@ -36,6 +36,7 @@ password1.value == "" || password2.value == ""){
   let accountNum = Math.floor(10000000 + Math.random() * 9000000000)
   let initBalance = 2500.00
   let randcreditNum = Math.floor(Math.random()*10000000000000000).toString().padStart(16,"0");
+  let formattedNum = randcreditNum.match(/.{1,4}/g).join(" ");
   let expMonth = Math.floor(Math.random()*12);
   let expYear = 24
   let expiryDate = `${expMonth}/${expYear}`
@@ -51,7 +52,7 @@ password1.value == "" || password2.value == ""){
     password: password1.value,
     accountNumber: accountNum,
     accountBalance: initBalance,
-    cardNumber: randcreditNum,
+    cardNumber: formattedNum,
     cardExpire: expiryDate,
   }
   let userKey = `userInfo-${username.value}`;

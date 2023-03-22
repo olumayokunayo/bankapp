@@ -1,3 +1,19 @@
+@media print{
+ body *{
+  visibility: hidden;
+ }
+ .receiptSec, .receiptSec *{
+  visibility: visible;
+ }
+ .receiptSec {
+  position: absolute;
+  top: 0;
+  left: 0;
+ }
+ .printBtn{
+  display: none;
+ }
+}
 @media (max-width: 414px) {
     *{
         margin: 0;
@@ -240,31 +256,31 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        height: 100px;
-        color: #000;      
+        height: fit-content;
+        color: #000;     
+        width: 100%;
+        padding: 0 0.5rem; 
+        /* background-color: #00000021; */
     }
     .historyhead{
-        text-align: left;
+      position: sticky;
+      background-color: #222;
+      height: 1.5rem;
+      top: 0;
+        text-align: center;
+        color: #fff;
     }
 
     .tra{
         padding: 0.5rem;
         display: flex;
+        flex-direction: column;
         align-items: center;
+        justify-content: center;
         gap: 0.5rem;
     }
-    .type-color-deposit{
-        height: 20px;
-        width: 20px;
-        border-radius: 50%;
-        background-color: green;
-    }
-   
-    .type-color-withdrawal{
-        height: 20px;
-        width: 20px;
-        border-radius: 50%;
-        background-color: red;
+    .tra p{
+      margin-bottom: -0.5rem;
     }
     ::-webkit-scrollbar{
         display: none;
@@ -406,7 +422,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.043);
+        box-shadow:4px 4px 4px 4px rgba(110, 109, 109, 0.169);
         transition: all 0.5s ease;
       }
       .eti{
@@ -459,7 +475,9 @@
       }
       .upp p{
         color: #008000;
-        margin-right: 5rem;
+        font-size: 1.2rem;
+        text-align: left;
+        margin-left: 1.5rem;
         margin-top: 4rem;
       }
       .upp span{
@@ -480,12 +498,13 @@
         margin-left: 3rem;
       }
       .form input{
-        height: 3rem;
+        height:3rem;
         width: 100%;
       }
       .rec p{
-        margin-right: 9rem;
+        margin-right: 7rem;
         color: #008000;
+        font-size: 1.2rem;
       }
       .rec input{
         width: 95%;
@@ -506,7 +525,8 @@
         padding: 0.5rem;
       }
        .desc p{
-        margin-right: 8.3rem;
+        margin-right: 7rem;
+        font-size: 1.2rem;
         color: #008000;
       } 
       .desc input{
@@ -526,17 +546,18 @@
       }
       .transDesc{
         font-size: 1.5rem;
+        color: #000;
       }
       .dandt{
         font-size: 0.8rem;
-        color: #808080;
+        color: #000;
       }
       .amount{
         font-size: 1.3rem;
       }
       .transHead{
         font-size: 2rem;
-        color: #fff;
+        color: #ffffffa5;
         padding: 1rem;
       }
       .history .transDesc{
@@ -544,30 +565,28 @@
       }
       .profileContainer{
         padding: 1rem;
-       background-color: #ffffff;
+       background-color: #d39c99;
        height: 100vh;
+       z-index: 999;
       
       }
       .settingDiv{
         position: relative;
-        margin-top: 8rem;
+        margin-top: 2rem;
         display: flex;
         flex-direction: column;
         gap: 3rem;
+        color: #222;
 
       }
       .profileBack{
         font-size: 2.5rem;
       }
-    .personDiv{
-        margin-top: 2rem;
-
-    }
+   
       .personIcon{
       font-size: 5rem;
       margin-left: 10rem;
-      /* background-color: #000; */
-      color: #000;
+      color: #fff;
       }
       .profileIcon{
         font-size: 1.5rem;
@@ -575,6 +594,7 @@
       .name{
         font-size: 1.5rem;
         margin-left: 7rem;
+        color: #fff;
       }
       .set{
        display: flex;
@@ -644,26 +664,25 @@ background-color: rgb(255, 0, 0);
         font-size: 1rem;
     }
     .balanceShow, .balanceShow2{
-        /* background: linear-gradient(to right, rgba(0, 128, 0, 0.658), rgba(27, 27, 23, 0.637),lightgreen,red);
-        background-clip: text;
-        -webkit-background-clip: text;
-        color: transparent; */
-        /* color: #fff; */
         font-size:3rem;
         display: flex;
         align-items: center;
         padding: 0 1.5rem;
         justify-content: center;
         margin: auto;
-        border: 4px solid green;
+        font-weight: 600;
+        /* border: 4px solid green; */
         height: 4rem;
         width: 40%;
     }
     .sendPinDiv{
       margin-top: 1rem;
       width: 100px;
-      margin-left: 1rem;
-      border: 0.4px dotted #008000;
+      margin: 1rem auto;
+    }
+    #sendpinInput{
+      border: 1px solid #000;
+      padding: 0.5rem;
     }
     .bankApp button{
       border: none;
@@ -681,7 +700,21 @@ background-color: rgb(255, 0, 0);
       gap: 1rem;
       /* justify-content: center; */
     }
+    .successMsg{
+      margin-bottom: 1rem;
+      color: red;
+    }
+    .successMsg span{
+      font-size: 2rem;
+    }
+    .successMsg h1{
+      margin-top: 2rem;
+    }
+    .traDiv{
+      height: 200px;
+    }
     .receiptDiv{
+      height: 667px;
       display: none;
     }
     /* .recSection{
@@ -691,7 +724,7 @@ background-color: rgb(255, 0, 0);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-top: 2rem;
+      margin-top: 1rem;
     }
     .recDiv p{
       margin: 0;
@@ -710,7 +743,7 @@ background-color: rgb(255, 0, 0);
       color: green;
     }
     .printBtn{
-      margin: 4rem auto;
+      margin: 3rem auto;
       height: 2rem;
       width: 50%;
       color: #fff;
@@ -721,53 +754,784 @@ background-color: rgb(255, 0, 0);
       margin: 1rem 0 1rem 1.5rem;
       color: green;
     }
+    .modalForm label{
+      font-size: 1.2rem;
+    }
     .formSelect{
       display: flex;
       height: 2rem;
     }
-    
+    .counterDiv{
+      color: #ffffff6a;
+      font-weight: 300;
+    }
+    .error{
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: red;
+    }
+   .ccBack{
+    /* background-color: #000; */
+    height: 150px;
+   }
+   .ccBack .radText{
+    background-color: #000;
+   }
+   .cvv{
+   margin-left: 300px;
+   font-style: italic ;
+  
+   }
+   .cvvDiv{
+    background-color: #fff;
+   }
 }
-/* *{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+
+@media (max-width: 375px){
+  *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 body{
-  background-color:#fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
+    font-family: 'Rubik', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: gray;
 }
 .appContainer{
-  border: 10px solid #f48d74;
-  height: 700px;
-  width: 1000px;
-  background-color: #726e6e;
-  background-position: center;
-  background-size: cover;
-  position: relative;
+    height: 667px;
+    width: 375px;
+    background-color: #000;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+}
+.userIcon{
+    height: 3rem;
+    width: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    padding: 0.5rem;
+    color: #fff;
+    background-color: #33313185;
+}
+.welcomeGreet{
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.showGreet{
+    color: #fff;
 }
 .topDiv{
-  display: flex;
-  
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.notificationIcon{
+   font-size: 2rem;
+    color:#fff;
+    position: relative;
+}
+.notificationIcon::before{
+    content: "";
+    height: 1rem;
+    width: 1rem;
+    background-color: red;
+    border-radius: 50%;
+    right: 0;
+    top: 0;
+    position: absolute;
 }
 .accountInfoDiv{
-  text-align: left;
-  top: 0;
-  right: 0;
+    padding: 1rem;
+    height: 130px;
+    background: linear-gradient(rgb(155,123,134),rgb(228,166,160));
+    border: 1px solid #ffffff35;
+    border-radius: 10px;
+   margin: 0.1rem auto;
+   display: flex;
+   flex-direction: column;
+   gap: 0.5rem;
+}
+.balAndIcon{
+  margin-top: -1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+ .numAndIcon{
+  margin-top: -1.4rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.accountBal, .accountNum{
+    font-size: 1rem;
+    color: #000;
+}
+.bal{
+    font-size: 1.4rem;
+    color: #fff;
+}
+.num{
+    font-size: 1.3rem;
+    color: #fff;
+}
+.color{
+    font-size: 1.3rem;
+    color: #fff;   
+}
+.visibilityOffIcon, .copyIcon{
+    font-size: 1.3rem;
+    color: #000;
+}
+.transfersCol{
+    margin: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.1rem;
+    text-align: center;
+    gap: 0.5rem;
+    padding: 0.5rem
+}
+.div{
+  height: 1rem;
+  width: 5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.div p{
+  font-size: 0.8rem;
+}
+ .transIcon{
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 2rem;
+    width: 2rem;
+    border-radius: 50%;
+    color: #000;
+}
+.transferDiv, .CardTransDiv, .TransDiv, .airtimeDiv{
+   background-color: blue;
+    height: 4.5rem;
+    width: 6rem;
+    border-radius: 10px;
+} 
+.airtimeDiv{
+    background-color: #6e6e39;
+    color: #fff; 
+}
+.transferDiv{
+    background-color: rgba(0, 0, 255, 0.696);
+    color: #fff;
+}
+.CardTransDiv{
+    background-color:rgba(0, 128, 0, 0.62);
+    color: #fff;
+} 
+.TransDiv{
+    background-color:rgba(128, 0, 128, 0.73);
+    color:#fff
+}
+.BitDiv{
+    padding-top: 1rem;
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: hsl(60, 86%, 31%);
+    color:#fff;
+    height: 72px;
+    border-radius: 10px;
+} 
+.bottomNav{
+    background-color: #000;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    align-items: center;
+    gap: 2rem;
+    z-index: 99999;
+}
+.navLinks{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 0.1rem;
+    color:#ffffff91;
+    transition: all 0.5s ease;
+    cursor: pointer;
+}
+.navLinks:hover{
+    color: #04770c;
+}
+.navLinks p {
+    font-size: 0.8rem;
+}
+.checked{
+    color: #008000;
+    font-weight: 700;
+    font-size: 1.4rem;
+}
+.transactionsDiv{
+  width:350px; 
+   bottom: 10%;
   position: absolute;
-  padding: 1rem;
-  height: fit-content;
-  width: 30%;
-  background: linear-gradient(rgb(155,123,134),rgb(228,166,160));
+    padding: 1rem;
+    height: 100px;
+    background-color: #fff;
+    border-radius: 10px;
+    overflow-y: scroll;
+}
+.transTop{
+    border-radius: 10px;
+    padding: 0.2rem;
+    color:#000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 99999;
+}
+.transTop p{
+    font-size: 1.2rem;
+    color:#000;
+}
+.history {
+    display: flex;
+    align-items: center;
+    color: #000;     
+    width: 100%;
+}
+.historyhead{
+  position: sticky;
+  background-color: #222;
+  height: 1.5rem;
+  top: 0;
+    text-align: center;
+    color: #fff;
+}
+
+.tra{
+   display: flex;
+   flex-direction: column;
+   /* margin-bottom: 0; */
+   align-items: center;
+}
+.tra p{
+  margin-bottom: -0.5rem;
+}
+.tra span{
+  color: #2c282888;
+}
+::-webkit-scrollbar{
+    display: none;
+  scroll-behavior: smooth;
+} 
+.modal {
+    display: none;
+    height: 667px;
+    position: absolute;
+    z-index: 999999;
+    left: 0;
+    top: 0;
+    overflow: hidden;
+    /* background-color: rgb(0, 255, 149); */
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+  }
+  .modalOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .modalContent {
+    position: relative;
+    padding: 20px;
+    max-width: 1000px;
+    height: 667px;
+   background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+  .footer{
+    width: 40%;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 2rem auto;
+   background-color: #008000;
+  border-radius: 10px;
+  }
+
+  .modal4{
+    display: none;
+    width: 375px;
+    height: 510px;
+    position: absolute;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    overflow: hidden;
+    background-color: yellow;
+  }
+  .modalContent4{
+    position: relative;
+    padding: 20px;
+    max-width: 1000px;
+    height: 100%;
+   background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+  .modalfooter4{
+    text-align: center; 
+    display: flex;
+    width: 40%;
+    height: 2rem;
+   background-color: #008000;
+  margin:1rem 0 0rem 0rem;
+  border-radius: 10px;
+  }
+  .networks{
+    display: flex;
+    gap: 1rem;
+    
+  }
+  .eti, .mtn, .glo, .airtel{
+    height: 4rem;
+    width: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow:4px 4px 4px 4px rgba(110, 109, 109, 0.169);
+    transition: all 0.5s ease;
+  }
+  .eti{
+   background-color: #008000d9;
+  }
+  .eti:hover{
+    background-color: #008000;
+    color: #fff;
+  }
+  .mtn{
+    background-color: rgba(255, 255, 0, 0.504);
+  }
+  .mtn:hover{
+    background-color: rgb(255, 255, 0);
+    color: #474646;
+  }
+  .glo{
+    background-color: rgba(144, 238, 144, 0.878);
+  }
+  .glo:hover{
+    background-color: rgb(144, 238, 144);
+    color: #fff;
+  }
+  .airtel{
+    background-color: rgba(255, 0, 0, 0.904);
+  }
+  .airtel:hover{
+    background-color: rgb(255, 0, 0);
+    color: #fff;
+  }
+  .form4 .upp p{
+    color: black;
+    font-size: 1.2rem;
+    text-align: left;
+  }
+  .networks {
+    margin-bottom: 1rem;
+  }
+  .form4 .rec p{
+    color: black;
+    font-size: 1rem;
+  }
+  .form4 .rec input{
+    margin-left: -1rem;
+    height: 3rem;
+  }
+  .form4 button{
+    margin: auto;
+  }
+  .upp p{
+    color: #008000;
+    font-size: 1.2rem;
+    text-align: left;
+    margin-left: 1.5rem;
+    margin-top: 1rem;
+  }
+  .upp span{
+    font-size: 2rem;
+  }
+  .closeBtn{
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: none;
+ background: none; 
+    padding: 0.5rem;
+  }
+  .btn-secondary{
+    background-color: green;
+    width: 100%;
+    margin-left: 3rem;
+  }
+  .form input{
+    height:3rem;
+    width: 100%;
+  }
+  .rec p{
+    margin-right: 5rem;
+    color: #008000;
+    font-size: 1.2rem;
+  }
+  .rec input{
+    width: 95%;
+    border: 0.2px dotted #008000;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    margin-left: 1rem;
+  }
+
+  .recAmt, .pinDiv{
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+  .recAmt input, .pinDiv input{
+    border: 0.2px dotted #008000;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+  }
+   .desc p{
+    margin-right: 5rem;
+    font-size: 1.2rem;
+    color: #008000;
+  } 
+  .desc input{
+    border: none;
+    border-bottom: 1px solid#008000;
+     padding: 0.5rem;
+     width: 95%;
+     margin-left: 1rem;
+  }
+  .ccHistory{
+    display: block;
+  }
+  .datediv{
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+  .transDesc{
+    font-size: 1.5rem;
+    color: #000;
+  }
+  .dandt{
+    font-size: 0.8rem;
+    color: #000;
+  }
+  .amount{
+    font-size: 1.3rem;
+  }
+  .transHead{
+    font-size: 2rem;
+    color: #ffffffa5;
+    padding: 1rem;
+  }
+  .history .transDesc{
+    font-size: 1.2rem;
+  }
+  .profileContainer{
+    padding: 1rem;
+   background-color: #ffffff;
+   height: 667px;
+   z-index: 999;
+  
+  }
+  .settingDiv{
+    position: relative;
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    color: #444343;
+
+  }
+  .profileBack{
+    font-size: 2.5rem;
+  }
+
+  .personIcon{
+  font-size: 5rem;
+  margin-left: 8rem;
+  color: #000000;
+  }
+  .profileIcon{
+    font-size: 1.5rem;
+  }
+  .name{
+    font-size: 1.5rem;
+    margin-left: 6rem;
+    color: #000000;
+  }
+  .set{
+   display: flex;
+   align-items: center;
+    gap: 1rem;
+    font-size: 1.2rem;
+  }
+.deactivate{
+    background-color: rgba(255, 0, 0, 0.805);
+    height: 2.5rem;
+    color: #444343;
+    cursor: pointer;
+    transition: all 0.5s ease;
+}
+.logOut{
+    background-color: #008000d5;
+    height: 2.5rem;
+    color: #444343;
+    cursor: pointer;
+    transition: all 0.5s ease;
+}
+.deactivate:hover{
+background-color: rgb(255, 0, 0);
+}
+.logOut:hover{
+    background-color:  #008000;
+}
+.modal2{
+    display: none;
+    height: 100px;
+    width: 100%;
+    position: absolute;
+    padding: 1rem;
+    bottom: 6%;
+    background-color: black;
+    color: #808080;
+}
+.modal-3{
+    background-color: black;
+    padding: 0.5rem;
+    height: 150px;
+    width: 100%;
+    position: absolute;
+    bottom:5%;
+    color: #808080;
+    display: none;
+}
+.modal-3 input{
+    border: none;
+    padding: 0.2rem;
+    height: 2rem;
+    width: 10rem;
+    margin-bottom: 1rem;
+}
+.modalinput3{
+  display: flex;
+  gap: 1rem;
+}
+.noBtn, .yesBtn{
+    padding: 0.5rem 2rem;
+    border: none;
+}
+.noBtn{
+  color: #fff;
+    background-color: red;
+}
+.yesBtn{
+  color: #fff;
+    background-color: green;
+}
+.confirmLog{
+    font-size: 1rem;
+}
+.balanceShow, .balanceShow2{
+    font-size:3rem;
+    display: flex;
+    align-items: center;
+    padding: 0 1.5rem;
+    justify-content: center;
+    margin: auto;
+    font-weight: 600;
+    /* border: 4px solid green; */
+    height: 4rem;
+    width: 40%;
+}
+.sendPinDiv{
+  margin-top: 1rem;
+  width: 100px;
+  margin: 1rem auto;
+}
+#sendpinInput{
+  border: 1px solid #000;
+  padding: 0.5rem;
+}
+.bankApp button{
+  border: none;
+  background: none;
+}
+.dot{
+  height: 1rem;
+  width: 1rem;
+  border-radius: 50%;
+background-color: #008000;
+}
+.notify{
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.successMsg{
+  color: red;
+}
+.successMsg span{
+  font-size: 2rem;
+}
+.receiptDiv{
+  display: none;
+}
+
+.rect{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.recDiv p{
+  margin: 0;
+}
+.sender{
+  text-align: left;
+  color: green;
+  font-weight: 700;
+}
+.senderAmount{
+  font-size: 1.3rem;
+  text-align: left;
+}
+.receiptIcon{
+  color: green;
+}
+.printBtn{
+  margin: 3rem auto;
+  height: 2rem;
+  width: 50%;
+  color: #fff;
+  background-color: green;
+}
+.modalForm{
+  text-align: left;
+  margin: 1rem 0 1rem 1.5rem;
+  color: green;
+}
+.modalForm label{
+  font-size: 1.2rem;
+}
+.formSelect{
+  display: flex;
+  height: 2rem;
+}
+.counterDiv{
+  color: #ffffff6a;
+  font-weight: 300;
+}
+.error{
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: red;
+}
+.ccBack .radText{
+background-color: #000;
+}
+.cvv{
+margin-left: 250px;
+font-style: italic ;
+
+}
+.cvvDiv{
+background-color: #fff;
 }
 .creditCard{
-  margin: auto;
-  padding: 1rem 2rem;
-  height: 200px;
-  width: 400px;
-  border-radius: 20px;
-  background: linear-gradient(#fff,#000,#fff);
-  box-shadow: 0px 2px 2px 2px  #ffffff39;
-} */
+  position: relative;
+    margin: auto;
+    padding: 1rem 2rem;
+    height: 180px;
+    width: 350px;
+    border-radius: 20px;
+    background: linear-gradient(#fff,#0a74de96,#fff);
+    box-shadow: 0px 2px 2px 2px  #ffffff39;
+}
+
+.cc{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    top: 1%;
+
+}
+.radText{
+    font-size: 1.5rem;
+    color: #2c2828;
+}
+
+.circle1{
+    height: 1.5rem;
+    width: 1.5rem;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 0, 0.381);
+    position: absolute;
+    right:20%;
+    top: 10%;
+}
+.circle2{
+    height: 1.5rem;
+    width: 1.5rem;
+    border-radius: 50%;
+    background-color: rgba(255, 0, 0, 0.479);
+    position: absolute;
+    right: 24%;
+    top: 10%;
+}
+.cardNumDiv{
+    margin: 2rem 0 0 0rem;
+
+}
+.cardnum{
+  line-height: 1.6;
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    color: #090808c1;
+}
+.expDate{
+    font-size: 1rem;
+    color: #2c2828;
+}
+}
+
+@media (max-width: 390px){
+  
+}

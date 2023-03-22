@@ -57,7 +57,7 @@
                 <p id="show"></p>
             </div>
             <div class="ccHistory">
-            <div class="creditCard">
+            <div class="creditCard creditCardBtn">
                 <div class="cc">
                     <p class="radText">Rad</p>
                     <div class="circle">
@@ -71,8 +71,11 @@
                     
                 </div>
             </div>
+           
+
+           
             <div class="transfersCol">
-                <div class="transferDiv">
+                <div class="transferDiv div">
                     <span class="transIcon material-symbols-outlined"> attach_money</span>
                     <p id="transferBtn">Transfer</p>
                 </div>
@@ -92,6 +95,7 @@
                                     <div class="recAmt">
                                         <span class="dollar">$</span>
                                         <input type="number" id="amountInput">
+                                        <div class="amountInputError error"></div>
                                     </div>
                                     <div class="bankName">
                                         <form class="modalForm">
@@ -105,27 +109,30 @@
                                     </div>
                                     <div class="rec">
                                         <p>For whom is the money?</p>
-                                        <input type="text" id="accountInput" placeholder="Enter 10-digits account number or username">
+                                        <input type="text" id="accountInput" placeholder="Enter 10-digits account number">
+                                        <div class="accountInputError error"></div>
                                     </div>
                                     <div class="desc">
                                         <p>Your $ send description?</p>
                                         <input type="text" id="descInput" placeholder="description">
+                                        <div class="descInputError error"></div>
                                     </div>
                                     <div class="sendPinDiv">
                                         <input type="password" id="sendpinInput" placeholder="4-digit pin">
+                                        <div class="passwordInputError error"></div>
                                     </div>
                                     <div class="footer">
 
                                         <button  id="sendBtn">$end</button>
                                     </div>
                                 </div>
-                                <div class="receiptDiv">hi</div>
+                                <div class="receiptDiv"></div>
                             </div>
                         </div>
                     </div>
                 </div>   
                
-                <div class="CardTransDiv" id="cardBt">
+                <div class="CardTransDiv div" id="cardBt">
                     <span class="transIcon material-symbols-outlined">credit_card</span>
                     <p>Cards</p>
                 </div>
@@ -155,12 +162,17 @@
                                     <div class="rec">
                                         <p>Enter receivers phone number</p>
                                         <input type="text" id="phoneInput" placeholder="11-digit number">
+                                        <div class="error phoneNumError"></div>
                                     </div>
                                     <div class="recAmt">
                                         <input type="number" id="amountphoneInput" placeholder="$">
+                                        <div class="error amountNumError"></div>
+
                                     </div>
                                     <div class="pinDiv">
                                         <input type="password" id="pinInput" placeholder="4-digit pin">
+                                        <div class="error phonePinError"></div>
+
                                     </div>
                                     <div class="modalfooter4">
                                         <button type="button" id="buyBtn" data-bs-dismiss="modal">Buy Airtime</button>
@@ -169,7 +181,7 @@
                         </div>
                     </div>
                 </div> 
-                <div class="BitDiv" id="transBtn">
+                <div class="BitDiv div" id="transBtn">
                     <span class="transIcon material-symbols-outlined">history</span>
                     <p>Transaction</p>
                 </div>
@@ -187,14 +199,10 @@
                         </span>
                     <p>Profile</p>
                 </div>
-                <div class="navLinks" id="generateBtn">
-                    <span class="material-symbols-outlined">payments</span>
-                    <p>Generate</p>
-                </div>
-                <div class="navLinks">
-                    <span class="material-symbols-outlined">settings</span>
-                    <p>Settings</p>
-                </div>
+                <div class="counterDiv"> 
+                    <span>logged out in:</span>
+                    <span id="counter"></span>
+                    </div>
             </div>
         </div>
     </main>
@@ -229,5 +237,22 @@
       </div>
   <script src="index.js"></script> 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
+  <script>
+    function checkUser() {
+        let gotten = JSON.parse(localStorage.getItem("userInfo"));
+          let currentUser = localStorage.getItem("loggedInUser");
+
+
+  let currentUserInfo = gotten.find(
+    (element) => element.username === currentUser
+  );
+  console.log(currentUserInfo);
+  if(!currentUserInfo){
+    window.location.href = "index.html"
+   console.log("true")
+  }
+}
+checkUser();
+</script>
 </body>
 </html>
