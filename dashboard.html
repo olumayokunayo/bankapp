@@ -24,10 +24,12 @@
     <main class="bankApp">
         <div class="appContainer">
             <div class="topDiv">
-                <p class="welcomeGreet animate__animated animate__bounceInLeft">
-                    <span class="userIcon material-symbols-outlined"> photo_camera</span>
+                <div class="welcomeGreet animate__animated animate__bounceInLeft">
+                    <div id="profileBtn" class="userAcc">
+                    <img src="./images/bankuser.jpg" alt="">
+                    </div>
                     <span class="showGreet"></span>
-                </p>
+                </div>
                 <button class="notification" data-bs-toggle="modal" data-bs-target="#exampleModal">
 
                     <span><ion-icon class="notificationIcon" name="notifications-outline"></ion-icon></span>
@@ -79,7 +81,7 @@
                     <span class="transIcon material-symbols-outlined"> attach_money</span>
                     <p id="transferBtn">Transfer</p>
                 </div>
-                <div  class="modal">
+                <div class="modal">
                     <div class="modalOverlay"></div>
                     <div class="modalContent">
                         <div class="transForm">
@@ -110,6 +112,7 @@
                                     <div class="rec">
                                         <p>For whom is the money?</p>
                                         <input type="text" id="accountInput" placeholder="Enter 10-digits account number">
+                                        <h5 class="receiversName"></h5>
                                         <div class="accountInputError error"></div>
                                     </div>
                                     <div class="desc">
@@ -124,6 +127,16 @@
                                     <div class="footer">
 
                                         <button  id="sendBtn">$end</button>
+                                    </div>
+                                </div>
+                                <div class="successPageDiv">
+                                    <div class="successPage">
+                                        <div class="successIcon">
+                                            <span class="sIcon material-symbols-outlined">check_circle</span>
+                                        </div>
+                                      <p>Transaction Successful</p>
+                                       <button class="successButton">Receipt</button>
+                                      
                                     </div>
                                 </div>
                                 <div class="receiptDiv"></div>
@@ -193,11 +206,11 @@
                     <span class="material-symbols-outlined">home</span>
                     <p>Home</p>
                 </div>
-                <div class="navLinks" id="profileBtn">
+                <div class="navLinks">
                     <span class="material-symbols-outlined">
-                        person
+                        currency_bitcoin
                         </span>
-                    <p>Profile</p>
+                    <p>Bitcoin</p>
                 </div>
                 <div class="counterDiv"> 
                     <span>logged out in:</span>
@@ -246,13 +259,14 @@
   let currentUserInfo = gotten.find(
     (element) => element.username === currentUser
   );
-  console.log(currentUserInfo);
   if(!currentUserInfo){
     window.location.href = "index.html"
-   console.log("true")
   }
 }
 checkUser();
 </script>
 </body>
 </html>
+
+
+  

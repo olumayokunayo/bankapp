@@ -1,847 +1,703 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-@media (max-width: 390px){
-    body{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 100vh;
-        background-color: #222;
-    }
-    .landing{
-        height: 844px;
-        width: 390px;
-        border-radius: 10px;
-        background-image: url(./images/bankman.jpg);
-        background-position: center;
-        background-size: cover;
-        position: relative;
-        display: none;
-    }
-    .landing img{
-       font-size: 1rem;
-        padding: 1rem;
-     }
-     .heroDiv{
-       margin-top: 7rem;
-         width: 280px;
-     }
-     .heroDiv h1{
-         text-align: center;
-         margin-left: 7rem;
-         color: #810b28;
-         z-index: 9999;
-     }
-     .heroDiv p{
-         line-height: 1.6;
-         font-size: 1.2rem;
-         text-align: center;
-         margin: 1.5rem 0 0 3rem;
-        width: 300px;
-         z-index: 9999;
-     }
-     .beginDiv{
-         position: absolute;
-         bottom: 2%;
-         left: 18%;  
-     }
-     .beginBtn{
-        margin-top: -3rem;
-         border: none;
-         background: linear-gradient(to right, #810b28d2, hsl(300, 100%, 25%));
-         padding: 1rem;
-         background-clip: text;
-         -webkit-background-clip: text;
-         color: transparent; 
-         box-shadow:0px 2px 2px 2px  #a7077a28;
-         cursor: pointer;
-         transition: all 0.5s ease;
-     }
-     .beginBtn:hover{
-        color: #f5f5f5;
-        background: linear-gradient(to right, #810b28, rgba(95, 83, 83, 0.551)
-        );
-    }
-    .signUpDiv{
-        /* display: none; */
-        height: 844px;
-        width: 390px;
-        background-color: #fff;
-        border-radius: 25px;
-        padding: 1rem;
-    }
-    .createAcc{
-        text-align: center;
-    }
-    .createAcc img{
-      font-size: 1rem;
-        background: none;
-    }
-    .createAcc h3{
-        font-size: 1.5rem;
-        background: linear-gradient(
-            #f0b1ec,
-            #52cf93,
-            #7995e3,
-            #b1b1b1
-        );
-        background-clip: text;
-        -webkit-background-clip: text;
-        color: transparent;
-    }
-    .createAcc input{
-        border: none;
-        height: 2rem;
-        width: 100%;
-        margin-top: 0.5rem;
-        outline: none;
-    }
-    .createAcc input::placeholder{
-        padding: 0.5rem;
-    }
-    .bt1{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-     
-        /* margin: 1rem auto; */
-        gap: 0.5rem;
-        height:50px;
-        width: 200px;
-        padding: 0.5rem;
-        border-radius: 10px;
-        background: linear-gradient(to right, #800080cb, rgba(24, 22, 22, 0.812)
-        );
-        cursor: pointer;
-        transition: all 0.5s ease;
-    }
-    .bt1:hover{
-        background: linear-gradient(to right, #800080, rgb(95, 83, 83)
-        );
-    }
-    .buttons{
-        margin-top: 1.5rem;
-    }
-    .createBtn{
-        border: none;
-        background: none;
-        color: #fff;
-        cursor: pointer;
-    }
-    
-    .visibilityDiv{
-        border: none;
-        background: none;
-        color: #000;
-        cursor: pointer;
-    }
-    .account{
-        margin: 1rem 0 2rem 0;
-    }
-    .loginhere a{
-        text-decoration: none;
-        color: rgba(0, 0, 255, 0.66);
-    }
-    .socials{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 1.5rem;
-        color: #000;
-        font-size: 2rem;
-    }
-    .socialIcon{
-        padding: 0.4rem;
-        border-radius: 50%;
-        background-color: #f0b1ec;
-        transition: all 0.5s ease;
-        cursor: pointer;
-    }
-    .socialIcon:hover{
-        background-color: #7995e3;
-    } 
-    .inputDiv{
-        border: 1px solid black;
-        display: flex;
-        align-items: center;
-        margin-top: 2rem;
-        height: 3rem;
-    }
-    .inputs input, .input{
-    border: 1px solid black;
-    height: 3rem;
-    margin-top: 0.5rem;
-    } 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
+/* IPHONE 12PRO */
 
-
-
-@media (max-width: 414px) {
-    body{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 100vh;
-        background-color: #222;
-    }
-    .landing{
-        height: 896px;
-        width: 414px;
-        /* border-radius: 25px; */
-        background-image: url(./images/bankman.jpg);
-        background-position: center;
-        background-size: cover;
-        position: relative;
-        display: block;
-    }
-    .landing img{
-        border-radius: 25px;
-       /* display: none; */
-     }
-     .heroDiv{
-     
-       margin-top: 8rem;
-         width: 280px;
-     }
-     .heroDiv h1{
-         text-align: center;
-         margin-left: 7rem;
-         color: #810b28;
-         z-index: 9999;
-     }
-     .heroDiv p{
-         line-height: 1.6;
-         font-size: 1.2rem;
-         text-align: center;
-         margin: 1.5rem 0 0 3rem;
-        width: 300px;
-         z-index: 9999;
-     }
-     .beginDiv{
-         position: absolute;
-         bottom: 2%;
-         left: 18%;  
-     }
-     .beginBtn{
-        margin: 0 0 0 2rem;
-         border-radius: 10px;
-         background: linear-gradient(to right, #810b28d2, rgb(128, 0, 128));
-         padding: 1rem;
-         color: #fff;
-         box-shadow:0px 2px 2px 2px  #a7077a28;
-         cursor: pointer;
-         transition: all 0.5s ease;
-     }
-     .beginBtn:hover{
-        transform: scale(1.4);
-        color: #000;
-    }
-    .signUpDiv{
-        height: 896px;
-        width: 414px;
-        background-color: #fff;
-        /* border-radius: 25px; */
-        padding: 1rem;
-        display: none;
-    }
-    .createAcc{
-        text-align: center;
-    }
-    .createAcc img{
-      font-size: 1rem;
-      margin-bottom: 1rem;
-        background: none;
-    }
-    .createAcc h3{
-        font-size: 1rem;
-        background: linear-gradient(
-            #f0b1ec,
-            #52cf93,
-            #7995e3,
-            #b1b1b1
-        );
-        background-clip: text;
-        -webkit-background-clip: text;
-        color: transparent;
-    }
-    .createAcc input{
-        border: none;
-        height: 2rem;
-        width: 100%;
-        margin-top: 0.5rem;
-        outline: none;
-    }
-    .createAcc input::placeholder{
-        padding: 0.5rem;
-    }
-    .bt1{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 2rem auto;
-        gap: 0.5rem;
-        height:50px;
-        width:150px;
-        padding: 0.5rem;
-        border-radius: 10px;
-        background: linear-gradient(to right, #810b28d2, rgb(128, 0, 128));
-        cursor: pointer;
-        transition: all 0.5s ease;
-    }
-    .bt1:hover{
-        background: linear-gradient(to right, #800080, rgb(95, 83, 83)
-        );
-    }
-    .buttons{
-        margin-top: 1.5rem;
-    }
-    .createBtn{
-        border: none;
-        background: none;
-        color: #fff;
-        cursor: pointer;
-    }
-    
-    .visibilityDiv, .visibilityDivBtn{
-        border: none;
-        background: none;
-        color: #000;
-        cursor: pointer;
-    }
-    .account{
-        margin: 0.5rem 0 2rem 0;
-    }
-    .loginhere a{
-        text-decoration: none;
-        color: rgba(0, 0, 255, 0.66);
-    }
-    .socials{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 1.5rem;
-        color: #000;
-        font-size: 1.5rem;
-    }
-    .socialIcon{
-        padding: 0.4rem;
-        border-radius: 50%;
-        background-color: #f0b1ec;
-        transition: all 0.5s ease;
-        cursor: pointer;
-    }
-    .socialIcon:hover{
-        background-color: #7995e3;
-    } 
-    .inputDiv{
-        border: 1px solid black;
-        display: flex;
-        align-items: center;
-        margin-top: 2rem;
-        height: 3rem;
-    }
-    .inputs input, .input{
-    border: 1px solid black;
-    height: 3rem;
-    margin-top: 2rem;
-    } 
-    .loginDiv{
-        height: 896px;
-        width: 414px;
-        background-color: #fff;
-        /* border-radius: 25px; */
-        padding: 1rem; 
-        display: none;
-    }
-    .loginAcc{
-        text-align: center;
-    }
-    .loginAcc img{
-        margin-bottom: 2rem;
-    }
-    .loginAcc h3{
-        margin-bottom: 1rem;
-        font-size: 1.5rem;
-    }
-    .loginAcc input{
-        height: 2rem;
-        width: 100%;
-        margin-top: 0.5rem;
-        outline: none;
-        border: none;
-        padding: 0.5rem;
-    }
-    .signHere{
-        color: blue;
-        cursor: pointer;
-    }
-    .logHere{
-        color: blue;
-        cursor: pointer; 
-    }
-}
-
-
-
-@media (max-width:375px) {
-    body{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 100vh;
-        background-color: #222;
-    }
-    .landing{
-        height: 667px;
-        width: 350px;
-        border-radius: 25px;
-        background-image: url(./images/bankman.jpg);
-        background-position: center;
-        background-size: cover;
-        position: relative;
-    }
-    .landing img{
-        padding: 1rem;
-     }
-     .heroDiv{
-     
-       margin-top: 8rem;
-         width: 280px;
-     }
-     .heroDiv h1{
-         text-align: center;
-         margin-left: 7rem;
-         color: #810b28;
-         z-index: 9999;
-     }
-     .heroDiv p{
-         line-height: 1.6;
-         font-size: 1.2rem;
-         text-align: center;
-         margin: 1.5rem 0 0 3rem;
-        width: 300px;
-         z-index: 9999;
-     }
-     .beginDiv{
-         position: absolute;
-         bottom: 2%;
-         left: 18%;  
-     }
-     .beginBtn{
-        margin: 0 0 0 1rem;
-         border: none;
-         padding: 1rem;
-         cursor: pointer;
-         transition: all 0.5s ease;
-     }
-     /* .beginBtn:hover{
-        color: #f5f5f5;
-        background: linear-gradient(to right, #810b28, rgba(95, 83, 83, 0.551)
-        );
-    } */
-    .signUpDiv{
-        height: fit-content;
-        width: 350px;
-        background-color: #fff;
-        border-radius: 25px;
-        padding: 1rem;
-       
-    }
-    .createAcc{
-        text-align: center;
-    }
-    .createAcc img{
-      font-size: 1rem;
-        background: none;
-    }
-    .createAcc h3{
-        font-size: 1.5rem;
-        color: rgba(255, 0, 0, 0.676);
-    }
-    .createAcc input{
-        border: none;
-        height: 2rem;
-        width: 100%;
-        margin-top: 0.5rem;
-        outline: none;
-    }
-    .createAcc input::placeholder{
-        padding: 0.5rem;
-    }
-    .bt1{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-     
-        margin: 2rem auto;
-        gap: 0.5rem;
-        height:30px;
-        width: 200px;
-        padding: 0.5rem;
-        border-radius: 10px;
-        /* background-color: red; */
-        cursor: pointer;
-        transition: all 0.5s ease;
-    }
-    /* .bt1:hover{
-        background: linear-gradient(to right, #800080, rgb(95, 83, 83)
-        );
-    } */
-    .buttons{
-        margin-top: 0rem;
-    }
-    .createBtn{
-        border: none;
-        background: none;
-        color: #fff;
-        cursor: pointer;
-    }
-    
-    .visibilityDiv{
-        border: none;
-        background: none;
-        color: #000;
-        cursor: pointer;
-    }
-    .account{
-        margin: 1rem 0 2rem 0;
-    }
-    .loginhere a{
-        text-decoration: none;
-        color: rgba(0, 0, 255, 0.66);
-    }
-    .socials{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 1.5rem;
-        color: #ffffff;
-        font-size: 1.2rem;
-    }
-    .socialIcon{
-        padding: 0.8rem;
-        border-radius: 50%;
-        background-color: rgba(255, 0, 0, 0.83);
-        transition: all 0.5s ease;
-        cursor: pointer;
-    }
-    .socialIcon:hover{
-        background-color: #7995e3;
-    } 
-    .inputDiv{
-        border: 1px solid black;
-        display: flex;
-        align-items: center;
-        margin-top: 0.5rem;
-    
-    }
-    .inputs input{
-        border: 1px solid rgb(0, 0, 0);
-        margin-top: 0.5rem;
-    }
-    .input{
-    border: 1px solid rgb(0, 0, 0);
-    margin-top: 0.5rem;
-    } 
-    .loginDiv{
-        height: fit-content;
-        width: 375px;
-        background-color: #fff;
-        /* border-radius: 25px; */
-        padding: 1rem; 
-        display: none;
-    }
-    .loginAcc{
-        text-align: center;
-    }
-    .loginAcc img{
-        height: 250px;
-        width: 350px;
-        /* margin-bottom: 1rem; */
-    }
-    .loginAcc h3{
-        margin-bottom: 1rem;
-        font-size: 1.5rem;
-    }
-    .loginAcc input{
-        height: 1rem;
-        width: 100%;
-        margin-top: 0.5rem;
-        outline: none;
-        border: none;
-        padding: 0.5rem;
-    }
-    .signHere{
-        color: blue;
-        cursor: pointer;
-    }
-    .logHere{
-        color: blue;
-        cursor: pointer; 
-    }
-}
-
-
-
-
-/* @media (max-width: 768px) {
-    body{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 100vh;
-        background-color: #222;
-    }
-    .landing{
-        height: 1024px;
-        width: 768px;
-        border-radius: 25px;
-        background-image: url(./images/bankman.jpg);
-        background-position: center;
-        background-size: cover;
-        position: relative;
-    }
-    .landing img{
-        padding: 1rem;
-     }
-     .heroDiv{
-     
-       margin-top: 8rem;
-         width: 280px;
-     }
-     .heroDiv h1{
-         text-align: center;
-         color: #810b28;
-         font-size: 1rem;
-         z-index: 9999;
-     }
-     .heroDiv p{
-         line-height: 1.6;
-         font-size: 1rem;
-         text-align: center;
-         margin: 1.5rem 0 0 7rem;
-         z-index: 9999;
-     }
-     .beginDiv{
-         position: absolute;
-         bottom: 2%;
-         left: 18%;  
-     }
-     .beginBtn{
-        margin: 0 0 0 0rem;
-         border: none;
-         font-size: 2rem;
-         background: linear-gradient(to right, #810b28d2, rgba(95, 83, 83, 0.472)
-         );
-         padding: 1rem 4rem;
-         background-clip: text;
-         -webkit-background-clip: text;
-         color: transparent;
-         box-shadow:0px 2px 2px 2px  #a7077a28;
-         cursor: pointer;
-         transition: all 0.5s ease;
-         width: 200px;
-     }
-     .beginBtn:hover{
-        color: #f5f5f5;
-        background: linear-gradient(to right, #810b28, rgba(95, 83, 83, 0.551)
-        );
-    }
-} */
-/* body{
+@media (max-width: 390px) {
+  body {
     display: flex;
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    background-color: #222;
-}
-.signUpDiv{
+    /* background-color: #222; */
+    overflow: hidden;
+  }
+  .signingInDiv{
+    background-color: #fff;
+    height: 100vh;
+    width: 100%;
+  }
+  .spinnerDiv{
+    margin: 10rem 0 0 4rem;
+  }
+  .spinner-grow{
+    display: none;
+    margin:0 0 2rem 5rem;
+   height: 100px;
+   width: 100px;
+    color: rgb(128, 0, 128);
+  }
+  .settingUp{
+    color: #fff;
+  }
+  .setAcct{
+    display: none;
+    font-size: 1.5rem;
+    color: #222;
+  }
+  .setPin{
+    display: none;
+    font-size: 1.3rem;
+    color: #222222d2;
+  }
+  .logInNow{
+    display: none;
+    margin-top: 2rem;
+    font-size: 1rem;
+    color: #ffffff;
+    border: none;
+    padding: 0.5rem;
+    background-color: rgb(128, 0, 128);
+    border-radius: 10px;
+  }
+  .landing {
     height: 844px;
     width: 390px;
-    background-color: #fff;
-    border-radius: 25px;
+    background-image: url(./images/bankman.jpg);
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    display: none;
+  }
+  .landing img {
+    font-size: 1rem;
     padding: 1rem;
-   display: none;
-
-}
-.createAcc{
+  }
+  .heroDiv {
+    margin-top: 7rem;
+    width: 280px;
+  }
+  .heroDiv h1 {
     text-align: center;
-}
-.createAcc img{
-  font-size: 1rem;
-    background: none;
-}
-.createAcc h3{
-    font-size: 1.5rem;
-    background: linear-gradient(
-        #f0b1ec,
-        #52cf93,
-        #7995e3,
-        #b1b1b1
-    );
+    margin-left: 7rem;
+    color: #810b28;
+    z-index: 9999;
+  }
+  .heroDiv p {
+    line-height: 1.6;
+    font-size: 1.2rem;
+    text-align: center;
+    margin: 1.5rem 0 0 3rem;
+    width: 300px;
+    z-index: 9999;
+  }
+  .beginDiv {
+    position: absolute;
+    top: 87%;
+    left: 0;
+    /* margin-right: 3rem; */
+    /* width: 70%; */
+  }
+  .beginBtn {
+    border: none;
+    background: linear-gradient(to right, #810b28d2, hsl(300, 100%, 25%));
+    padding: 1rem;
     background-clip: text;
     -webkit-background-clip: text;
     color: transparent;
-}
-.createAcc input{
+    box-shadow: 0px 2px 2px 2px #a7077a28;
+    cursor: pointer;
+    transition: all 0.5s ease;
+  }
+  .beginBtn:hover {
+    color: #f5f5f5;
+    background: linear-gradient(to right, #810b28, rgba(95, 83, 83, 0.551));
+  }
+  .signUpDiv {
+    height: 844px;
+    width: 390px;
+    background-color: #fff;
+    padding: 1rem;
+  }
+  .createAcc {
+    text-align: center;
+  }
+  .createAcc img {
+    font-size: 1rem;
+    background: none;
+  }
+  .createAcc h3 {
+    font-size: 1.5rem;
+    background: linear-gradient(#f0b1ec, #52cf93, #7995e3, #b1b1b1);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+  .createAcc input {
     border: none;
     height: 2rem;
     width: 100%;
     margin-top: 0.5rem;
     outline: none;
-}
-.createAcc input::placeholder{
+  }
+  .createAcc input::placeholder {
     padding: 0.5rem;
-}
-.bt1{
+  }
+  .bt1 {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: auto;
     gap: 0.5rem;
+    height: 50px;
     width: 200px;
     padding: 0.5rem;
     border-radius: 10px;
-    background: linear-gradient(to right, #800080cb, rgba(24, 22, 22, 0.812)
-    );
+    background: linear-gradient(to right, #800080cb, rgba(24, 22, 22, 0.812));
     cursor: pointer;
     transition: all 0.5s ease;
-}
-.bt1:hover{
-    background: linear-gradient(to right, #800080, rgb(95, 83, 83)
-    );
-}
-.buttons{
+  }
+  .bt1:hover {
+    background: linear-gradient(to right, #800080, rgb(95, 83, 83));
+  }
+  .buttons {
     margin-top: 1.5rem;
-}
-.createBtn{
+  }
+  .createBtn {
     border: none;
     background: none;
     color: #fff;
     cursor: pointer;
-}
-
-.visibilityDiv{
+  }
+  .visibilityDiv {
     border: none;
     background: none;
     color: #000;
     cursor: pointer;
-}
-.account{
-    margin: 1rem 0 1rem 0;
-}
-.loginhere a{
+  }
+  .account {
+    margin: 1rem 0 2rem 0;
+  }
+  .loginhere a {
     text-decoration: none;
     color: rgba(0, 0, 255, 0.66);
+  }
+  .socials {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    color: #000;
+    font-size: 2rem;
+  }
+  .socialIcon {
+    padding: 0.4rem;
+    border-radius: 50%;
+    background-color: #f0b1ec;
+    transition: all 0.5s ease;
+    cursor: pointer;
+  }
+  .socialIcon:hover {
+    background-color: #7995e3;
+  }
+  .inputDiv {
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    margin-top: 2rem;
+    height: 3rem;
+  }
+  .inputs input,
+  .input {
+    border: 1px solid black;
+    height: 3rem;
+    margin-top: 0.5rem;
+  }
+  .loginDiv {
+    height: 844px;
+    width: 390px;
+    background-color: #fff;
+    padding: 1rem;
+  }
+  .loginAcc {
+    text-align: center;
+  }
+  .loginAcc img {
+    width: 90%;
+  }
+  .loginAcc h3 {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+  }
+  .loginAcc input {
+    height: 1rem;
+    width: 100%;
+    margin-top: 0.5rem;
+    outline: none;
+    border: none;
+    padding: 0.5rem;
+  }
+  .signHere {
+    color: blue;
+    cursor: pointer;
+  }
+  .logHere {
+    color: blue;
+    cursor: pointer;
+  }
 }
-.socials{
+
+/* IPHONE XR */
+
+@media (max-width: 414px) {
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #222;
+  }
+  .signingInDiv{
+    background-color: #fff;
+    height: 100vh;
+    width: 100%;
+  }
+  .spinnerDiv{
+    margin: 10rem 0 0 4rem;
+  }
+  .spinner-grow{
+    display: none;
+    margin:0 0 2rem 5rem;
+   height: 100px;
+   width: 100px;
+    color: rgb(128, 0, 128);
+  }
+  .settingUp{
+    color: #fff;
+  }
+  .setAcct{
+    display: none;
+    font-size: 1.5rem;
+    color: #222;
+  }
+  .setPin{
+    display: none;
+    font-size: 1.3rem;
+    color: #222222d2;
+  }
+  .logInNow{
+    display: none;
+    margin-top: 2rem;
+    font-size: 1rem;
+    color: #ffffff;
+    border: none;
+    padding: 0.5rem;
+    background-color: rgb(128, 0, 128);
+    border-radius: 10px;
+  }
+  .landing {
+    height: 896px;
+    width: 414px;
+    /* border-radius: 25px; */
+    background-image: url(./images/bankman.jpg);
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    display: block;
+  }
+  .landing img {
+    border-radius: 25px;
+    /* display: none; */
+  }
+  .heroDiv {
+    margin-top: 8rem;
+    width: 280px;
+  }
+  .heroDiv h1 {
+    text-align: center;
+    margin-left: 7rem;
+    color: #810b28;
+    z-index: 9999;
+  }
+  .heroDiv p {
+    line-height: 1.6;
+    font-size: 1.2rem;
+    text-align: center;
+    margin: 1.5rem 0 0 3rem;
+    width: 300px;
+    z-index: 9999;
+  }
+  .beginDiv {
+    position: absolute;
+    bottom: 2%;
+    left: 18%;
+  }
+  .beginBtn {
+    margin: 0 0 0 2rem;
+    border-radius: 10px;
+    background: linear-gradient(to right, #810b28d2, rgb(128, 0, 128));
+    padding: 1rem;
+    color: #fff;
+    box-shadow: 0px 2px 2px 2px #a7077a28;
+    cursor: pointer;
+    transition: all 0.5s ease;
+  }
+  .beginBtn:hover {
+    transform: scale(1.4);
+    color: #000;
+  }
+  .signUpDiv {
+    height: 896px;
+    width: 414px;
+    background-color: #fff;
+    /* border-radius: 25px; */
+    padding: 1rem;
+    display: none;
+  }
+  .createAcc {
+    text-align: center;
+  }
+  .createAcc img {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    background: none;
+  }
+  .createAcc h3 {
+    font-size: 1rem;
+    background: linear-gradient(#f0b1ec, #52cf93, #7995e3, #b1b1b1);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+  .createAcc input {
+    border: none;
+    height: 2rem;
+    width: 100%;
+    margin-top: 0.5rem;
+    outline: none;
+  }
+  .createAcc input::placeholder {
+    padding: 0.5rem;
+  }
+  .bt1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 2rem auto;
+    gap: 0.5rem;
+    height: 50px;
+    width: 150px;
+    padding: 0.5rem;
+    border-radius: 10px;
+    background: linear-gradient(to right, #810b28d2, rgb(128, 0, 128));
+    cursor: pointer;
+    transition: all 0.5s ease;
+  }
+  .bt1:hover {
+    background: linear-gradient(to right, #800080, rgb(95, 83, 83));
+  }
+  .buttons {
+    margin-top: 1.5rem;
+  }
+  .createBtn {
+    border: none;
+    background: none;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  .visibilityDiv,
+  .visibilityDivBtn {
+    border: none;
+    background: none;
+    color: #000;
+    cursor: pointer;
+  }
+  .account {
+    margin: 0.5rem 0 2rem 0;
+  }
+  .loginhere a {
+    text-decoration: none;
+    color: rgba(0, 0, 255, 0.66);
+  }
+  .socials {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 1.5rem;
     color: #000;
     font-size: 1.5rem;
-}
-.socialIcon{
+  }
+  .socialIcon {
     padding: 0.4rem;
     border-radius: 50%;
     background-color: #f0b1ec;
     transition: all 0.5s ease;
     cursor: pointer;
-}
-.socialIcon:hover{
+  }
+  .socialIcon:hover {
     background-color: #7995e3;
-} */
-
-/* LANDING */
-/* .landing{
-    height: 844px;
-    width: 390px;
-    border-radius: 25px;
-    background-image: url(./images/bankman.jpg);
-    background-position: center;
-    background-size: cover;
-    position: relative;
-}
-.landing img{
-   padding: 1rem;
-}
-.heroDiv{
-
-  margin-top: 8rem;
-    width: 280px;
-}
-.heroDiv h2{
-    text-align: center;
-    color: #7995e3;
-    z-index: 9999;
-}
-.heroDiv p{
-    line-height: 1.6;
-    font-size: 1rem;
-    text-align: center;
-    margin-top: 1.5rem;
-    z-index: 9999;
-}
-.beginDiv{
-    position: absolute;
-    bottom: 2%;
-    left: 18%;  
-}
-.beginBtn{
-    border: none;
-    background: linear-gradient(to right, #800080, rgb(95, 83, 83)
-    );
-    padding: 1rem;
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-    box-shadow:0px 2px 2px 2px  #a7077aa0;
-    cursor: pointer;
-    transition: all 0.5s ease;
-}
-.beginBtn:hover{
-    color: #f5f5f5;
-    background: linear-gradient(to right, #800080, rgb(95, 83, 83)
-    );
-}
-.loginDiv{
-    height: 844px;
-    width: 390px;
+  }
+  .inputDiv {
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    margin-top: 2rem;
+    height: 3rem;
+  }
+  .inputs input,
+  .input {
+    border: 1px solid black;
+    height: 3rem;
+    margin-top: 2rem;
+  }
+  .loginDiv {
+    height: 896px;
+    width: 414px;
     background-color: #fff;
-    border-radius: 25px;
-    padding: 1rem; 
-    display: none;
-}
-.loginAcc{
+    /* border-radius: 25px; */
+    padding: 1rem;
+  }
+  .loginAcc {
     text-align: center;
-}
-.loginAcc img{
+  }
+  .loginAcc img {
     margin-bottom: 2rem;
-}
-.loginAcc h3{
+  }
+  .loginAcc h3 {
     margin-bottom: 1rem;
     font-size: 1.5rem;
-}
-.loginAcc input{
+  }
+  .loginAcc input {
     height: 2rem;
     width: 100%;
     margin-top: 0.5rem;
     outline: none;
     border: none;
     padding: 0.5rem;
+  }
+  .signHere {
+    color: blue;
+    cursor: pointer;
+  }
+  .logHere {
+    color: blue;
+    cursor: pointer;
+  }
 }
-.inputDiv{
+
+/* IPHONE SE */
+
+@media (max-width: 375px) {
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #222;
+  }
+  .signingInDiv{
+    background-color: #fff;
+    height: 100vh;
+    width: 100%;
+  }
+  .spinnerDiv{
+    margin: 10rem 0 0 4rem;
+  }
+  .spinner-grow{
+    display: none;
+    margin:0 0 2rem 5rem;
+   height: 100px;
+   width: 100px;
+    color: rgb(128, 0, 128);
+  }
+  .settingUp{
+    color: #fff;
+  }
+  .setAcct{
+    display: none;
+    font-size: 1.5rem;
+    color: #222;
+  }
+  .setPin{
+    display: none;
+    font-size: 1.3rem;
+    color: #222222d2;
+  }
+  .logInNow{
+    display: none;
+    margin-top: 2rem;
+    font-size: 1rem;
+    color: #ffffff;
+    border: none;
+    padding: 0.5rem;
+    background-color: rgb(128, 0, 128);
+    border-radius: 10px;
+  }
+  .landing {
+    height: 667px;
+    width: 350px;
+    background-image: url(./images/bankman.jpg);
+    background-position: center;
+    background-size: cover;
+    position: relative;
+  }
+  .landing img {
+    padding: 1rem;
+  }
+  .heroDiv {
+    margin-top: 8rem;
+    width: 280px;
+  }
+  .heroDiv h1 {
+    text-align: center;
+    margin-left: 7rem;
+    color: #810b28;
+    z-index: 9999;
+  }
+  .heroDiv p {
+    line-height: 1.6;
+    font-size: 1.2rem;
+    text-align: center;
+    margin: 1.5rem 0 0 3rem;
+    width: 300px;
+    z-index: 9999;
+  }
+  .beginDiv {
+    position: absolute;
+    bottom: 2%;
+    left: 18%;
+  }
+  .beginBtn {
+    margin: 0 0 0 1rem;
+    border: none;
+    padding: 1rem;
+    cursor: pointer;
+    transition: all 0.5s ease;
+  }
+
+  .signUpDiv {
+    height: fit-content;
+    width: 350px;
+    background-color: #fff;
+    padding: 1rem;
+  }
+  .createAcc {
+    text-align: center;
+  }
+  .createAcc img {
+    font-size: 1rem;
+    background: none;
+  }
+  .createAcc h3 {
+    font-size: 1.5rem;
+    color: #800080;
+  }
+  .createAcc input {
+    border: none;
+    height: 2rem;
+    width: 100%;
+    margin-top: 0.5rem;
+    outline: none;
+  }
+  .createAcc input::placeholder {
+    padding: 0.5rem;
+  }
+  .bt1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 2rem auto;
+    gap: 0.5rem;
+    height: 30px;
+    width: 200px;
+    padding: 0.5rem;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.5s ease;
+  }
+  .bt1:hover {
+    background: linear-gradient(to right, #800080, rgb(95, 83, 83));
+  }
+  .buttons {
+    margin-top: 0rem;
+  }
+  .createBtn {
+    border: none;
+    background: none;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  .visibilityDiv {
+    border: none;
+    background: none;
+    color: #000;
+    cursor: pointer;
+  }
+  .account {
+    margin: 1rem 0 2rem 0;
+  }
+  .loginhere a {
+    text-decoration: none;
+    color: rgba(0, 0, 255, 0.66);
+  }
+  .socials {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    color: #ffffff;
+    font-size: 1.4rem;
+  }
+  .socialIcon {
+    padding: 0.8rem;
+    border-radius: 50%;
+    background-color: #f0b1ec;
+    transition: all 0.5s ease;
+    cursor: pointer;
+  }
+  .socialIcon:hover {
+    background-color: #7995e3;
+  }
+  .inputDiv {
     border: 1px solid black;
     display: flex;
     align-items: center;
-    margin-top: 1rem;
-    height: 3rem;
+    margin-top: 0.5rem;
+  }
+  .inputs input {
+    border: 1px solid rgb(0, 0, 0);
+    margin-top: 0.5rem;
+  }
+  .input {
+    border: 1px solid rgb(0, 0, 0);
+    margin-top: 0.5rem;
+  }
+  .loginDiv {
+    height: fit-content;
+    width: 375px;
+    background-color: #fff;
+    padding: 1rem;
+  }
+  .loginAcc {
+    text-align: center;
+  }
+  .loginAcc img {
+    height: 250px;
+    width: 350px;
+  }
+  .loginAcc h3 {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+  }
+  .loginAcc input {
+    height: 1rem;
+    width: 100%;
+    margin-top: 0.5rem;
+    outline: none;
+    border: none;
+    padding: 0.5rem;
+  }
+  .signHere {
+    color: blue;
+    cursor: pointer;
+  }
+  .logHere {
+    color: blue;
+    cursor: pointer;
+  }
 }
-.inputs input, .input{
-border: 1px solid black;
-} */
+

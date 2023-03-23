@@ -21,6 +21,8 @@ let email = document.getElementById("email");
 let pin = document.getElementById("pin");
 let password1 = document.getElementById("password1");
 let password2 = document.getElementById("password2");
+let signingInDiv = document.querySelector(".signingInDiv");
+let spinners = document.querySelector(".spinner-grow");
 let userArr = JSON.parse(localStorage.getItem("userInfo"))
 
 createBtn.addEventListener("click", function(){
@@ -40,8 +42,6 @@ password1.value == "" || password2.value == ""){
   let expMonth = Math.floor(Math.random()*12);
   let expYear = 24
   let expiryDate = `${expMonth}/${expYear}`
-  // let creditNum = randcreditNum.toString();
-  console.log(randcreditNum, expMonth);
 
   let userInfo = {
     firstName: fName.value,
@@ -68,32 +68,13 @@ password1.value == "" || password2.value == ""){
     localStorage.setItem("userInfo", JSON.stringify(userArr))
     localStorage.setItem(userKey, JSON.stringify(userInfo));
     signUpDiv.style.display = "none";
-    loginDiv.style.display = "block";
+   
+    window.location.href = "spinner.html"
+    spinners.style.display = "block"
   }
 }
 })
-// LOGIN ACCOUNT
 
-let loginBtn = document.getElementById("loginBtn");
-let usernameLog = document.getElementById("usernameLog");
-let passwordLog = document.getElementById("passwordLog");
-
-loginBtn.addEventListener("click", function(){
-  // Retrieve the user's information using the key
-let userKey = `userInfo-${usernameLog.value}`;
-  // Get the user's key from localStorage
-  let userInfo = JSON.parse(localStorage.getItem(userKey));
-
-if (userInfo && userInfo.password === passwordLog.value) {
-  localStorage.setItem("loggedInUser", usernameLog.value);
-  loginDiv.style.display = "none";
-  window.location.href = "dashboard.html";
-} else {
-  alert("Invalid username or password");
-}
-
-
-})
 // VISIBILITY FOR SIGN UP
 let visibilityBtn = document.querySelector(".visibilityDiv");
 visibilityBtn.addEventListener("click", function(){
@@ -112,23 +93,6 @@ visibilityBtn.addEventListener("click", function(){
   }
 })
 
-
-// VISIBILITY FOR LOG IN
-let visibilityDivBtn = document.querySelector(".visibilityDivBtn");
-visibilityDivBtn.addEventListener("click", function(){
-  if(passwordLog.type == "password"){
-    passwordLog.type = "text"
-    visibilityDivBtn.innerHTML = `<span class="material-symbols-outlined">
-    visibility
-    </span>`
-  } else {
-    passwordLog.type = "password"
-    visibilityDivBtn.innerHTML = `<span class="material-symbols-outlined">
-    visibility_off
-    </span>`
-  }
-})
-
 // ALREADY HAVE AN ACCOUNT
 let logHereBtn = document.getElementById("logHere");
 logHereBtn.addEventListener("click", function(){
@@ -136,8 +100,3 @@ logHereBtn.addEventListener("click", function(){
   loginDiv.style.display = "block";
 })
 
-let signHereBtn = document.getElementById("signHere");
-signHereBtn.addEventListener("click", function(){
-  signUpDiv.style.display = "block";
-  loginDiv.style.display = "none";
-}) 

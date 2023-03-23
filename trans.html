@@ -54,7 +54,9 @@
     .dandt{
         font-size: 0.8rem;
     }
-  
+    .notrans{
+  margin-left: 8rem;
+}
 </style>
 <body>
     <div>
@@ -73,7 +75,8 @@
     let withdrawalArr = [];
 
     let amount = document.querySelector(".amount")
-    historyGotten.forEach(element => {
+    if(historyGotten){
+        historyGotten.forEach(element => {
         if(element.sendersAcc === currentUser){
             withdrawalArr.push(element);
             // console.log(withdrawalArr);
@@ -105,6 +108,16 @@
             </div>`
         });
     });
+    } else {
+        screen.innerHTML = `
+        <div class="tdiv">
+            <span id="backBtn" class="material-symbols-outlined">arrow_back_ios_new</span>
+            <h5 class="transHead">Transactions</h5>
+        <span class="material-symbols-outlined">
+        expand_more</span></div>
+        <h4 class="notrans">No transaction yet</h4>`
+    }
+    
 
    let backBtn = document.getElementById("backBtn");
    backBtn.addEventListener("click", function(){
